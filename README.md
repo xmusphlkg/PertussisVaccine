@@ -1,6 +1,6 @@
-# Introduction
+## Introduction
 
-# Plan
+## Plan
 
 | Country | Country Code | Path | Status |
 | --- | --- | --- | --- |
@@ -8,3 +8,8 @@
 | USA | US | [US](CleanData/US/pertussis.csv) | Done |
 | Japan | JP | [JP](CleanData/JP/pertussis.csv) | Done |
 | UK | UK | [UK](CleanData/UK/pertussis.csv) | Working |
+
+## Preview
+
+![preview](.\preview.png)
+
