@@ -11,5 +11,5 @@
 
 ## Preview
 
-![preview](.\preview.png)
+![preview](preview.png)
 
