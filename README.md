@@ -1,6 +1,6 @@
-# Introduction
+## Introduction
 
-# Plan
+## Plan
 
 | Country | Country Code | Path | Status | Frequency |
 | --- | --- | --- | --- | --- |
@@ -9,3 +9,9 @@
 | Japan | JP | [JP](CleanData/JP/pertussis.csv) | Done | Weekly |
 | UK | UK | [UK](CleanData/UK/pertussis.csv) | Working | Weekly |
 | Australia | AU | [AU](CleanData/AU/pertussis.csv) | Done | Fortnightly |
+
+
+## Preview
+
+![preview](preview.png)
+
