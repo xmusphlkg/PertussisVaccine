@@ -1,7 +1,7 @@
 
 library(tidyverse)
 
-df <- read.csv("../CleanData/pertussis.csv")
+df <- read.csv("../CleanData/report_pertussis.csv")
 df$Date <- as.Date(df$Date, format = "%Y-%m-%d")
 df$Cases <- as.integer(df$Cases)
 
