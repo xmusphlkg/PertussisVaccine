@@ -1,4 +1,56 @@
 Area,Date,Year,Week,Disease,1,2,3,Cases,URL
+UNITED STATES,2016-01-09,,,Pertussis,Current week,Current week,,98,https://wonder.cdc.gov/nndss/static/2016/2016_01.html
+UNITED STATES,2016-01-16,,,Pertussis,Current week,Current week,,132,https://wonder.cdc.gov/nndss/static/2016/2016_02.html
+UNITED STATES,2016-01-23,,,Pertussis,Current week,Current week,,117,https://wonder.cdc.gov/nndss/static/2016/2016_03.html
+UNITED STATES,2016-01-30,,,Pertussis,Current week,Current week,,123,https://wonder.cdc.gov/nndss/static/2016/2016_04.html
+UNITED STATES,2016-02-06,,,Pertussis,Current week,Current week,,119,https://wonder.cdc.gov/nndss/static/2016/2016_05.html
+UNITED STATES,2016-02-13,,,Pertussis,Current week,Current week,,137,https://wonder.cdc.gov/nndss/static/2016/2016_06.html
+UNITED STATES,2016-02-20,,,Pertussis,Current week,Current week,,130,https://wonder.cdc.gov/nndss/static/2016/2016_07.html
+UNITED STATES,2016-02-27,,,Pertussis,Current week,Current week,,130,https://wonder.cdc.gov/nndss/static/2016/2016_08.html
+UNITED STATES,2016-03-05,,,Pertussis,Current week,Current week,,136,https://wonder.cdc.gov/nndss/static/2016/2016_09.html
+UNITED STATES,2016-03-12,,,Pertussis,Current week,Current week,,116,https://wonder.cdc.gov/nndss/static/2016/2016_10.html
+UNITED STATES,2016-03-19,,,Pertussis,Current week,Current week,,131,https://wonder.cdc.gov/nndss/static/2016/2016_11.html
+UNITED STATES,2016-03-26,,,Pertussis,Current week,Current week,,101,https://wonder.cdc.gov/nndss/static/2016/2016_12.html
+UNITED STATES,2016-04-02,,,Pertussis,Current week,Current week,,99,https://wonder.cdc.gov/nndss/static/2016/2016_13.html
+UNITED STATES,2016-04-09,,,Pertussis,Current week,Current week,,87,https://wonder.cdc.gov/nndss/static/2016/2016_14.html
+UNITED STATES,2016-04-16,,,Pertussis,Current week,Current week,,110,https://wonder.cdc.gov/nndss/static/2016/2016_15.html
+UNITED STATES,2016-04-23,,,Pertussis,Current week,Current week,,91,https://wonder.cdc.gov/nndss/static/2016/2016_16.html
+UNITED STATES,2016-04-30,,,Pertussis,Current week,Current week,,108,https://wonder.cdc.gov/nndss/static/2016/2016_17.html
+UNITED STATES,2016-05-07,,,Pertussis,Current week,Current week,,108,https://wonder.cdc.gov/nndss/static/2016/2016_18.html
+UNITED STATES,2016-05-14,,,Pertussis,Current week,Current week,,100,https://wonder.cdc.gov/nndss/static/2016/2016_19.html
+UNITED STATES,2016-05-21,,,Pertussis,Current week,Current week,,115,https://wonder.cdc.gov/nndss/static/2016/2016_20.html
+UNITED STATES,2016-05-28,,,Pertussis,Current week,Current week,,116,https://wonder.cdc.gov/nndss/static/2016/2016_21.html
+UNITED STATES,2016-06-04,,,Pertussis,Current week,Current week,,84,https://wonder.cdc.gov/nndss/static/2016/2016_22.html
+UNITED STATES,2016-06-11,,,Pertussis,Current week,Current week,,107,https://wonder.cdc.gov/nndss/static/2016/2016_23.html
+UNITED STATES,2016-06-18,,,Pertussis,Current week,Current week,,125,https://wonder.cdc.gov/nndss/static/2016/2016_24.html
+UNITED STATES,2016-06-25,,,Pertussis,Current week,Current week,,111,https://wonder.cdc.gov/nndss/static/2016/2016_25.html
+UNITED STATES,2016-07-02,,,Pertussis,Current week,Current week,,158,https://wonder.cdc.gov/nndss/static/2016/2016_26.html
+UNITED STATES,2016-07-09,,,Pertussis,Current week,Current week,,103,https://wonder.cdc.gov/nndss/static/2016/2016_27.html
+UNITED STATES,2016-07-16,,,Pertussis,Current week,Current week,,205,https://wonder.cdc.gov/nndss/static/2016/2016_28.html
+UNITED STATES,2016-07-23,,,Pertussis,Current week,Current week,,116,https://wonder.cdc.gov/nndss/static/2016/2016_29.html
+UNITED STATES,2016-07-30,,,Pertussis,Current week,Current week,,131,https://wonder.cdc.gov/nndss/static/2016/2016_30.html
+UNITED STATES,2016-08-06,,,Pertussis,Current week,Current week,,97,https://wonder.cdc.gov/nndss/static/2016/2016_31.html
+UNITED STATES,2016-08-13,,,Pertussis,Current week,Current week,,93,https://wonder.cdc.gov/nndss/static/2016/2016_32.html
+UNITED STATES,2016-08-20,,,Pertussis,Current week,Current week,,123,https://wonder.cdc.gov/nndss/static/2016/2016_33.html
+UNITED STATES,2016-08-27,,,Pertussis,Current week,Current week,,125,https://wonder.cdc.gov/nndss/static/2016/2016_34.html
+UNITED STATES,2016-09-03,,,Pertussis,Current week,Current week,,111,https://wonder.cdc.gov/nndss/static/2016/2016_35.html
+UNITED STATES,2016-09-10,,,Pertussis,Current week,Current week,,96,https://wonder.cdc.gov/nndss/static/2016/2016_36.html
+UNITED STATES,2016-09-17,,,Pertussis,Current week,Current week,,112,https://wonder.cdc.gov/nndss/static/2016/2016_37.html
+UNITED STATES,2016-09-24,,,Pertussis,Current week,Current week,,122,https://wonder.cdc.gov/nndss/static/2016/2016_38.html
+UNITED STATES,2016-10-01,,,Pertussis,Current week,Current week,,88,https://wonder.cdc.gov/nndss/static/2016/2016_39.html
+UNITED STATES,2016-10-08,,,Pertussis,Current week,Current week,,89,https://wonder.cdc.gov/nndss/static/2016/2016_40.html
+UNITED STATES,2016-10-15,,,Pertussis,Current week,Current week,,82,https://wonder.cdc.gov/nndss/static/2016/2016_41.html
+UNITED STATES,2016-10-22,,,Pertussis,Current week,Current week,,88,https://wonder.cdc.gov/nndss/static/2016/2016_42.html
+UNITED STATES,2016-10-29,,,Pertussis,Current week,Current week,,101,https://wonder.cdc.gov/nndss/static/2016/2016_43.html
+UNITED STATES,2016-11-05,,,Pertussis,Current week,Current week,,157,https://wonder.cdc.gov/nndss/static/2016/2016_44.html
+UNITED STATES,2016-11-12,,,Pertussis,Current week,Current week,,101,https://wonder.cdc.gov/nndss/static/2016/2016_45.html
+UNITED STATES,2016-11-19,,,Pertussis,Current week,Current week,,167,https://wonder.cdc.gov/nndss/static/2016/2016_46.html
+UNITED STATES,2016-11-26,,,Pertussis,Current week,Current week,,148,https://wonder.cdc.gov/nndss/static/2016/2016_47.html
+UNITED STATES,2016-12-03,,,Pertussis,Current week,Current week,,154,https://wonder.cdc.gov/nndss/static/2016/2016_48.html
+UNITED STATES,2016-12-10,,,Pertussis,Current week,Current week,,157,https://wonder.cdc.gov/nndss/static/2016/2016_49.html
+UNITED STATES,2016-12-17,,,Pertussis,Current week,Current week,,150,https://wonder.cdc.gov/nndss/static/2016/2016_50.html
+UNITED STATES,2016-12-24,,,Pertussis,Current week,Current week,,108,https://wonder.cdc.gov/nndss/static/2016/2016_51.html
+UNITED STATES,2016-12-31,,,Pertussis,Current week,Current week,,87,https://wonder.cdc.gov/nndss/static/2016/2016_52.html
 UNITED STATES,2017-01-07,2017,01,Pertussis,Current week,Current week,,62,https://wonder.cdc.gov/nndss/static/2017/01/2017-01-table2K.html
 UNITED STATES,2017-01-14,2017,02,Pertussis,Current week,Current week,,67,https://wonder.cdc.gov/nndss/static/2017/02/2017-02-table2K.html
 UNITED STATES,2017-01-21,2017,03,Pertussis,Current week,Current week,,107,https://wonder.cdc.gov/nndss/static/2017/03/2017-03-table2K.html
@@ -102,8 +154,8 @@ United States,2018-12-08,2018,49,Pertussis,Current week,Current week,,146,https:
 United States,2018-12-15,2018,50,Pertussis,Current week,Current week,,116,https://wonder.cdc.gov/nndss/static/2018/50/2018-50-table2M.html
 United States,2018-12-22,2018,51,Pertussis,Current week,Current week,,91,https://wonder.cdc.gov/nndss/static/2018/51/2018-51-table2M.html
 United States,2018-12-29,2018,52,Pertussis,Current week,Current week,,37,https://wonder.cdc.gov/nndss/static/2018/52/2018-52-table2M.html
-Total,2019-01-05,2019,01,Pertussis,Current week,,,41,https://wonder.cdc.gov/nndss/static/2019/01/2019-01-table1z.html
 Total,2019-01-05,2019,01,Pertussis,Current week,,,41,https://wonder.cdc.gov/nndss/static/2019/01.old/2019-01-table1z.html
+Total,2019-01-05,2019,01,Pertussis,Current week,,,41,https://wonder.cdc.gov/nndss/static/2019/01/2019-01-table1z.html
 Total,2019-01-12,2019,02,Pertussis,Current week,,,62,https://wonder.cdc.gov/nndss/static/2019/02/2019-02-table1z.html
 Total,2019-01-19,2019,03,Pertussis,Current week,,,89,https://wonder.cdc.gov/nndss/static/2019/03/2019-03-table1z.html
 Total,2019-01-26,2019,04,Pertussis,Current week,,,90,https://wonder.cdc.gov/nndss/static/2019/04/2019-04-table1z.html
