@@ -107,6 +107,8 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2023/10/1,2023,10,,Pertussis,4430,https://weekly.chinacdc.cn/en/article/doi/10.46234/ccdcw2023.213,CN
 2023/11/1,2023,11,,Pertussis,6410,https://www.ndcpa.gov.cn/jbkzzx/c100016/common/content/content_1739453479981600768.html,CN
 2023/12/1,2023,12,,Pertussis,9126,https://www.ndcpa.gov.cn/jbkzzx/c100016/common/content/content_1746766719346462720.html,CN
+2024/1/1,2024,1,,Pertussis,15275,https://www.ndcpa.gov.cn/jbkzzx/c100016/common/content/content_1770302255702646784.html,CN
+2024/2/1,2024,2,,Pertussis,17105,https://www.ndcpa.gov.cn/jbkzzx/c100016/common/content/content_1769982157846650880.html,CN
 2015/1/10,2015,,1,Pertussis,153,https://wonder.cdc.gov/nndss/nndss_weekly_tables_2015.asp?mmwr_year=2015&mmwr_week=01&mmwr_table=2I&request=Submit,US
 2015/1/17,2015,,2,Pertussis,161,https://wonder.cdc.gov/nndss/nndss_weekly_tables_2015.asp?mmwr_year=2015&mmwr_week=02&mmwr_table=2I&request=Submit,US
 2015/1/24,2015,,3,Pertussis,129,https://wonder.cdc.gov/nndss/nndss_weekly_tables_2015.asp?mmwr_year=2015&mmwr_week=03&mmwr_table=2I&request=Submit,US
@@ -231,6 +233,7 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2017/5/6,2017,,18,Pertussis,133,https://wonder.cdc.gov/nndss/static/2017/18/2017-18-table2K.html,US
 2017/5/13,2017,,19,Pertussis,122,https://wonder.cdc.gov/nndss/static/2017/19/2017-19-table2K.html,US
 2017/5/20,2017,,20,Pertussis,124,https://wonder.cdc.gov/nndss/static/2017/20/2017-20-table2K.html,US
+2017/5/27,2017,,21,Pertussis,153,https://wonder.cdc.gov/nndss/static/2017/21/2017-21-table2K.html,US
 2017/6/3,2017,,22,Pertussis,138,https://wonder.cdc.gov/nndss/static/2017/22/2017-22-table2K.html,US
 2017/6/10,2017,,23,Pertussis,140,https://wonder.cdc.gov/nndss/static/2017/23/2017-23-table2K.html,US
 2017/6/17,2017,,24,Pertussis,136,https://wonder.cdc.gov/nndss/static/2017/24/2017-24-table2K.html,US
@@ -308,14 +311,13 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2018/11/3,2018,,44,Pertussis,80,https://wonder.cdc.gov/nndss/static/2018/44/2018-44-table2M.html,US
 2018/11/10,2018,,45,Pertussis,58,https://wonder.cdc.gov/nndss/static/2018/45/2018-45-table2M.html,US
 2018/11/17,2018,,46,Pertussis,77,https://wonder.cdc.gov/nndss/static/2018/46/2018-46-table2M.html,US
-2018/11/24,2018,,47,Pertussis,-,https://wonder.cdc.gov/nndss/static/2018/47/2018-47-table2M.html,US
+2018/11/24,2018,,47,Pertussis,0,https://wonder.cdc.gov/nndss/static/2018/47/2018-47-table2M.html,US
 2018/12/1,2018,,48,Pertussis,113,https://wonder.cdc.gov/nndss/static/2018/48/2018-48-table2M.html,US
 2018/12/8,2018,,49,Pertussis,146,https://wonder.cdc.gov/nndss/static/2018/49/2018-49-table2M.html,US
 2018/12/15,2018,,50,Pertussis,116,https://wonder.cdc.gov/nndss/static/2018/50/2018-50-table2M.html,US
 2018/12/22,2018,,51,Pertussis,91,https://wonder.cdc.gov/nndss/static/2018/51/2018-51-table2M.html,US
 2018/12/29,2018,,52,Pertussis,37,https://wonder.cdc.gov/nndss/static/2018/52/2018-52-table2M.html,US
 2019/1/5,2019,,1,Pertussis,41,https://wonder.cdc.gov/nndss/static/2019/01.old/2019-01-table1z.html,US
-2019/1/5,2019,,1,Pertussis,41,https://wonder.cdc.gov/nndss/static/2019/01/2019-01-table1z.html,US
 2019/1/12,2019,,2,Pertussis,62,https://wonder.cdc.gov/nndss/static/2019/02/2019-02-table1z.html,US
 2019/1/19,2019,,3,Pertussis,89,https://wonder.cdc.gov/nndss/static/2019/03/2019-03-table1z.html,US
 2019/1/26,2019,,4,Pertussis,90,https://wonder.cdc.gov/nndss/static/2019/04/2019-04-table1z.html,US
@@ -338,10 +340,12 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2019/5/25,2019,,21,Pertussis,97,https://wonder.cdc.gov/nndss/static/2019/21/2019-21-table1z.html,US
 2019/6/1,2019,,22,Pertussis,106,https://wonder.cdc.gov/nndss/static/2019/22/2019-22-table1z.html,US
 2019/6/8,2019,,23,Pertussis,90,https://wonder.cdc.gov/nndss/static/2019/23/2019-23-table1z.html,US
+2019/6/15,2019,,24,Pertussis,113,https://wonder.cdc.gov/nndss/static/2019/24/2019-24-table1z.html,US
 2019/6/22,2019,,25,Pertussis,109,https://wonder.cdc.gov/nndss/static/2019/25/2019-25-table1z.html,US
 2019/6/29,2019,,26,Pertussis,90,https://wonder.cdc.gov/nndss/static/2019/26/2019-26-table1z.html,US
 2019/7/6,2019,,27,Pertussis,69,https://wonder.cdc.gov/nndss/static/2019/27/2019-27-table1z.html,US
 2019/7/13,2019,,28,Pertussis,145,https://wonder.cdc.gov/nndss/static/2019/28/2019-28-table1z.html,US
+2017/7/20,2019,,29,Pertussis,104,https://wonder.cdc.gov/nndss/static/2019/29/2019-29-table1z.html,US
 2019/7/27,2019,,30,Pertussis,103,https://wonder.cdc.gov/nndss/static/2019/30/2019-30-table1z.html,US
 2019/8/3,2019,,31,Pertussis,108,https://wonder.cdc.gov/nndss/static/2019/31/2019-31-table1z.html,US
 2019/8/10,2019,,32,Pertussis,101,https://wonder.cdc.gov/nndss/static/2019/32/2019-32-table1z.html,US
@@ -354,65 +358,77 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2019/9/28,2019,,39,Pertussis,114,https://wonder.cdc.gov/nndss/static/2019/39/2019-39-table1z.html,US
 2019/10/5,2019,,40,Pertussis,83,https://wonder.cdc.gov/nndss/static/2019/40/2019-40-table1z.html,US
 2019/10/12,2019,,41,Pertussis,72,https://wonder.cdc.gov/nndss/static/2019/41/2019-41-table1z.html,US
+,2019,,42,Pertussis,62,https://wonder.cdc.gov/nndss/static/2019/42/2019-42-table1z.html,US
+,2019,,43,Pertussis,61,https://wonder.cdc.gov/nndss/static/2019/43/2019-43-table1z.html,US
+,2019,,44,Pertussis,106,https://wonder.cdc.gov/nndss/static/2019/44/2019-44-table1z.html,US
+,2019,,45,Pertussis,100,https://wonder.cdc.gov/nndss/static/2019/45/2019-45-table1z.html,US
+,2019,,46,Pertussis,122,https://wonder.cdc.gov/nndss/static/2019/46/2019-46-table1z.html,US
 2019/11/23,2019,,47,Pertussis,146,https://wonder.cdc.gov/nndss/static/2019/47/2019-47-table1z.html,US
 2019/11/30,2019,,48,Pertussis,106,https://wonder.cdc.gov/nndss/static/2019/48/2019-48-table1z.html,US
 2019/12/7,2019,,49,Pertussis,161,https://wonder.cdc.gov/nndss/static/2019/49/2019-49-table1z.html,US
 2019/12/14,2019,,50,Pertussis,166,https://wonder.cdc.gov/nndss/static/2019/50/2019-50-table1z.html,US
 2019/12/21,2019,,51,Pertussis,99,https://wonder.cdc.gov/nndss/static/2019/51/2019-51-table1z.html,US
 2019/12/28,2019,,52,Pertussis,161,https://wonder.cdc.gov/nndss/static/2019/52/2019-52-table1z.html,US
-2020/1/4,2020,,1,Pertussis §,74,https://wonder.cdc.gov/nndss/static/2020/01/2020-01-table1z.html,US
-2020/1/11,2020,,2,Pertussis §,112,https://wonder.cdc.gov/nndss/static/2020/02/2020-02-table1z.html,US
-2020/1/18,2020,,3,Pertussis §,108,https://wonder.cdc.gov/nndss/static/2020/03/2020-03-table1z.html,US
-2020/1/25,2020,,4,Pertussis §,109,https://wonder.cdc.gov/nndss/static/2020/04/2020-04-table1z.html,US
-2020/2/1,2020,,5,Pertussis §,122,https://wonder.cdc.gov/nndss/static/2020/05/2020-05-table1z.html,US
-2020/2/8,2020,,6,Pertussis §,120,https://wonder.cdc.gov/nndss/static/2020/06/2020-06-table1z.html,US
-2020/2/15,2020,,7,Pertussis §,93,https://wonder.cdc.gov/nndss/static/2020/07/2020-07-table1z.html,US
-2020/2/22,2020,,8,Pertussis §,107,https://wonder.cdc.gov/nndss/static/2020/08/2020-08-table1z.html,US
-2020/2/29,2020,,9,Pertussis §,122,https://wonder.cdc.gov/nndss/static/2020/09/2020-09-table1z.html,US
-2020/3/7,2020,,10,Pertussis §,98,https://wonder.cdc.gov/nndss/static/2020/10/2020-10-table1z.html,US
-2020/3/14,2020,,11,Pertussis §,97,https://wonder.cdc.gov/nndss/static/2020/11/2020-11-table1z.html,US
-2020/3/21,2020,,12,Pertussis §,89,https://wonder.cdc.gov/nndss/static/2020/12/2020-12-table1z.html,US
-2020/3/28,2020,,13,Pertussis §,70,https://wonder.cdc.gov/nndss/static/2020/13/2020-13-table1z.html,US
-2020/4/4,2020,,14,Pertussis §,48,https://wonder.cdc.gov/nndss/static/2020/14/2020-14-table1z.html,US
-2020/4/11,2020,,15,Pertussis §,47,https://wonder.cdc.gov/nndss/static/2020/15/2020-15-table1z.html,US
-2020/4/18,2020,,16,Pertussis §,52,https://wonder.cdc.gov/nndss/static/2020/16/2020-16-table1z.html,US
-2020/4/25,2020,,17,Pertussis §,24,https://wonder.cdc.gov/nndss/static/2020/17/2020-17-table1z.html,US
-2020/5/2,2020,,18,Pertussis §,42,https://wonder.cdc.gov/nndss/static/2020/18/2020-18-table1z.html,US
-2020/5/9,2020,,19,Pertussis §,21,https://wonder.cdc.gov/nndss/static/2020/19/2020-19-table1z.html,US
-2020/5/16,2020,,20,Pertussis §,22,https://wonder.cdc.gov/nndss/static/2020/20/2020-20-table1z.html,US
-2020/5/23,2020,,21,Pertussis §,39,https://wonder.cdc.gov/nndss/static/2020/21/2020-21-table1z.html,US
-2020/5/30,2020,,22,Pertussis §,22,https://wonder.cdc.gov/nndss/static/2020/22/2020-22-table1z.html,US
-2020/6/6,2020,,23,Pertussis §,13,https://wonder.cdc.gov/nndss/static/2020/23/2020-23-table1z.html,US
-2020/6/13,2020,,24,Pertussis §,10,https://wonder.cdc.gov/nndss/static/2020/24/2020-24-table1z.html,US
-2020/6/20,2020,,25,Pertussis §,22,https://wonder.cdc.gov/nndss/static/2020/25/2020-25-table1z.html,US
-2020/6/27,2020,,26,Pertussis §,5,https://wonder.cdc.gov/nndss/static/2020/26/2020-26-table1z.html,US
-2020/7/4,2020,,27,Pertussis §,9,https://wonder.cdc.gov/nndss/static/2020/27/2020-27-table1z.html,US
-2020/7/11,2020,,28,Pertussis §,12,https://wonder.cdc.gov/nndss/static/2020/28/2020-28-table1z.html,US
-2020/7/25,2020,,30,Pertussis §,12,https://wonder.cdc.gov/nndss/static/2020/30/2020-30-table1z.html,US
-2020/8/1,2020,,31,Pertussis §,9,https://wonder.cdc.gov/nndss/static/2020/31/2020-31-table1z.html,US
-2020/9/12,2020,,37,Pertussis §,1,https://wonder.cdc.gov/nndss/static/2020/37/2020-37-table1z.html,US
-2020/9/19,2020,,38,Pertussis §,11,https://wonder.cdc.gov/nndss/static/2020/38/2020-38-table1z.html,US
-2020/9/26,2020,,39,Pertussis §,8,https://wonder.cdc.gov/nndss/static/2020/39/2020-39-table1z.html,US
-2020/10/3,2020,,40,Pertussis §,12,https://wonder.cdc.gov/nndss/static/2020/40/2020-40-table1z.html,US
-2020/10/10,2020,,41,Pertussis §,8,https://wonder.cdc.gov/nndss/static/2020/41/2020-41-table1z.html,US
-2020/10/17,2020,,42,Pertussis §,5,https://wonder.cdc.gov/nndss/static/2020/42/2020-42-table1z.html,US
-2020/10/24,2020,,43,Pertussis §,7,https://wonder.cdc.gov/nndss/static/2020/43/2020-43-table1z.html,US
-2020/10/31,2020,,44,Pertussis §,5,https://wonder.cdc.gov/nndss/static/2020/44/2020-44-table1z.html,US
-2020/11/7,2020,,45,Pertussis §,3,https://wonder.cdc.gov/nndss/static/2020/45/2020-45-table1z.html,US
-2020/11/14,2020,,46,Pertussis §,6,https://wonder.cdc.gov/nndss/static/2020/46/2020-46-table1z.html,US
-2020/11/21,2020,,47,Pertussis §,12,https://wonder.cdc.gov/nndss/static/2020/47/2020-47-table1z.html,US
-2020/11/28,2020,,48,Pertussis §,6,https://wonder.cdc.gov/nndss/static/2020/48/2020-48-table1z.html,US
-2020/12/5,2020,,49,Pertussis §,3,https://wonder.cdc.gov/nndss/static/2020/49/2020-49-table1z.html,US
-2020/12/12,2020,,50,Pertussis §,8,https://wonder.cdc.gov/nndss/static/2020/50/2020-50-table1z.html,US
-2020/12/19,2020,,51,Pertussis §,8,https://wonder.cdc.gov/nndss/static/2020/51/2020-51-table1z.html,US
-2020/12/26,2020,,52,Pertussis §,7,https://wonder.cdc.gov/nndss/static/2020/52/2020-52-table1z.html,US
-2021/1/2,2020,,53,Pertussis §,1,https://wonder.cdc.gov/nndss/static/2020/53/2020-53-table1z.html,US
+2020/1/4,2020,,1,Pertussis,74,https://wonder.cdc.gov/nndss/static/2020/01/2020-01-table1z.html,US
+2020/1/11,2020,,2,Pertussis,112,https://wonder.cdc.gov/nndss/static/2020/02/2020-02-table1z.html,US
+2020/1/18,2020,,3,Pertussis,108,https://wonder.cdc.gov/nndss/static/2020/03/2020-03-table1z.html,US
+2020/1/25,2020,,4,Pertussis,109,https://wonder.cdc.gov/nndss/static/2020/04/2020-04-table1z.html,US
+2020/2/1,2020,,5,Pertussis,122,https://wonder.cdc.gov/nndss/static/2020/05/2020-05-table1z.html,US
+2020/2/8,2020,,6,Pertussis,120,https://wonder.cdc.gov/nndss/static/2020/06/2020-06-table1z.html,US
+2020/2/15,2020,,7,Pertussis,93,https://wonder.cdc.gov/nndss/static/2020/07/2020-07-table1z.html,US
+2020/2/22,2020,,8,Pertussis,107,https://wonder.cdc.gov/nndss/static/2020/08/2020-08-table1z.html,US
+2020/2/29,2020,,9,Pertussis,122,https://wonder.cdc.gov/nndss/static/2020/09/2020-09-table1z.html,US
+2020/3/7,2020,,10,Pertussis,98,https://wonder.cdc.gov/nndss/static/2020/10/2020-10-table1z.html,US
+2020/3/14,2020,,11,Pertussis,97,https://wonder.cdc.gov/nndss/static/2020/11/2020-11-table1z.html,US
+2020/3/21,2020,,12,Pertussis,89,https://wonder.cdc.gov/nndss/static/2020/12/2020-12-table1z.html,US
+2020/3/28,2020,,13,Pertussis,70,https://wonder.cdc.gov/nndss/static/2020/13/2020-13-table1z.html,US
+2020/4/4,2020,,14,Pertussis,48,https://wonder.cdc.gov/nndss/static/2020/14/2020-14-table1z.html,US
+2020/4/11,2020,,15,Pertussis,47,https://wonder.cdc.gov/nndss/static/2020/15/2020-15-table1z.html,US
+2020/4/18,2020,,16,Pertussis,52,https://wonder.cdc.gov/nndss/static/2020/16/2020-16-table1z.html,US
+2020/4/25,2020,,17,Pertussis,24,https://wonder.cdc.gov/nndss/static/2020/17/2020-17-table1z.html,US
+2020/5/2,2020,,18,Pertussis,42,https://wonder.cdc.gov/nndss/static/2020/18/2020-18-table1z.html,US
+2020/5/9,2020,,19,Pertussis,21,https://wonder.cdc.gov/nndss/static/2020/19/2020-19-table1z.html,US
+2020/5/16,2020,,20,Pertussis,22,https://wonder.cdc.gov/nndss/static/2020/20/2020-20-table1z.html,US
+2020/5/23,2020,,21,Pertussis,39,https://wonder.cdc.gov/nndss/static/2020/21/2020-21-table1z.html,US
+2020/5/30,2020,,22,Pertussis,22,https://wonder.cdc.gov/nndss/static/2020/22/2020-22-table1z.html,US
+2020/6/6,2020,,23,Pertussis,13,https://wonder.cdc.gov/nndss/static/2020/23/2020-23-table1z.html,US
+2020/6/13,2020,,24,Pertussis,10,https://wonder.cdc.gov/nndss/static/2020/24/2020-24-table1z.html,US
+2020/6/20,2020,,25,Pertussis,22,https://wonder.cdc.gov/nndss/static/2020/25/2020-25-table1z.html,US
+2020/6/27,2020,,26,Pertussis,5,https://wonder.cdc.gov/nndss/static/2020/26/2020-26-table1z.html,US
+2020/7/4,2020,,27,Pertussis,9,https://wonder.cdc.gov/nndss/static/2020/27/2020-27-table1z.html,US
+2020/7/11,2020,,28,Pertussis,12,https://wonder.cdc.gov/nndss/static/2020/28/2020-28-table1z.html,US
+,2020,,29,Pertussis,8,https://wonder.cdc.gov/nndss/static/2020/29/2020-29-table1z.html,US
+2020/7/25,2020,,30,Pertussis,12,https://wonder.cdc.gov/nndss/static/2020/30/2020-30-table1z.html,US
+2020/8/1,2020,,31,Pertussis,9,https://wonder.cdc.gov/nndss/static/2020/31/2020-31-table1z.html,US
+,2020,,32,Pertussis,12,https://wonder.cdc.gov/nndss/static/2020/32/2020-32-table1z.html,US
+,2020,,33,Pertussis,4,https://wonder.cdc.gov/nndss/static/2020/33/2020-33-table1z.html,US
+,2020,,34,Pertussis,11,https://wonder.cdc.gov/nndss/static/2020/34/2020-34-table1z.html,US
+,2020,,35,Pertussis,3,https://wonder.cdc.gov/nndss/static/2020/35/2020-35-table1z.html,US
+,2020,,36,Pertussis,5,https://wonder.cdc.gov/nndss/static/2020/36/2020-36-table1z.html,US
+2020/9/12,2020,,37,Pertussis,1,https://wonder.cdc.gov/nndss/static/2020/37/2020-37-table1z.html,US
+2020/9/19,2020,,38,Pertussis,11,https://wonder.cdc.gov/nndss/static/2020/38/2020-38-table1z.html,US
+2020/9/26,2020,,39,Pertussis,8,https://wonder.cdc.gov/nndss/static/2020/39/2020-39-table1z.html,US
+2020/10/3,2020,,40,Pertussis,12,https://wonder.cdc.gov/nndss/static/2020/40/2020-40-table1z.html,US
+2020/10/10,2020,,41,Pertussis,8,https://wonder.cdc.gov/nndss/static/2020/41/2020-41-table1z.html,US
+2020/10/17,2020,,42,Pertussis,5,https://wonder.cdc.gov/nndss/static/2020/42/2020-42-table1z.html,US
+2020/10/24,2020,,43,Pertussis,7,https://wonder.cdc.gov/nndss/static/2020/43/2020-43-table1z.html,US
+2020/10/31,2020,,44,Pertussis,5,https://wonder.cdc.gov/nndss/static/2020/44/2020-44-table1z.html,US
+2020/11/7,2020,,45,Pertussis,3,https://wonder.cdc.gov/nndss/static/2020/45/2020-45-table1z.html,US
+2020/11/14,2020,,46,Pertussis,6,https://wonder.cdc.gov/nndss/static/2020/46/2020-46-table1z.html,US
+2020/11/21,2020,,47,Pertussis,12,https://wonder.cdc.gov/nndss/static/2020/47/2020-47-table1z.html,US
+2020/11/28,2020,,48,Pertussis,6,https://wonder.cdc.gov/nndss/static/2020/48/2020-48-table1z.html,US
+2020/12/5,2020,,49,Pertussis,3,https://wonder.cdc.gov/nndss/static/2020/49/2020-49-table1z.html,US
+2020/12/12,2020,,50,Pertussis,8,https://wonder.cdc.gov/nndss/static/2020/50/2020-50-table1z.html,US
+2020/12/19,2020,,51,Pertussis,8,https://wonder.cdc.gov/nndss/static/2020/51/2020-51-table1z.html,US
+2020/12/26,2020,,52,Pertussis,7,https://wonder.cdc.gov/nndss/static/2020/52/2020-52-table1z.html,US
+2021/1/2,2020,,53,Pertussis,1,https://wonder.cdc.gov/nndss/static/2020/53/2020-53-table1z.html,US
 2021/1/9,2021,,1,Pertussis,1,https://wonder.cdc.gov/nndss/static/2021/01/2021-01-table1z.html,US
 2021/1/16,2021,,2,Pertussis,2,https://wonder.cdc.gov/nndss/static/2021/02/2021-02-table1z.html,US
 2021/1/23,2021,,3,Pertussis,4,https://wonder.cdc.gov/nndss/static/2021/03/2021-03-table1z.html,US
 2021/1/30,2021,,4,Pertussis,4,https://wonder.cdc.gov/nndss/static/2021/04/2021-04-table1z.html,US
 2021/2/6,2021,,5,Pertussis,3,https://wonder.cdc.gov/nndss/static/2021/05/2021-05-table1z.html,US
-2021/2/13,2021,,6,Pertussis,-,https://wonder.cdc.gov/nndss/static/2021/06/2021-06-table1z.html,US
+2021/2/13,2021,,6,Pertussis,0,https://wonder.cdc.gov/nndss/static/2021/06/2021-06-table1z.html,US
+,2021,,7,Pertussis,2,https://wonder.cdc.gov/nndss/static/2021/07/2021-07-table1z.html,US
 2021/2/27,2021,,8,Pertussis,9,https://wonder.cdc.gov/nndss/static/2021/08/2021-08-table1z.html,US
 2021/3/6,2021,,9,Pertussis,4,https://wonder.cdc.gov/nndss/static/2021/09/2021-09-table1z.html,US
 2021/3/13,2021,,10,Pertussis,6,https://wonder.cdc.gov/nndss/static/2021/10/2021-10-table1z.html,US
@@ -452,6 +468,12 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2021/11/6,2021,,44,Pertussis,15,https://wonder.cdc.gov/nndss/static/2021/44/2021-44-table1z.html,US
 2021/11/13,2021,,45,Pertussis,11,https://wonder.cdc.gov/nndss/static/2021/45/2021-45-table1z.html,US
 2021/11/20,2021,,46,Pertussis,10,https://wonder.cdc.gov/nndss/static/2021/46/2021-46-table1z.html,US
+,2021,,47,Pertussis,12,https://wonder.cdc.gov/nndss/static/2021/47/2021-47-table1z.html,US
+,2021,,48,Pertussis,14,https://wonder.cdc.gov/nndss/static/2021/48/2021-48-table1z.html,US
+,2021,,49,Pertussis,14,https://wonder.cdc.gov/nndss/static/2021/49/2021-49-table1z.html,US
+,2021,,50,Pertussis,18,https://wonder.cdc.gov/nndss/static/2021/50/2021-50-table1z.html,US
+,2021,,51,Pertussis,9,https://wonder.cdc.gov/nndss/static/2021/51/2021-51-table1z.html,US
+,2021,,52,Pertussis,7,https://wonder.cdc.gov/nndss/static/2021/52/2021-52-table1z.html,US
 2022/1/8,2022,,1,Pertussis,5,https://wonder.cdc.gov/nndss/static/2022/01/2022-01-table1z.html,US
 2022/1/15,2022,,2,Pertussis,2,https://wonder.cdc.gov/nndss/static/2022/02/2022-02-table1z.html,US
 2022/1/22,2022,,3,Pertussis,7,https://wonder.cdc.gov/nndss/static/2022/03/2022-03-table1z.html,US
@@ -509,6 +531,7 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2023/1/21,2023,,3,Pertussis,36,https://wonder.cdc.gov/nndss/static/2023/03/2023-03-table990.html,US
 2023/1/28,2023,,4,Pertussis,29,https://wonder.cdc.gov/nndss/static/2023/04/2023-04-table990.html,US
 2023/2/4,2023,,5,Pertussis,35,https://wonder.cdc.gov/nndss/static/2023/05/2023-05-table990.html,US
+,2023,,6,Pertussis,28,https://wonder.cdc.gov/nndss/static/2023/06/2023-06-table990.html,US
 2023/2/18,2023,,7,Pertussis,33,https://wonder.cdc.gov/nndss/static/2023/07/2023-07-table990.html,US
 2023/2/25,2023,,8,Pertussis,41,https://wonder.cdc.gov/nndss/static/2023/08/2023-08-table990.html,US
 2023/3/4,2023,,9,Pertussis,58,https://wonder.cdc.gov/nndss/static/2023/09/2023-09-table990.html,US
@@ -564,6 +587,7 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2024/2/17,2024,,7,Pertussis,73,https://wonder.cdc.gov/nndss/static/2024/07/2024-07-table990.html,US
 2024/2/24,2024,,8,Pertussis,64,https://wonder.cdc.gov/nndss/static/2024/08/2024-08-table990.html,US
 2024/3/2,2024,,9,Pertussis,80,https://wonder.cdc.gov/nndss/static/2024/09/2024-09-table990.html,US
+2024/3/9,2024,,10,Pertussis,89,https://wonder.cdc.gov/nndss/static/2024/10/2024-10-table990.html,US
 2015/1/4,2015,,1,Pertussis,10,https://www.niid.go.jp/niid/en/survaillance-data-table-english.html?start=479,JP
 2015/1/11,2015,,2,Pertussis,26,https://www.niid.go.jp/niid/en/survaillance-data-table-english.html?start=478,JP
 2015/1/18,2015,,3,Pertussis,23,https://www.niid.go.jp/niid/en/survaillance-data-table-english.html?start=477,JP
@@ -1043,112 +1067,6 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2024/2/18,2024,,7,Pertussis,8,https://www.niid.go.jp/niid/en/survaillance-data-table-english.html?start=3,JP
 2024/2/25,2024,,8,Pertussis,7,https://www.niid.go.jp/niid/en/survaillance-data-table-english.html?start=2,JP
 2024/3/3,2024,,9,Pertussis,12,https://www.niid.go.jp/niid/en/survaillance-data-table-english.html?start=1,JP
-2020/9/12,2020,,,Pertussis,24,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-12-to-25-september-2020?language=en,AU
-2020/1/1,2020,,,Pertussis,527,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-1-to-17-january-2020?language=en,AU
-2020/1/18,2020,,,Pertussis,312,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-18-to-31-january-2020?language=en,AU
-2020/2/1,2020,,,Pertussis,343,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-1-to-14-february-2020?language=en,AU
-2020/2/15,2020,,,Pertussis,354,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-15-to-28-february-2020?language=en,AU
-2020/2/29,2020,,,Pertussis,286,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-29-february-to-13-march-2020?language=en,AU
-2020/3/14,2020,,,Pertussis,227,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-14-to-27-march-2020?language=en,AU
-2020/3/28,2020,,,Pertussis,123,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-28-march-to-10-april-2020?language=en,AU
-2020/4/11,2020,,,Pertussis,142,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-11-to-24-april-2020?language=en,AU
-2020/4/25,2020,,,Pertussis,98,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-25-april-to-8-may-2020?language=en,AU
-2020/5/9,2020,,,Pertussis,96,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-9-to-22-may-2020?language=en,AU
-2020/5/23,2020,,,Pertussis,109,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-23-may-to-5-june-2020?language=en,AU
-2020/6/6,2020,,,Pertussis,66,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-6-to-19-june-2020?language=en,AU
-2020/6/20,2020,,,Pertussis,108,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-20-june-to-3-july-2020?language=en,AU
-2020/7/4,2020,,,Pertussis,62,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-4-to-17-july-2020?language=en,AU
-2020/7/18,2020,,,Pertussis,55,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-18-to-31-july-2020?language=en,AU
-2020/8/1,2020,,,Pertussis,33,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-1-to-14-august-2020?language=en,AU
-2020/8/15,2020,,,Pertussis,30,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-15-to-28-august-2020?language=en,AU
-2020/8/29,2020,,,Pertussis,23,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-29-august-to-11-september-2020?language=en,AU
-2020/9/26,2020,,,Pertussis,14,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-26-september-to-9-october-2020?language=en,AU
-2020/10/10,2020,,,Pertussis,11,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-10-to-25-october-2020?language=en,AU
-2020/10/26,2020,,,Pertussis,14,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-26-october-to-8-november-2020?language=en,AU
-2020/11/9,2020,,,Pertussis,19,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-9-to-22-november-2020?language=en,AU
-2020/11/23,2020,,,Pertussis,30,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-23-november-to-6-december-2020?language=en,AU
-2020/12/7,2020,,,Pertussis,17,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-7-to-20-december-2020?language=en,AU
-2020/12/21,2020,,,Pertussis,15,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-21-december-2020-to-3-january-2021?language=en,AU
-2021/1/4,2021,,,Pertussis,22,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-4-to-17-january-2021?language=en,AU
-2021/1/18,2021,,,Pertussis,11,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-18-to-31-january-2021?language=en,AU
-2021/2/1,2021,,,Pertussis,33,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-1-to-14-february-2021?language=en,AU
-2021/2/15,2021,,,Pertussis,18,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-15-to-28-march-2021?language=en,AU
-2021/2/15,2021,,,Pertussis,18,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-15-to-28-february-2021?language=en,AU
-2021/3/1,2021,,,Pertussis,30,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-1-to-14-march-2021?language=en,AU
-2021/3/29,2021,,,Pertussis,12,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-29-march-to-11-april-2021?language=en,AU
-2021/4/12,2021,,,Pertussis,25,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-12-to-25-april-2021?language=en,AU
-2021/4/26,2021,,,Pertussis,24,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-26-april-to-9-may-2021?language=en,AU
-2021/5/10,2021,,,Pertussis,24,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-10-to-23-may-2021?language=en,AU
-2021/5/24,2021,,,Pertussis,34,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-24-may-to-6-june-2021?language=en,AU
-2021/6/7,2021,,,Pertussis,38,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-7-to-20-june-2021?language=en,AU
-2021/6/21,2021,,,Pertussis,41,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-21-june-to-4-july-2021?language=en,AU
-2021/7/5,2021,,,Pertussis,19,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-5-to-18-july-2021?language=en,AU
-2021/7/19,2021,,,Pertussis,22,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-19-july-to-1-august-2021?language=en,AU
-2021/8/2,2021,,,Pertussis,24,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-2-to-15-august-2021?language=en,AU
-2021/8/16,2021,,,Pertussis,23,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-16-to-29-august-2021?language=en,AU
-2021/8/30,2021,,,Pertussis,29,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-30-august-to-12-september-2021?language=en,AU
-2021/9/13,2021,,,Pertussis,14,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-13-to-26-september-2021?language=en,AU
-2021/9/27,2021,,,Pertussis,12,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-27-september-to-10-october-2021?language=en,AU
-2021/10/11,2021,,,Pertussis,15,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-11-to-24-october-2021?language=en,AU
-2021/10/25,2021,,,Pertussis,22,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-25-october-to-7-november-2021?language=en,AU
-2021/11/8,2021,,,Pertussis,24,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-8-to-21-november-2021?language=en,AU
-2021/11/22,2021,,,Pertussis,16,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-22-november-to-5-december-2021?language=en,AU
-2021/12/6,2021,,,Pertussis,24,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-6-to-19-december-2021?language=en,AU
-2021/12/20,2021,,,Pertussis,5,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-20-december-2021-to-2-january-2022?language=en,AU
-2022/1/3,2022,,,Pertussis,17,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-3-to-16-january-2022?language=en,AU
-2022/1/17,2022,,,Pertussis,17,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-17-to-30-january-2022?language=en,AU
-2022/1/31,2022,,,Pertussis,20,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-31-january-to-13-february-2022?language=en,AU
-2022/2/14,2022,,,Pertussis,19,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-14-to-27-february-2022?language=en,AU
-2022/2/28,2022,,,Pertussis,23,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-28-february-to-13-march-2022?language=en,AU
-2022/3/14,2022,,,Pertussis,19,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-14-to-27-march-2022?language=en,AU
-2022/3/28,2022,,,Pertussis,19,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-28-march-to-10-april-2022?language=en,AU
-2022/4/11,2022,,,Pertussis,10,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-11-to-17-april-2022?language=en,AU
-2022/4/18,2022,,,Pertussis,10,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-18-april-to-1-may-2022?language=en,AU
-2022/5/2,2022,,,Pertussis,10,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-2-to-15-may-2022?language=en,AU
-2022/5/16,2022,,,Pertussis,21,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-16-to-29-may-2022?language=en,AU
-2022/5/30,2022,,,Pertussis,10,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-30-may-to-12-june-2022?language=en,AU
-2022/6/13,2022,,,Pertussis,15,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-13-to-26-june-2022?language=en,AU
-2022/6/27,2022,,,Pertussis,12,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-27-june-to-10-july-2022?language=en,AU
-2022/7/11,2022,,,Pertussis,16,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-11-july-to-24-july-2022?language=en,AU
-2022/7/25,2022,,,Pertussis,21,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-25-july-to-07-august-2022?language=en,AU
-2022/8/8,2022,,,Pertussis,26,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-8-august-to-21-august-2022?language=en,AU
-2022/8/22,2022,,,Pertussis,34,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-22-august-to-4-september-2022?language=en,AU
-2022/9/5,2022,,,Pertussis,15,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-5-september-to-18-september-2022?language=en,AU
-2022/9/19,2022,,,Pertussis,21,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-19-september-to-2-october-2022?language=en,AU
-2022/10/3,2022,,,Pertussis,16,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-3-october-to-16-october-2022?language=en,AU
-2022/10/17,2022,,,Pertussis,11,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-17-to-30-october-2022?language=en,AU
-2022/10/31,2022,,,Pertussis,18,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-31-october-to-13-november-2022?language=en,AU
-2022/11/14,2022,,,Pertussis,19,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-14-to-27-november-2022?language=en,AU
-2022/11/28,2022,,,Pertussis,20,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-28-november-to-11-december-2022?language=en,AU
-2022/12/12,2022,,,Pertussis,28,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-12-december-2022-to-8-january-2023?language=en,AU
-2023/1/9,2023,,,Pertussis,27,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-9-january-2023-to-22-january-2023?language=en,AU
-2023/1/23,2023,,,Pertussis,22,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-23-january-2023-to-5-february-2023?language=en,AU
-2023/2/6,2023,,,Pertussis,12,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-06-february-2023-to-19-february-2023?language=en,AU
-2023/2/20,2023,,,Pertussis,14,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-20-february-2023-to-05-march-2023?language=en,AU
-2023/3/6,2023,,,Pertussis,15,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-06-march-2023-to-19-march-2023?language=en,AU
-2023/3/20,2023,,,Pertussis,23,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-20-march-2023-to-02-april-2023?language=en,AU
-2023/4/3,2023,,,Pertussis,18,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-03-april-2023-to-16-april-2023?language=en,AU
-2023/4/17,2023,,,Pertussis,21,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-17-april-2023-to-30-april-2023?language=en,AU
-2023/5/1,2023,,,Pertussis,29,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-1-may-2023-to-14-may-2023?language=en,AU
-2023/5/15,2023,,,Pertussis,41,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-15-may-2023-to-28-may-2023?language=en,AU
-2023/5/29,2023,,,Pertussis,26,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-29-may-2023-to-11-june-2023?language=en,AU
-2023/6/12,2023,,,Pertussis,46,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-12-june-2023-to-25-june-2023?language=en,AU
-2023/6/26,2023,,,Pertussis,38,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-26-june-2023-to-09-july-2023?language=en,AU
-2023/7/10,2023,,,Pertussis,37,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-10-july-2023-to-24-july-2023?language=en,AU
-2023/7/24,2023,,,Pertussis,48,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-25-july-2023-to-6-august-2023?language=en,AU
-2023/8/7,2023,,,Pertussis,45,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-7-august-2023-to-20-august-2023?language=en,AU
-2023/8/21,2023,,,Pertussis,78,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-21-august-2023-to-3-september-2023?language=en,AU
-2023/9/4,2023,,,Pertussis,111,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-4-september-2023-to-17-september-2023?language=en,AU
-2023/9/18,2023,,,Pertussis,127,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-18-september-2023-to-1-october-2023?language=en,AU
-2023/10/2,2023,,,Pertussis,157,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-2-october-2023-to-15-october-2023?language=en,AU
-2023/10/16,2023,,,Pertussis,159,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-16-october-2023-to-29-october-2023?language=en,AU
-2023/10/30,2023,,,Pertussis,230,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-30-october-2023-to-12-november-2023?language=en,AU
-2023/11/13,2023,,,Pertussis,292,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-13-november-2023-to-26-november-2023?language=en,AU
-2023/11/27,2023,,,Pertussis,311,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-27-november-2023-to-10-december-2023?language=en,AU
-2023/12/11,2023,,,Pertussis,506,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-11-december-2023-to-07-january-2024?language=en,AU
-2024/1/8,2024,,,Pertussis,382,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-08-january-to-21-january-2024?language=en,AU
-2024/1/22,2024,,,Pertussis,345,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-22-january-2024-to-4-february-2024?language=en,AU
-2024/2/5,2024,,,Pertussis,367,https://www.health.gov.au/resources/publications/national-notifiable-diseases-surveillance-system-nndss-fortnightly-reports-5-february-2024-to-18-february-2024?language=en,AU
 2024/3/4,2024,,10,pertussis,477,https://assets.publishing.service.gov.uk/media/65f45bb950397e0011c75595/notifiable-diseases-weekly-revised-tables-2024-week-10.xls,UK
 2024/2/26,2024,,9,pertussis,487,https://assets.publishing.service.gov.uk/media/65f45bb950397e0011c75595/notifiable-diseases-weekly-revised-tables-2024-week-10.xls,UK
 2024/2/19,2024,,8,pertussis,388,https://assets.publishing.service.gov.uk/media/65f45bb950397e0011c75595/notifiable-diseases-weekly-revised-tables-2024-week-10.xls,UK
@@ -1209,8 +1127,8 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2023/1/30,2023,,5,pertussis,15,https://assets.publishing.service.gov.uk/media/640899248fa8f527f310d583/NOIDS-weekly-report-week9-2023_Revised.pdf,UK
 2023/1/23,2023,,4,pertussis,13,https://assets.publishing.service.gov.uk/media/640899248fa8f527f310d583/NOIDS-weekly-report-week9-2023_Revised.pdf,UK
 2023/1/16,2023,,3,pertussis,6,https://assets.publishing.service.gov.uk/media/63d1548ae90e071ba7b41d8a/NOIDS-weekly-report-week3-2023_Revised.pdf,UK
-2023/1/15,2023,,3,pertussis,12,https://assets.publishing.service.gov.uk/media/63d1548ae90e071ba7b41d8a/NOIDS-weekly-report-week3-2023_Revised.pdf,UK
-2023/1/8,2023,,2,pertussis,9,https://assets.publishing.service.gov.uk/media/63d1548ae90e071ba7b41d8a/NOIDS-weekly-report-week3-2023_Revised.pdf,UK
+2023/1/15,2023,,2,pertussis,12,https://assets.publishing.service.gov.uk/media/63d1548ae90e071ba7b41d8a/NOIDS-weekly-report-week3-2023_Revised.pdf,UK
+2023/1/8,2023,,1,pertussis,9,https://assets.publishing.service.gov.uk/media/63d1548ae90e071ba7b41d8a/NOIDS-weekly-report-week3-2023_Revised.pdf,UK
 2022/12/19,2022,,52,pertussis,9,https://assets.publishing.service.gov.uk/media/63b59008d3bf7f612bc37e0d/NOIDS-weekly-report-week52-2022_Revised.pdf,UK
 2022/12/12,2022,,51,pertussis,19,https://assets.publishing.service.gov.uk/media/63b59008d3bf7f612bc37e0d/NOIDS-weekly-report-week52-2022_Revised.pdf,UK
 2022/12/5,2022,,50,pertussis,28,https://assets.publishing.service.gov.uk/media/63b59008d3bf7f612bc37e0d/NOIDS-weekly-report-week52-2022_Revised.pdf,UK
@@ -1419,7 +1337,7 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2019/1/21,2019,,4,pertussis,70,https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835727/WeeklyTablesRevised39.xls,UK
 2019/1/14,2019,,3,pertussis,41,https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835727/WeeklyTablesRevised39.xls,UK
 2019/1/7,2019,,2,pertussis,42,https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835727/WeeklyTablesRevised39.xls,UK
-2018/12/31,2018,,53,pertussis,57,https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835727/WeeklyTablesRevised39.xls,UK
+2018/12/31,2019,,1,pertussis,57,https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835727/WeeklyTablesRevised39.xls,UK
 2018/12/24,2018,,52,pertussis,28,https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835727/WeeklyTablesRevised39.xls,UK
 2018/12/17,2018,,51,pertussis,49,https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835727/WeeklyTablesRevised39.xls,UK
 2018/12/10,2018,,50,pertussis,39,https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/835727/WeeklyTablesRevised39.xls,UK
@@ -1629,3 +1547,113 @@ Date,Year,Month,Week,Disease,Cases,URL,Country
 2015/1/5,2015,,3,pertussis,49,https://assets.publishing.service.gov.uk/media/5a815019e5274a2e87dbcf0f/WN1505.pdf,UK
 2014/12/29,2015,,2,pertussis,44,https://assets.publishing.service.gov.uk/media/5a815019e5274a2e87dbcf0f/WN1505.pdf,UK
 2014/12/22,2015,,1,pertussis,54,https://assets.publishing.service.gov.uk/media/5a815019e5274a2e87dbcf0f/WN1505.pdf,UK
+2024/1/1,2024,1,,pertussis,819,https://nindss.health.gov.au/pbi-dashboard/,AU
+2024/2/1,2024,2,,pertussis,817,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/1/1,2023,1,,pertussis,46,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/2/1,2023,2,,pertussis,34,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/3/1,2023,3,,pertussis,44,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/4/1,2023,4,,pertussis,43,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/5/1,2023,5,,pertussis,77,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/6/1,2023,6,,pertussis,92,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/7/1,2023,7,,pertussis,95,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/8/1,2023,8,,pertussis,156,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/9/1,2023,9,,pertussis,270,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/10/1,2023,10,,pertussis,367,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/11/1,2023,11,,pertussis,633,https://nindss.health.gov.au/pbi-dashboard/,AU
+2023/12/1,2023,12,,pertussis,585,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/1/1,2022,1,,pertussis,41,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/2/1,2022,2,,pertussis,43,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/3/1,2022,3,,pertussis,47,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/4/1,2022,4,,pertussis,22,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/5/1,2022,5,,pertussis,39,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/6/1,2022,6,,pertussis,35,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/7/1,2022,7,,pertussis,42,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/8/1,2022,8,,pertussis,64,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/9/1,2022,9,,pertussis,38,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/10/1,2022,10,,pertussis,40,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/11/1,2022,11,,pertussis,35,https://nindss.health.gov.au/pbi-dashboard/,AU
+2022/12/1,2022,12,,pertussis,36,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/1/1,2021,1,,pertussis,40,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/2/1,2021,2,,pertussis,54,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/3/1,2021,3,,pertussis,53,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/4/1,2021,4,,pertussis,48,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/5/1,2021,5,,pertussis,52,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/6/1,2021,6,,pertussis,57,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/7/1,2021,7,,pertussis,38,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/8/1,2021,8,,pertussis,51,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/9/1,2021,9,,pertussis,38,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/10/1,2021,10,,pertussis,41,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/11/1,2021,11,,pertussis,48,https://nindss.health.gov.au/pbi-dashboard/,AU
+2021/12/1,2021,12,,pertussis,30,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/1/1,2020,1,,pertussis,871,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/2/1,2020,2,,pertussis,762,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/3/1,2020,3,,pertussis,682,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/4/1,2020,4,,pertussis,371,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/5/1,2020,5,,pertussis,213,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/6/1,2020,6,,pertussis,194,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/7/1,2020,7,,pertussis,127,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/8/1,2020,8,,pertussis,70,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/9/1,2020,9,,pertussis,51,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/10/1,2020,10,,pertussis,24,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/11/1,2020,11,,pertussis,44,https://nindss.health.gov.au/pbi-dashboard/,AU
+2020/12/1,2020,12,,pertussis,48,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/1/1,2019,1,,pertussis,1315,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/2/1,2019,2,,pertussis,835,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/3/1,2019,3,,pertussis,935,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/4/1,2019,4,,pertussis,793,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/5/1,2019,5,,pertussis,985,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/6/1,2019,6,,pertussis,841,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/7/1,2019,7,,pertussis,959,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/8/1,2019,8,,pertussis,1057,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/9/1,2019,9,,pertussis,1034,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/10/1,2019,10,,pertussis,1020,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/11/1,2019,11,,pertussis,1177,https://nindss.health.gov.au/pbi-dashboard/,AU
+2019/12/1,2019,12,,pertussis,1074,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/1/1,2018,1,,pertussis,877,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/2/1,2018,2,,pertussis,817,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/3/1,2018,3,,pertussis,772,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/4/1,2018,4,,pertussis,742,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/5/1,2018,5,,pertussis,780,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/6/1,2018,6,,pertussis,695,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/7/1,2018,7,,pertussis,729,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/8/1,2018,8,,pertussis,1171,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/9/1,2018,9,,pertussis,1207,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/10/1,2018,10,,pertussis,1429,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/11/1,2018,11,,pertussis,1827,https://nindss.health.gov.au/pbi-dashboard/,AU
+2018/12/1,2018,12,,pertussis,1535,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/1/1,2017,1,,pertussis,1364,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/2/1,2017,2,,pertussis,1012,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/3/1,2017,3,,pertussis,1053,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/4/1,2017,4,,pertussis,843,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/5/1,2017,5,,pertussis,1043,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/6/1,2017,6,,pertussis,950,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/7/1,2017,7,,pertussis,1055,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/8/1,2017,8,,pertussis,1097,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/9/1,2017,9,,pertussis,977,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/10/1,2017,10,,pertussis,1020,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/11/1,2017,11,,pertussis,1002,https://nindss.health.gov.au/pbi-dashboard/,AU
+2017/12/1,2017,12,,pertussis,819,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/1/1,2016,1,,pertussis,2317,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/2/1,2016,2,,pertussis,1940,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/3/1,2016,3,,pertussis,1635,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/4/1,2016,4,,pertussis,1338,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/5/1,2016,5,,pertussis,1325,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/6/1,2016,6,,pertussis,1213,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/7/1,2016,7,,pertussis,1250,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/8/1,2016,8,,pertussis,1600,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/9/1,2016,9,,pertussis,1921,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/10/1,2016,10,,pertussis,1903,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/11/1,2016,11,,pertussis,2039,https://nindss.health.gov.au/pbi-dashboard/,AU
+2016/12/1,2016,12,,pertussis,1636,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/1/1,2015,1,,pertussis,1487,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/2/1,2015,2,,pertussis,1240,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/3/1,2015,3,,pertussis,1360,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/4/1,2015,4,,pertussis,1199,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/5/1,2015,5,,pertussis,1399,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/6/1,2015,6,,pertussis,1589,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/7/1,2015,7,,pertussis,1660,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/8/1,2015,8,,pertussis,2054,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/9/1,2015,9,,pertussis,1940,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/10/1,2015,10,,pertussis,2548,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/11/1,2015,11,,pertussis,3259,https://nindss.health.gov.au/pbi-dashboard/,AU
+2015/12/1,2015,12,,pertussis,2835,https://nindss.health.gov.au/pbi-dashboard/,AU
