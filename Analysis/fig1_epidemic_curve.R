@@ -84,17 +84,21 @@ country_list <- sort(unique(df_clean$Country))
 ylabel_list <- c('Monthly incidence', 'Monthly incidence', 'Weekly incidence', 'Weekly incidence')
 
 plot_epidemic <- function(i){
-     df_clean |> 
-          filter(Country == country_list[i]) |> 
-          ggplot()+
+     data <- df_clean |> 
+          filter(Country == country_list[i])
+     plot_breaks <- pretty(c(0, max(data$Cases)))
+     plot_range <- range(plot_breaks)
+     
+     ggplot(data)+
           geom_line(aes(x = Date, y = Cases, color= stage)) +
           scale_x_date(date_labels = '%Y',
                        date_breaks = 'year',
                        limits = c(as.Date('2015-01-01'), as.Date('2024-03-09')),
                        expand = expansion(add = c(7, 7))) +
           scale_y_continuous(labels = scientific_10,
-                             limits = c(0, NA),
-                             expand = expansion(mult = c(0, 0.15))) +
+                             limits = plot_range,
+                             breaks = plot_breaks,
+                             expand = expansion(mult = c(0, 0))) +
           scale_color_manual(values = fill_color) +
           theme_bw() +
           theme(

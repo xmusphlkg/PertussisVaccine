@@ -8,8 +8,10 @@ library(ggh4x)
 
 Sys.setlocale(locale = "en")
 
-fill_color <- pal_npg()(5)
+fill_color <- pal_npg()(7)
 area_color <- fill_color[4:5]
+line_color_1 <- fill_color[1:3]
+line_color_2 <- fill_color[6:7]
 names(area_color) <- c('Decreased', 'Increased')
 
 scientific_10 <- function(x) {
@@ -50,13 +52,9 @@ plot_data <- function(i){
           scale_y_continuous(expand = c(0, 0),
                              label = scientific_10,
                              breaks = plot_breaks) +
-          scale_color_manual(values = fill_color) +
+          scale_color_manual(values = line_color_1) +
           theme_classic()+
-          theme(legend.position = c(1, 1),
-                legend.justification = c(0.99, 0.8),
-                legend.box.just = "left",
-                legend.margin = margin(0, 0, 0, 0),
-                legend.title = element_blank(),
+          theme(legend.title = element_blank(),
                 legend.background = element_rect(fill = "transparent"),
                 axis.title = element_text(face = "bold", size = 12, color = "black"),
                 axis.text = element_text(size = 12, color = "black"),
@@ -74,9 +72,9 @@ plot_data <- function(i){
           stat_difference(aes(ymin = observed, ymax = mean),
                           alpha = 0.3,
                           levels = c("Decreased", "Increased"),
-                          show.legend = T)+
+                          show.legend = i == 4)+
           coord_cartesian(xlim = as.Date(c('2023-7-1', '2024-4-30'))) +
-          scale_color_manual(values = fill_color) +
+          scale_color_manual(values = line_color_2) +
           scale_fill_manual(values = area_color) +
           scale_x_date(expand = expansion(add = c(0, 0)),
                        date_labels = "%Y-%b",
@@ -86,11 +84,7 @@ plot_data <- function(i){
                              breaks = plot_breaks,
                              limits = range(plot_breaks)) +
           theme_classic()+
-          theme(legend.position = c(0.1, 1),
-                legend.justification = c(0, 0.9),
-                legend.box.just = "left",
-                legend.margin = margin(0, 0, 0, 0),
-                legend.title = element_blank(),
+          theme(legend.title = element_blank(),
                 legend.background = element_rect(fill = "transparent"),
                 axis.title = element_text(face = "bold", size = 12, color = "black"),
                 axis.text = element_text(size = 12, color = "black"),
@@ -100,13 +94,15 @@ plot_data <- function(i){
                 panel.grid.major.y = element_blank(),
                 panel.grid.minor = element_blank(),
                 legend.key = element_blank())+
-          labs(x = 'Date', y = ylabel_list[i], title = letters[i*2])
+          labs(x = 'Date', y = NULL, title = letters[i*2])
      
      fig1 + fig2 + plot_layout(widths = c(2, 1))
 }
 
 plot_all <- lapply(1:4, plot_data)
-plot_all <- wrap_plots(plotlist = plot_all, ncol = 1)
+plot_all <- wrap_plots(plotlist = plot_all, ncol = 1)+
+     plot_layout(guides = "collect")&
+     theme(legend.position = 'bottom')
 
 ggsave(filename = './main/Fig3.pdf',
        plot = plot_all,
