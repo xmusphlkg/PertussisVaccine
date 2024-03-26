@@ -42,15 +42,15 @@ df_uk <- left_join(df_epiweek, df_uk, by = c('Year', 'Week')) |>
 
 df_cn <- df_raw |> 
      filter(Country == 'CN') |> 
-     select(Date, Year, Month, Cases, URL) |> 
+     select(Year, Month, Cases, URL) |> 
      mutate(Cases = as.integer(Cases),
-            Date = as.Date(Date),
+            Date = as.Date(paste(Year, Month, '01', sep = '-')),
             Country = 'CN')
 df_au <- df_raw |> 
      filter(Country == 'AU') |> 
-     select(Date, Year, Month, Cases, URL) |> 
+     select(Year, Month, Cases, URL) |> 
      mutate(Cases = as.integer(Cases),
-            Date = as.Date(Date),
+            Date = as.Date(paste(Year, Month, '01', sep = '-')),
             Country = 'AU')
 
 df_clean <- bind_rows(df_us, df_uk, df_cn, df_au) |> 
