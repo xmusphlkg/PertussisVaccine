@@ -36,14 +36,14 @@ data_2023 <- df_clean |>
                            levels = c(7:12, 1:6),
                            labels = 101:112),
             month = as.integer(as.character(month))) |> 
-     filter(stage == '2023 Jun. onwards')
+     filter(stage == '2023 Jun onwards')
 data_2022 <- df_clean |> 
      filter(Country == 'AU') |> 
      mutate(month = factor(Month,
                            levels = c(7:12, 1:6),
                            labels = 101:112),
             month = as.integer(as.character(month))) |>
-     filter(stage != '2023 Jun. onwards')
+     filter(stage != '2023 Jun onwards')
 
 plot_breaks <- pretty(c(0, max(data$Cases)))
 plot_range <- range(plot_breaks)
@@ -52,7 +52,7 @@ data$Year <- as.factor(data$Year)
 data$Month <- as.factor(data$Month)
 data$Stage <- factor(data$stage,
                      levels = unique(data$stage))
-results <- lmer(Cases ~ Stage + (1|Month), data = data)
+results <- lmer(Cases ~ Stage + (1|Month), data = filter(data, Stage != '2023 Jun onwards'))
 emm <- emmeans(results, ~ Stage)
 pairs <- pairs(emm)
 pairs_summary <- summary(pairs, adjust = "bonferroni") |> 
@@ -60,7 +60,7 @@ pairs_summary <- summary(pairs, adjust = "bonferroni") |>
      separate(contrast, c('stage1', 'stage2'), sep = ' \\- ') |> 
      rename('group1' = 'stage1',
             'group2' = 'stage2') |> 
-     mutate(y.position = plot_range[2] * c(0.95, 0.85, 0.75),
+     mutate(y.position = plot_range[2] * 0.9,
             p.value = ifelse(p.value < 0.001, '***', format(round(p.value, 3), nsmall = 3)))
 
 fig1_1 <- ggplot(data_2022, aes(x = month, y = median)) +
@@ -69,12 +69,12 @@ fig1_1 <- ggplot(data_2022, aes(x = month, y = median)) +
                 color = 'black',
                 size = 0.5) +
      geom_smooth(aes(color = stage, fill = stage),
-                 method = 'loess',
+                 method = 'gam',
                  se = T,
                  linewidth = 0.7) +
      geom_line(data = data_2023, aes(color = stage),
                linewidth = 0.7) +
-     geom_ribbon(data = data_2023, aes(ymin = Q1, ymax = Q3, fill = stage), alpha = 0.3) +
+     geom_ribbon(data = data_2023, aes(ymin = median, ymax = median, fill = stage), alpha = 0.3) +
      scale_x_continuous(breaks = 101:112,
                         labels = month.abb[c(7:12, 1:6)],
                         expand = c(0, 0)) +
@@ -98,7 +98,7 @@ fig1_1 <- ggplot(data_2022, aes(x = month, y = median)) +
            axis.title = element_text(face = "bold", size = 12, color = "black"),
            axis.text = element_text(size = 12, color = "black"))
 
-fig1_2 <- ggplot(data, aes(x = stage, y = Cases)) +
+fig1_2 <- ggplot(filter(data, Stage != '2023 Jun onwards'), aes(x = stage, y = Cases)) +
      geom_boxplot(aes(color = stage),
                   show.legend = F)+
      stat_pvalue_manual(pairs_summary,
@@ -137,14 +137,14 @@ data_2023 <- df_clean |>
                            levels = c(7:12, 1:6),
                            labels = 101:112),
             month = as.integer(as.character(month))) |> 
-     filter(stage == '2023 Jun. onwards')
+     filter(stage == '2023 Jun onwards')
 data_2022 <- df_clean |> 
      filter(Country == 'CN') |> 
      mutate(month = factor(Month,
                            levels = c(7:12, 1:6),
                            labels = 101:112),
             month = as.integer(as.character(month))) |>
-     filter(stage != '2023 Jun. onwards')
+     filter(stage != '2023 Jun onwards')
 
 plot_breaks <- pretty(c(0, max(data$Cases)))
 plot_range <- range(plot_breaks)
@@ -153,7 +153,7 @@ data$Year <- as.factor(data$Year)
 data$Month <- as.factor(data$Month)
 data$Stage <- factor(data$stage,
                      levels = unique(data$stage))
-results <- lmer(Cases ~ Stage + (1|Month), data = data)
+results <- lmer(Cases ~ Stage + (1|Month), data = filter(data, Stage != '2023 Jun onwards'))
 emm <- emmeans(results, ~ Stage)
 pairs <- pairs(emm)
 pairs_summary <- summary(pairs, adjust = "bonferroni") |> 
@@ -161,8 +161,10 @@ pairs_summary <- summary(pairs, adjust = "bonferroni") |>
      separate(contrast, c('stage1', 'stage2'), sep = ' \\- ') |> 
      rename('group1' = 'stage1',
             'group2' = 'stage2') |> 
-     mutate(y.position = plot_range[2] * c(0.95, 0.85, 0.75),
+     mutate(y.position = plot_range[2] * 0.9,
             p.value = ifelse(p.value < 0.001, '***', format(round(p.value, 3), nsmall = 3)))
+
+print(pairs_summary)
 
 fig2_1 <- ggplot(data_2022, aes(x = month, y = median)) +
      geom_vline(xintercept = 106.5,
@@ -170,12 +172,12 @@ fig2_1 <- ggplot(data_2022, aes(x = month, y = median)) +
                 color = 'black',
                 size = 0.5) +
      geom_smooth(aes(color = stage, fill = stage),
-                 method = 'loess',
+                 method = 'gam',
                  se = T,
                  linewidth = 0.7) +
      geom_line(data = data_2023, aes(color = stage),
                linewidth = 0.7) +
-     geom_ribbon(data = data_2023, aes(ymin = Q1, ymax = Q3, fill = stage), alpha = 0.3) +
+     geom_ribbon(data = data_2023, aes(ymin = median, ymax = median, fill = stage), alpha = 0.3) +
      scale_x_continuous(breaks = 101:112,
                         labels = month.abb[c(7:12, 1:6)],
                         expand = c(0, 0)) +
@@ -198,7 +200,7 @@ fig2_1 <- ggplot(data_2022, aes(x = month, y = median)) +
            plot.title = element_text(face = "bold", size = 14, hjust = 0),
            axis.title = element_text(face = "bold", size = 12, color = "black"),
            axis.text = element_text(size = 12, color = "black"))
-fig2_2 <- ggplot(data, aes(x = stage, y = Cases)) +
+fig2_2 <- ggplot(filter(data, Stage != '2023 Jun onwards'), aes(x = stage, y = Cases)) +
      geom_boxplot(aes(color = stage),
                   show.legend = F)+
      stat_pvalue_manual(pairs_summary,
@@ -238,7 +240,7 @@ data_2023 <- df_clean |>
                           levels = c(26:52, 1:25),
                           labels = 201:252),
             week = as.integer(as.character(week))) |> 
-     filter(stage == '2023 Jun. onwards')
+     filter(stage == '2023 Jun onwards')
 data_2022 <- df_clean |>
      filter(Country == 'US') |> 
      filter(Week <= 52) |>
@@ -246,7 +248,7 @@ data_2022 <- df_clean |>
                           levels = c(26:52, 1:25),
                           labels = 201:252),
             week = as.integer(as.character(week))) |>
-     filter(stage != '2023 Jun. onwards')
+     filter(stage != '2023 Jun onwards')
 
 plot_breaks <- pretty(c(0, max(data$Cases)))
 plot_range <- range(plot_breaks)
@@ -255,7 +257,7 @@ data$Year <- as.factor(data$Year)
 data$Week <- as.factor(data$Week)
 data$Stage <- factor(data$stage,
                      levels = unique(data$stage))
-results <- lmer(Cases ~ Stage + (1|Week), data = data)
+results <- lmer(Cases ~ Stage + (1|Week), data = filter(data, Stage != '2023 Jun onwards'))
 emm <- emmeans(results, ~ Stage)
 pairs <- pairs(emm)
 pairs_summary <- summary(pairs, adjust = "bonferroni") |> 
@@ -263,7 +265,7 @@ pairs_summary <- summary(pairs, adjust = "bonferroni") |>
      separate(contrast, c('stage1', 'stage2'), sep = ' \\- ') |> 
      rename('group1' = 'stage1',
             'group2' = 'stage2') |> 
-     mutate(y.position = plot_range[2] * c(0.95, 0.85, 0.75),
+     mutate(y.position = plot_range[2] * 0.9,
             p.value = ifelse(p.value < 0.001, '***', format(round(p.value, 3), nsmall = 3)))
 
 fig3_1 <- ggplot(data_2022, aes(x = week, y = median)) +
@@ -272,12 +274,12 @@ fig3_1 <- ggplot(data_2022, aes(x = week, y = median)) +
                 color = 'black',
                 size = 0.5) +
      geom_smooth(aes(color = stage, fill = stage),
-                 method = 'loess',
+                 method = 'gam',
                  se = T,
                  linewidth = 0.7) +
      geom_line(data = data_2023, aes(color = stage),
                linewidth = 0.7) +
-     geom_ribbon(data = data_2023, aes(ymin = Q1, ymax = Q3, fill = stage), alpha = 0.3) +
+     geom_ribbon(data = data_2023, aes(ymin = median, ymax = median, fill = stage), alpha = 0.3) +
      scale_x_continuous(breaks = seq(201, 252, 4),
                         labels = c(26, 30, 34, 38, 42, 46, 50, 2, 6, 10, 14, 18, 22),
                         expand = c(0, 0)) +
@@ -301,7 +303,7 @@ fig3_1 <- ggplot(data_2022, aes(x = week, y = median)) +
            axis.title = element_text(face = "bold", size = 12, color = "black"),
            axis.text = element_text(size = 12, color = "black"))
 
-fig3_2 <- ggplot(data, aes(x = stage, y = Cases)) +
+fig3_2 <- ggplot(filter(data, Stage != '2023 Jun onwards'), aes(x = stage, y = Cases)) +
      geom_boxplot(aes(color = stage),
                   show.legend = F)+
      stat_pvalue_manual(pairs_summary,
@@ -341,7 +343,7 @@ data_2023 <- df_clean |>
                           levels = c(26:52, 1:25),
                           labels = 201:252),
             week = as.integer(as.character(week))) |> 
-     filter(stage == '2023 Jun. onwards')
+     filter(stage == '2023 Jun onwards')
 data_2022 <- df_clean |>
      filter(Country == 'UK') |> 
      filter(Week <= 52) |>
@@ -349,7 +351,7 @@ data_2022 <- df_clean |>
                           levels = c(26:52, 1:25),
                           labels = 201:252),
             week = as.integer(as.character(week))) |>
-     filter(stage != '2023 Jun. onwards')
+     filter(stage != '2023 Jun onwards')
 
 plot_breaks <- pretty(c(0, max(data$Cases)))
 plot_range <- range(plot_breaks)
@@ -358,7 +360,7 @@ data$Year <- as.factor(data$Year)
 data$Week <- as.factor(data$Week)
 data$Stage <- factor(data$stage,
                      levels = unique(data$stage))
-results <- lmer(Cases ~ Stage + (1|Week), data = data)
+results <- lmer(Cases ~ Stage + (1|Week), data = filter(data, Stage != '2023 Jun onwards'))
 emm <- emmeans(results, ~ Stage)
 pairs <- pairs(emm)
 pairs_summary <- summary(pairs, adjust = "bonferroni") |> 
@@ -366,7 +368,7 @@ pairs_summary <- summary(pairs, adjust = "bonferroni") |>
      separate(contrast, c('stage1', 'stage2'), sep = ' \\- ') |> 
      rename('group1' = 'stage1',
             'group2' = 'stage2') |> 
-     mutate(y.position = plot_range[2] * c(0.95, 0.85, 0.75),
+     mutate(y.position = plot_range[2] * 0.9,
             p.value = ifelse(p.value < 0.001, '***', format(round(p.value, 3), nsmall = 3)))
 
 fig4_1 <- ggplot(data_2022, aes(x = week, y = median)) +
@@ -375,12 +377,12 @@ fig4_1 <- ggplot(data_2022, aes(x = week, y = median)) +
                 color = 'black',
                 size = 0.5) +
      geom_smooth(aes(color = stage, fill = stage),
-                 method = 'loess',
+                 method = 'gam',
                  se = T,
                  linewidth = 0.7) +
      geom_line(data = data_2023, aes(color = stage),
                linewidth = 0.7) +
-     geom_ribbon(data = data_2023, aes(ymin = Q1, ymax = Q3, fill = stage), alpha = 0.3) +
+     geom_ribbon(data = data_2023, aes(ymin = median, ymax = median, fill = stage), alpha = 0.3) +
      scale_x_continuous(breaks = seq(201, 252, 4),
                         labels = c(26, 30, 34, 38, 42, 46, 50, 2, 6, 10, 14, 18, 22),
                         expand = c(0, 0)) +
@@ -404,7 +406,7 @@ fig4_1 <- ggplot(data_2022, aes(x = week, y = median)) +
            axis.title = element_text(face = "bold", size = 12, color = "black"),
            axis.text = element_text(size = 12, color = "black"))
 
-fig4_2 <- ggplot(data, aes(x = stage, y = Cases)) +
+fig4_2 <- ggplot(filter(data, Stage != '2023 Jun onwards'), aes(x = stage, y = Cases)) +
      geom_boxplot(aes(color = stage),
                   show.legend = F)+
      stat_pvalue_manual(pairs_summary,
@@ -443,7 +445,7 @@ plot_all <- fig1_1 + fig1_2 + fig2_1 + fig2_2 +
      plot_layout(design = plot_panel, guides = 'collect')&
      theme(legend.position = 'bottom')
 
-ggsave(filename = './main/Fig2.pdf',
+ggsave(filename = './main/Fig3.pdf',
        plot = plot_all,
        width = 12,
        height = 6, 
@@ -451,4 +453,4 @@ ggsave(filename = './main/Fig2.pdf',
        family = 'Times New Roman')
 
 write.xlsx(df_clean,
-           './Fig Data/fig2.xlsx')
+           './Fig Data/fig3.xlsx')

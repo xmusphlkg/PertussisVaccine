@@ -19,8 +19,8 @@ scientific_10 <- function(x) {
 }
 
 # Load data
-df_predict <- read.xlsx('./Fig Data/fig3.xlsx', sheet = 'Sheet 1', detectDates = T)
-df_fit <- read.xlsx('./Fig Data/fig3.xlsx', sheet = 'Sheet 2', detectDates = T)
+df_predict <- read.xlsx('./Fig Data/fig2.xlsx', sheet = 'Sheet 1', detectDates = T)
+df_fit <- read.xlsx('./Fig Data/fig2.xlsx', sheet = 'Sheet 2', detectDates = T)
 
 # plot --------------------------------------------------------------------
 
@@ -48,7 +48,8 @@ plot_data <- function(i){
           coord_cartesian(ylim = range(plot_breaks)) +
           scale_x_date(expand = expansion(add = c(0, 0)),
                        date_labels = "%Y",
-                       breaks = seq(min(data_fit$date), max(data_predict$date), by = "1 years")) +
+                       limits = c(as.Date('2015-1-1'), as.Date('2021-2-1')),
+                       breaks = seq(min(data_fit$date), max(data_predict$date)+40, by = "1 years")) +
           scale_y_continuous(expand = c(0, 0),
                              label = scientific_10,
                              breaks = plot_breaks) +
@@ -69,16 +70,21 @@ plot_data <- function(i){
      fig2 <- ggplot(data = data_predict, aes(x = date)) +
           geom_line(aes(y = mean, color = 'Predicted')) +
           geom_line(aes(y = observed, color = 'Observed'))+
+          # geom_ribbon(aes(ymin = CI_lower.95., 
+          #                 ymax = CI_upper.95.),
+          #             fill = area_color[1],
+          #             alpha = 0.3,
+          #             show.legend = F)+
           stat_difference(aes(ymin = observed, ymax = mean),
                           alpha = 0.3,
                           levels = c("Decreased", "Increased"),
                           show.legend = i == 4)+
-          coord_cartesian(xlim = as.Date(c('2023-7-1', '2024-4-30'))) +
+          coord_cartesian(xlim = as.Date(c('2020-1-1', '2021-2-1'))) +
           scale_color_manual(values = line_color_2) +
           scale_fill_manual(values = area_color) +
           scale_x_date(expand = expansion(add = c(0, 0)),
                        date_labels = "%Y-%b",
-                       breaks = seq(as.Date('2023-1-1'), as.Date('2024-4-1'), by = "3 month")) +
+                       breaks = seq(as.Date('2020-1-1'), as.Date('2021-1-1'), by = "3 month")) +
           scale_y_continuous(expand = c(0, 0),
                              label = scientific_10,
                              breaks = plot_breaks,
@@ -104,9 +110,18 @@ plot_all <- wrap_plots(plotlist = plot_all, ncol = 1)+
      plot_layout(guides = "collect")&
      theme(legend.position = 'bottom')
 
-ggsave(filename = './main/Fig3.pdf',
+ggsave(filename = './main/Fig2.pdf',
        plot = plot_all,
        width = 12,
        height = 10, 
        device = cairo_pdf,
        family = 'Times New Roman')
+
+
+# summary -----------------------------------------------------------------
+
+df_predict |>
+     mutate(diff = mean - observed) |>
+     group_by(country) |>
+     summarise(total = sum(diff, na.rm = T),
+               total_per = paste(100 * round(total / sum(mean, na.rm = T), 4), "%"))
