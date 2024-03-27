@@ -67,7 +67,7 @@ fig1_1 <- ggplot(data_2022, aes(x = month, y = median)) +
      geom_vline(xintercept = 106.5,
                 linetype = 'dashed',
                 color = 'black',
-                size = 0.5) +
+                linewidth = 0.5) +
      geom_smooth(aes(color = stage, fill = stage),
                  method = 'gam',
                  se = T,
@@ -170,7 +170,7 @@ fig2_1 <- ggplot(data_2022, aes(x = month, y = median)) +
      geom_vline(xintercept = 106.5,
                 linetype = 'dashed',
                 color = 'black',
-                size = 0.5) +
+                linewidth = 0.5) +
      geom_smooth(aes(color = stage, fill = stage),
                  method = 'gam',
                  se = T,
@@ -272,7 +272,7 @@ fig3_1 <- ggplot(data_2022, aes(x = week, y = median)) +
      geom_vline(xintercept = 227.5,
                 linetype = 'dashed',
                 color = 'black',
-                size = 0.5) +
+                linewidth = 0.5) +
      geom_smooth(aes(color = stage, fill = stage),
                  method = 'gam',
                  se = T,
@@ -375,7 +375,7 @@ fig4_1 <- ggplot(data_2022, aes(x = week, y = median)) +
      geom_vline(xintercept = 227.5,
                 linetype = 'dashed',
                 color = 'black',
-                size = 0.5) +
+                linewidth = 0.5) +
      geom_smooth(aes(color = stage, fill = stage),
                  method = 'gam',
                  se = T,

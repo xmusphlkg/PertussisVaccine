@@ -125,8 +125,8 @@ df <- df |>
      mutate(age_group_10 = case_when(
           age_group == "No.information.provided" ~ 'Missing',
           age_group == '00-04' ~ '00-04',
-          age_group == '05-14' ~ '05-14',
-          age_group == '05-14' ~ '05-14',
+          age_group == '05-09' ~ '05-14',
+          age_group == '10-14' ~ '05-14',
           # other age groups
           TRUE ~ '15+'
      ))
@@ -154,5 +154,48 @@ fig <- fig1 + fig2 + fig3 + fig4 +
 
 ggsave(filename = './appendix/S6.png',
        plot = fig,
+       dpi = 300,
        width = 12,
        height = 12) 
+
+# US ----------------------------------------------------------------------
+
+fill_color <- pal_npg()(5)
+names(fill_color) <- c('00-06', '07-10', '11-19', 'Missing', '20+')
+
+df <- read.xlsx('./annual.xlsx', sheet = 'US_1')
+df <- df |> 
+     pivot_longer(cols = 2:ncol(df), names_to = 'age_group', values_to = 'count') |> 
+     mutate(age_group_10 = case_when(
+          age_group == "No.information.provided" ~ 'Missing',
+          age_group == '<6mos' ~ '00-06',
+          age_group == '6-11mos' ~ '00-06',
+          age_group == '01-06' ~ '00-06',
+          # other age groups
+          TRUE ~ as.character(age_group)
+     ))
+
+names(df)[1] <- 'year'
+df <- df |> 
+     filter(year <= 2023)
+
+fig <- ggplot(df, aes(x = year, y = count, fill = age_group_10)) +
+     geom_col(position = 'fill', show.legend = T) +
+     coord_cartesian(ylim = c(0, 1)) +
+     scale_fill_manual(values = fill_color) +
+     scale_x_continuous(breaks = breaks,
+                        limits = c(1990.5, 2023.5),
+                        expand = c(0, 0)) +
+     scale_y_continuous(labels = scales::percent_format(),
+                        expand = c(0, 0)) +
+     theme_bw() +
+     theme(legend.position = 'bottom') +
+     labs(x = 'Year',
+          y = 'Percentage',
+          fill = 'Age Group')
+
+ggsave(filename = './appendix/S7.png',
+       plot = fig,
+       dpi = 300,
+       width = 12,
+       height = 3.5) 
