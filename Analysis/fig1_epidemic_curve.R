@@ -82,14 +82,28 @@ i <- 1
 country_list <- sort(unique(df_clean$Country))
 ylabel_list <- c('Monthly incidence', 'Monthly incidence', 'Weekly incidence', 'Weekly incidence')
 
+split_dates <- as.Date(c("2015/1/1", "2020/1/1", "2023/7/1", "2024/3/9"))
+split_periods <- c("2015 Jan to 2019 Dec", "2020 Jan to 2023 Jun", "2023 Jun onwards")
+datafile_rect <- data.frame(Period = split_periods,
+                            start = split_dates[1:3],
+                            end = split_dates[2:4])
+
+plot_max <- c(2e4, 4e4, 2e4, 4e4, 5e2, 1e4, 5e2, 1e4)
+
 plot_epidemic <- function(i){
      data <- df_clean |> 
           filter(Country == country_list[i])
-     plot_breaks <- pretty(c(0, max(data$Cases)))
+     plot_breaks <- pretty(c(0, plot_max[i*2-1]))
      plot_range <- range(plot_breaks)
      
      fig_1 <- ggplot(data)+
-          geom_line(aes(x = Date, y = Cases, color= stage)) +
+          geom_rect(data = datafile_rect,
+                    aes(xmin = start, xmax = end, fill = Period),
+                    ymin = -Inf,
+                    ymax = Inf,
+                    alpha = 0.2,
+                    show.legend = T) +
+          geom_line(aes(x = Date, y = Cases), color = '#B09C85') +
           scale_x_date(date_labels = '%Y',
                        date_breaks = 'year',
                        limits = c(as.Date('2015-01-01'), as.Date('2024-03-09')),
@@ -98,7 +112,7 @@ plot_epidemic <- function(i){
                              limits = plot_range,
                              breaks = plot_breaks,
                              expand = expansion(mult = c(0, 0))) +
-          scale_color_manual(values = fill_color) +
+          scale_fill_manual(values = fill_color) +
           theme_bw() +
           theme(
                plot.title.position = "plot",
@@ -116,13 +130,13 @@ plot_epidemic <- function(i){
           labs(title = letters[i*2-1],
                y = ylabel_list[i],
                x = 'Date',
-               color = 'Stage')
+               fill = 'Stage')
      
      data <- data |> 
           group_by(Year) |> 
           filter(Year < 2024) |>
           summarise(Cases = sum(Cases))
-     plot_breaks <- pretty(c(0, max(data$Cases)))
+     plot_breaks <- pretty(c(0, plot_max[i*2]))
      plot_range <- range(plot_breaks)   
      
      fig_2 <- ggplot(data)+
@@ -148,7 +162,8 @@ plot_epidemic <- function(i){
           ) +
           labs(title = letters[i*2],
                x = 'Year',
-               y = 'Yearly incidence')
+               y = 'Yearly incidence',
+               fill = 'Stage')
      
      return(fig_1 + fig_2 + plot_layout(widths = c(3, 1)))
 }
@@ -167,7 +182,7 @@ write.xlsx(df_clean,
           './Fig Data/fig1.xlsx')
 
 
-fig_1 <- df_us |> 
+fig_2 <- df_us |> 
      mutate(
           RollingSum = map_dbl(row_number(), ~sum(Cases[.x:min(.x+3, n())], na.rm = TRUE))
      ) |> 
@@ -195,12 +210,12 @@ fig_1 <- df_us |>
           axis.title = element_text(face = "bold", size = 12, color = "black"),
           axis.text = element_text(size = 12, color = "black")
      ) +
-     labs(title = letters[1],
+     labs(title = letters[2],
           y = "Four-week rolling incidence",
           x = 'Date',
           color = 'Stage')
 
-fig_2 <- df_uk |> 
+fig_1 <- df_uk |> 
      mutate(
           RollingSum = map_dbl(row_number(), ~sum(Cases[.x:min(.x+3, n())], na.rm = TRUE))
      ) |> 
@@ -228,10 +243,10 @@ fig_2 <- df_uk |>
           axis.title = element_text(face = "bold", size = 12, color = "black"),
           axis.text = element_text(size = 12, color = "black")
      ) +
-     labs(title = letters[2],
+     labs(title = letters[1],
           y = "Four-week rolling incidence",
           x = 'Date',
-          color = 'Stage')
+          fill = 'Stage')
 
 ggsave(filename = './appendix/S1.png',
        plot = fig_1 + fig_2,

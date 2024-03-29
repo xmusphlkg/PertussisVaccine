@@ -29,6 +29,8 @@ country_list <- sort(unique(df_predict$country))
 ylabel_list <- c('Monthly incidence', 'Monthly incidence', 'Weekly incidence', 'Weekly incidence')
 df_predict$mean[df_predict$mean < 0] <- 0
 
+plot_max <- c(rep(5e3, 2), rep(3e2, 2))
+
 plot_data <- function(i){
      data_predict <- df_predict |> 
           filter(country == country_list[i]) |> 
@@ -37,7 +39,7 @@ plot_data <- function(i){
           filter(country == country_list[i]) |>
           arrange(date)
      
-     max_cases <- max(data_fit$simu, data_fit$fit, data_predict$mean, data_predict$observed, na.rm = T)
+     max_cases <- plot_max[i]
      plot_breaks <- pretty(c(max_cases, 0))
      
      fig1 <- ggplot(data = data_fit, aes(x = date)) +

@@ -83,21 +83,19 @@ fig2 <- ggplot(df, aes(x = year, y = count, fill = age_group_10)) +
           y = 'Percentage',
           fill = 'Age Group')
 
-# US ----------------------------------------------------------------------
+# UK ----------------------------------------------------------------------
 
-df <- read.xlsx('./annual.xlsx', sheet = 'US')
+df <- read.xlsx('./annual.xlsx', sheet = 'UK')
 df <- df |> 
      pivot_longer(cols = 2:ncol(df), names_to = 'age_group', values_to = 'count') |> 
      mutate(age_group_10 = case_when(
           age_group == "No.information.provided" ~ 'Missing',
-          age_group == '00-01' ~ '00-04',
-          age_group == '02-04' ~ '00-04',
-          age_group == '05-14' ~ '05-14',
-          age_group == '05-14' ~ '05-14',
+          age_group == '00-04' ~ '00-04',
+          age_group == '05-09' ~ '05-14',
+          age_group == '10-14' ~ '05-14',
           # other age groups
           TRUE ~ '15+'
      ))
-
 names(df)[1] <- 'year'
 df <- df |> 
      filter(year <= 2023)
@@ -117,19 +115,21 @@ fig3 <- ggplot(df, aes(x = year, y = count, fill = age_group_10)) +
           y = 'Percentage',
           fill = 'Age Group')
 
-# UK ----------------------------------------------------------------------
+# US ----------------------------------------------------------------------
 
-df <- read.xlsx('./annual.xlsx', sheet = 'UK')
+df <- read.xlsx('./annual.xlsx', sheet = 'US')
 df <- df |> 
      pivot_longer(cols = 2:ncol(df), names_to = 'age_group', values_to = 'count') |> 
      mutate(age_group_10 = case_when(
           age_group == "No.information.provided" ~ 'Missing',
-          age_group == '00-04' ~ '00-04',
-          age_group == '05-09' ~ '05-14',
-          age_group == '10-14' ~ '05-14',
+          age_group == '00-01' ~ '00-04',
+          age_group == '02-04' ~ '00-04',
+          age_group == '05-14' ~ '05-14',
+          age_group == '05-14' ~ '05-14',
           # other age groups
           TRUE ~ '15+'
      ))
+
 names(df)[1] <- 'year'
 df <- df |> 
      filter(year <= 2023)
@@ -149,14 +149,8 @@ fig4 <- ggplot(df, aes(x = year, y = count, fill = age_group_10)) +
           y = 'Percentage',
           fill = 'Age Group')
 
-fig <- fig1 + fig2 + fig3 + fig4 +
+fig_1 <- fig1 + fig2 + fig3 + fig4 +
      plot_layout(ncol = 1, guides = 'collect') & theme(legend.position = 'bottom')
-
-ggsave(filename = './appendix/S6.png',
-       plot = fig,
-       dpi = 300,
-       width = 12,
-       height = 12) 
 
 # US ----------------------------------------------------------------------
 
@@ -179,7 +173,7 @@ names(df)[1] <- 'year'
 df <- df |> 
      filter(year <= 2023)
 
-fig <- ggplot(df, aes(x = year, y = count, fill = age_group_10)) +
+fig_2 <- ggplot(df, aes(x = year, y = count, fill = age_group_10)) +
      geom_col(position = 'fill', show.legend = T) +
      coord_cartesian(ylim = c(0, 1)) +
      scale_fill_manual(values = fill_color) +
@@ -192,10 +186,13 @@ fig <- ggplot(df, aes(x = year, y = count, fill = age_group_10)) +
      theme(legend.position = 'bottom') +
      labs(x = 'Year',
           y = 'Percentage',
+          title = 'e',
           fill = 'Age Group')
 
-ggsave(filename = './appendix/S7.png',
-       plot = fig,
+ggsave(filename = './appendix/S3.png',
+       plot = cowplot::plot_grid(fig_1, fig_2,
+                                 rel_heights = c(4, 1.15),
+                                 ncol = 1),
        dpi = 300,
        width = 12,
-       height = 3.5) 
+       height = 12) 
