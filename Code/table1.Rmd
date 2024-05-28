@@ -1,0 +1,70 @@
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(arsenal)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
+DataAll <- read.csv("../Outcome/S table1.csv")
+DataAll <- DataAll |> 
+     select(CoverageDTP1, CoverageDTP3,
+            VaccineGeneral, GENERALM, GENERALY, VaccinePregnant, VaccineAdult, VaccineRisk,
+            VaccineCode,
+            Cluster, OutbreakSize) |> 
+     # fill na in OutbreakSize with -1
+     mutate(OutbreakSize = ifelse(is.na(OutbreakSize), -1, OutbreakSize),
+            OutbreakSize = factor(OutbreakSize,
+                                  levels = c(0:3, -1),
+                                  labels = c('Low', 'Normal', 'High', 'Resurgence', 'Unavailable')),
+            CoverageDTP1 = CoverageDTP1*100,
+            CoverageDTP3 = CoverageDTP3*100,
+            VaccineGeneral = factor(VaccineGeneral,
+                                    levels = c('1 dose', '2 doses', '3 doses', '4 doses', '5 doses', '6 doses')),
+            GENERALY = factor(GENERALY,
+                              levels = c('Not provided', '1 dose', '2 doses', '3 doses')),
+            GENERALM = factor(GENERALM,
+                              levels = c('1 dose', '2 doses', '3 doses', '4 doses', '5 doses', '6 doses')),
+            VaccinePregnant = case_when(VaccinePregnant == 1 ~ 'Yes',
+                                        VaccinePregnant == 0 ~ 'No',
+                                        TRUE ~ 'Unavailable'),
+            VaccineAdult = case_when(VaccineAdult == 1 ~ 'Yes',
+                                     VaccineAdult == 0 ~ 'No',
+                                     TRUE ~ 'Unavailable'),
+            VaccineRisk = case_when(VaccineRisk == 1 ~ 'Yes',
+                                    VaccineRisk == 0 ~ 'No',
+                                    TRUE ~ 'Unavailable'),
+            VaccineCode = factor(VaccineCode,
+                                 levels = c('wP', 'aP', 'Both')),
+            Cluster = case_when(Cluster == 'Low' ~ 'Low',
+                                Cluster %in% c('Mild', 'High') ~ 'Mild & High'),
+            Cluster = factor(Cluster,
+                             levels = c('Low', 'Mild & High')),
+            OutbreakSize = factor(OutbreakSize,
+                                  levels = c('Low', 'Normal', 'High', 'Resurgence', 'Unavailable'))
+            )
+
+table_1 <- tableby(Cluster~.,
+                   data = DataAll,
+                   control = tableby.control(digits  = 2,
+                                             digits.count = 0,
+                                             digits.pct = 2,
+                                             digits.p = 3),
+                   numeric.stats = c('median', 'q1q3'))
+table_labels <- list(
+  Cluster = 'Disease burden',
+  CoverageDTP1 = 'Coverage of DTP1 (%)',
+  CoverageDTP3 = 'Coverage of DTP3 (%)',
+  VaccineGeneral = 'General vaccine recommendation',
+  GENERALM = 'General vaccine recommendation for toddlers, -3yr',
+  GENERALY = 'General vaccine recommendation for children, 3+yr',
+  VaccinePregnant = 'Vaccine recommendation for pregnant',
+  VaccineAdult = 'Vaccine recommendation for adults',
+  VaccineRisk = 'Vaccine recommendation for risk groups',
+  VaccineCode = 'Vaccine type',
+  OutbreakSize = 'Pertussis status in 2022/2023'
+)
+summary(table_1,
+        labelTranslations = table_labels)
+
+```
