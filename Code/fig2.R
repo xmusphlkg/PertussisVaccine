@@ -102,13 +102,12 @@ plot_glm <- function(i){
                              expand = c(0, 0)) +
           scale_y_continuous(expand = expansion(mult = c(0, 0.1))) +
           labs(title = paste(LETTERS[i], country_labels[i], sep=": "),
-               x = NULL, y = 'Adjusted incidence', 
+               x = NULL, y = NULL, 
                color = 'Stage', fill = 'Stage') +
           scale_color_manual(values = fill_color) +
           scale_fill_manual(values = fill_color) +
           theme_bw() +
           theme(panel.grid = element_blank(),
-                legend.position = 'right',
                 axis.text.y = element_text(color = 'black', face = 'plain'),
                 axis.text.x = element_text(color = 'black', face = 'plain'),
                 axis.title = element_text(color = 'black', face = 'plain'),
@@ -122,13 +121,12 @@ plot_glm <- function(i){
 
 fig <- map(1:length(country_names), plot_glm)
 fig <- fig |> 
-     wrap_plots(ncol = 2) +
-     plot_layout(guides = 'collect') &
-     theme(legend.position = 'bottom')
+     wrap_plots(ncol = 3) +
+     plot_layout(guides = 'collect')
 
 ggsave("./Outcome/fig2.pdf",
        fig,
-       width = 9,
-       height = 9,
+       width = 12,
+       height = 7,
        device = cairo_pdf,
        family = "Helvetica")
