@@ -12,8 +12,7 @@ library(paletteer)
 library(grid)
 library(gtable)
 library(sf)
-
-fill_color <- paletteer_d("MexBrewer::Revolucion")
+library(ggh4x)
 
 scientific_10 <- function(x) {
      x_f <- gsub("[+]", "", gsub("1e", "10^", scales::scientific_format()(x)))
@@ -90,11 +89,7 @@ write.csv(DataRaw, './Outcome/fig1.csv', row.names = F)
 
 remove(data_EU, data_other, data_EU_all)
 
-country_names <- unique(DataRaw$Country) |> 
-     sort() |> 
-     as.character()
-
-# panel a ---------------------------------------------------------------------
+# appendix figure --------------------------------------------------------------------
 
 DataNorm <- DataRaw|>
      rowwise() |>
@@ -124,61 +119,15 @@ DataNorm <- DataRaw|>
      ) |>
      unnest(cols = c(Age_Density))
 
-Data2019 <- DataNorm |>
-     filter(Year <= 2019) |>
-     mutate(AgeGroup = case_when(Age < 5 ~ "0-4",
-                                 Age < 10 ~ "5-9",
-                                 Age < 15 ~ "10-14",
-                                 Age >= 15 ~ "15+"),
-            AgeGroup = factor(AgeGroup, levels = c("0-4", "5-9", "10-14", "15+"))) |> 
-     group_by(Country, AgeGroup) |>
-     summarise(Density = sum(Density), .groups = 'drop') |> 
-     group_by(Country) |>
-     filter(Density == max(Density)) |> 
-     select(Country, AgeGroup)
-
-# using 2010-2019 data find the main age group
-
-DataMap <- st_read("./Data/world.zh.json") |> 
-     filter(iso_a3  != "ATA") |> 
-     left_join(Data2019, by = c("iso_a2" = "Country"))
-
-fill_color <- c('#DD5129FF', '#FAB255FF', '#0F7BA2FF', '#43B284FF')
-
-fig_1 <- ggplot(data = DataMap) +
-     geom_sf(aes(fill = AgeGroup)) +
-     # add x, y tick labels
-     theme(axis.text.x = element_text(size = 8),
-           axis.text.y = element_text(size = 8)) +
-     scale_x_continuous(limits = c(-180, 180),
-                        expand = c(0, 0)) + 
-     scale_y_continuous(limits = c(-60, 75)) +
-     scale_fill_manual(values = fill_color,
-                       breaks = c("0-4", "5-9", "10-14", "15+"),
-                       limits = c("0-4", "5-9", "10-14", "15+"),
-                       na.value = 'white',
-                       na.translate = T)+
-     theme_bw() +
-     theme(panel.grid = element_blank(),
-           panel.background = element_rect(fill = "#C1CDCD", color = NA),
-           axis.text = element_text(color = 'black', face = 'plain'),
-           axis.title = element_text(color = 'black', face = 'plain'),
-           legend.position = c(0.01, 0.01),
-           legend.justification = c(0, 0)) +
-     labs(title = "A", x = NULL, y = NULL, fill = 'Age group')+
-     guides(fill = guide_legend(nrow = 1))
-
-# appendix figure --------------------------------------------------------------------
-
 country_names <- c('AT', 'AU', 'BE', 'BG', 'BR', 'CA', 'CN', 'CY', 'CZ', 'DE',
-                   'DK', 'EE', 'EL', 'ES', 'FI', 'FR', 'GB', 'HR', 'HU', 'IE', 
+                   'DK', 'EE', 'GR', 'ES', 'FI', 'FR', 'GB', 'HR', 'HU', 'IE', 
                    'IS', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'NZ', 'PL', 
                    'PT', 'RO', 'SE', 'SG', 'SI', 'SK', 'US')
 country_labels <- c('Austria', 'Australia', 'Belgium', 'Bulgaria', 'Brazil', 'Canada', 'China', 'Cyprus', 'Czech Republic', 'Germany',
                     'Denmark', 'Estonia', 'Greece', 'Spain', 'Finland', 'France', 'United Kingdom', 'Croatia', 'Hungary', 'Ireland', 
                     'Iceland', 'Italy', 'Lithuania', 'Luxembourg', 'Latvia', 'Malta', 'Netherlands', 'Norway', 'New Zealand', 'Poland', 
                     'Portugal', 'Romania', 'Sweden', 'Singapore', 'Slovenia', 'Slovakia', 'United States')
-fill_color <- rev(paletteer_d("awtools::a_palette"))
+fill_color <- rev(c("#1E313EFF", "#4E475FFF", "#8B5975FF", "#C86C7CFF", "#FA8975FF"))
 
 plot_ridges <- function(i){
      df <- DataNorm |>
@@ -258,6 +207,13 @@ DataPeriod <- DataRaw |>
      ) |>
      unnest(cols = c(Age_Density))
 
+DataMedian <- DataPeriod |> 
+     group_by(Country, Period) |>
+     arrange(Age) |>
+     mutate(cum_weight = cumsum(Density)) |>
+     summarise(MedianAge = Age[min(which(cum_weight >= sum(Density) / 2))],
+               .groups = 'drop')
+
 fig_2 <- DataPeriod |> 
      mutate(Period = factor(Period,
                             levels = c("Before 2020", "2020", "2021", "2022", "2023"),
@@ -272,7 +228,10 @@ fig_2 <- DataPeriod |>
                                   scale = 1.2,
                                   stat = "identity",
                                   rel_min_height = 0.01)+
-     facet_wrap(~Period, scales = 'free_y', ncol = 2)+
+     # geom_point(data = DataMedian,
+     #            mapping = aes(x = MedianAge,
+     #                          y = Country))+
+     facet_wrap2(~Period, scales = 'free_y', axes = "all", ncol = 2)+
      coord_flip()+
      scale_x_continuous(limits = c(0, 100),
                         expand = c(0, 0),
@@ -292,11 +251,47 @@ fig_2 <- DataPeriod |>
            strip.text = element_text(size = 14, hjust = 0, face = 'plain'),
            strip.placement = 'outside',
            axis.text.y = element_text(color = 'black', face = 'plain'),
-           axis.text.x = element_text(color = 'black', face = 'plain', hjust = 1, angle = 90, vjust = 0.5),
+           axis.text.x = element_text(color = 'black', face = 'plain', hjust = 1, angle = 60, vjust = 1),
            axis.title = element_text(color = 'black', face = 'plain'),
            legend.direction = 'horizontal',
            plot.title.position = 'plot',
            legend.position = c(0.80, 0.15))+
+     guides(fill = guide_colorbar(barwidth = 20))
+
+
+# panel a ---------------------------------------------------------------------
+
+# using 2010-2019 data find the main age group
+
+DataMap <- st_read("./Data/world.zh.json") |> 
+     filter(iso_a3  != "ATA") |> 
+     left_join(filter(DataMedian, Period == 'Before 2020'), by = c("iso_a2" = "Country")) |> 
+     mutate(MedianAge = case_when(MedianAge > 20 ~ 20,
+                                  TRUE ~ MedianAge))
+
+fill_color <- rev(c("#1D3141FF", "#096168FF", "#209478FF", "#75C56EFF", "#E2EE5EFF"))
+
+fig_1 <- ggplot(data = DataMap) +
+     geom_sf(aes(fill = MedianAge)) +
+     # add x, y tick labels
+     theme(axis.text.x = element_text(size = 8),
+           axis.text.y = element_text(size = 8)) +
+     scale_x_continuous(limits = c(-180, 180),
+                        expand = c(0, 0)) + 
+     scale_y_continuous(limits = c(-60, 75)) +
+     scale_fill_gradientn(colours = fill_color,
+                          limits = c(2, 20),
+                          breaks = c(2, 5, 10, 20),
+                          na.value = 'white',
+                          trans = 'log10')+
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           panel.background = element_rect(fill = "#C1CDCD", color = NA),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'bottom',
+           legend.direction = 'horizontal') +
+     labs(title = "A", x = NULL, y = NULL, fill = 'Median age\n(2010-2019)')+
      guides(fill = guide_colorbar(barwidth = 20))
 
 # generate legend ---------------------------------------------------------
@@ -307,11 +302,12 @@ BBBBBB
 "
 
 fig <- fig_1 + fig_2 +
-     plot_layout(design = design, heights = c(1, 2.7))
+     plot_layout(design = design, heights = c(1, 3.9))
 
 ggsave("./Outcome/fig1.pdf",
        fig,
        width = 14,
-       height = 14.3,
+       height = 15,
        device = cairo_pdf,
        family = "Helvetica")
+
