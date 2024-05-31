@@ -1,214 +1,214 @@
-"NAME","CODE","CoverageDTP1","CoverageDTP3","VaccinePregnant","VaccineAdult","VaccineRisk","TimeLastShot","TimeFirstShot","GENERALM","GENERALY","VaccineGeneral","VaccineAP","VaccineWP","VaccineCode","OutbreakSize2022","OutbreakSize2023","OutbreakSize","Cluster"
-"Afghanistan","AFG",0.77,0.69,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Low","High",2,"Low"
-"Albania","ALB",0.98,0.97,0,0,0,104,8.66,"3 doses","1 dose","4 doses",0,1,"wP","Unavailable","Low",0,"Low"
-"Algeria","DZA",0.91,0.77,0,0,0,312,8.66,"3 doses","1 dose","4 doses",1,1,"Both","Unavailable","Low",0,"Low"
-"Andorra","AND",0.99,0.98,1,0,0,780,8.66,"3 doses","2 doses","5 doses",1,0,"aP","Unavailable","Resurgence",3,"Mild"
-"Angola","AGO",0.53,0.42,0,0,0,25.98,8.66,"3 doses","Not provided","3 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Anguilla","AIA",NA,NA,0,0,1,234,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Antigua and Barbuda","ATG",0.99,0.99,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Argentina","ARG",0.87,0.81,1,0,1,572,8.66,"4 doses","2 doses","6 doses",1,1,"Both","Low","Low",0,"Low"
-"Armenia","ARM",0.96,0.93,0,0,0,806,6,"4 doses","2 doses","6 doses",1,0,"aP","Low","Normal",1,"Low"
-"Aruba","ABW",NA,NA,0,0,1,520,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Low",0,"Mild"
-"Australia","AUS",0.98,0.94,1,0,0,650,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Low",0,"High"
-"Austria","AUT",0.91,0.84,0,0,0,364,8.66,"3 doses","1 dose","4 doses",1,0,"aP","Low","Resurgence",3,"Mild"
-"Azerbaijan","AZE",0.9,0.83,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Low",0,"Low"
-"Bahamas","BHS",0.98,0.87,1,0,0,624,8.66,"4 doses","2 doses","6 doses",1,1,"Both","Unavailable","Unavailable",NA,"Low"
-"Bahrain","BHR",0.97,0.97,0,1,1,676,8.66,"4 doses","2 doses","6 doses",1,1,"Both","Unavailable","Unavailable",NA,"Low"
-"Bangladesh","BGD",0.99,0.98,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Barbados","BRB",0.87,0.86,0,0,1,208,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Belarus","BLR",0.98,0.98,0,0,1,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Low","High",2,"Low"
-"Belgium","BEL",0.98,0.98,1,1,0,780,8,"4 doses","2 doses","6 doses",1,0,"aP","Low","Normal",1,"Mild"
-"Belize","BLZ",0.91,0.84,0,0,0,208,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Benin","BEN",0.84,0.76,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Low",0,"Low"
-"Bermuda","BMU",NA,NA,1,0,0,754,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Unavailable",0,"Low"
-"Bhutan","BTN",0.98,0.98,0,0,0,103.92,6,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Bolivia (Plurinational State of)","BOL",0.75,0.69,0,0,0,208,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Resurgence","Resurgence",3,"Low"
-"Bosnia and Herzegovina","BIH",0.85,0.75,0,0,0,312,8.66,"4 doses","1 dose","5 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Botswana","BWA",0.98,0.86,0,0,0,17.32,8.66,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Brazil","BRA",0.84,0.77,0,0,1,208,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Low","Low",0,"Low"
-"British Virgin Islands","VGB",NA,NA,1,0,0,208,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Brunei Darussalam","BRN",0.99,0.99,0,0,0,260,8.66,"3 doses","1 dose","4 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Bulgaria","BGR",0.94,0.91,0,0,0,624,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Low",0,"Low"
-"Burkina Faso","BFA",0.95,0.91,0,0,0,16,8,"3 doses","Not provided","3 doses",0,1,"wP","Low","Unavailable",0,"Low"
-"Burundi","BDI",0.93,0.91,0,0,0,77.94,6,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Cabo Verde","CPV",0.97,0.93,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Cambodia","KHM",0.92,0.85,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Low","Low",0,"Low"
-"Cameroon","CMR",0.75,0.68,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Canada","CAN",0.94,0.92,1,1,0,702,8.66,"4 doses","1 dose","5 doses",1,0,"aP","Low","Low",0,"Mild"
-"Cayman Islands","CYM",NA,NA,1,0,0,780,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Unavailable",NA,"Mild"
-"Central African Republic","CAF",0.54,0.42,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Low","Normal",1,"Mild"
-"Chad","TCD",0.74,0.6,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Chile","CHL",0.99,0.96,1,0,0,676,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Unavailable",NA,"Mild"
-"China","CHN",0.99,0.99,0,0,0,77.94,12.99,"4 doses","Not provided","4 doses",1,0,"aP","Resurgence","Unavailable",3,"Low"
-"China, Hong Kong SAR","HKG",NA,NA,1,0,0,572,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Low",0,"Low"
-"China, Macao SAR","MAC",NA,NA,1,0,1,598,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Low",0,"Low"
-"Colombia","COL",0.91,0.87,1,0,1,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Low","Low",0,"Low"
-"Comoros","COM",0.9,0.88,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Congo","COG",0.82,0.78,0,0,0,16,8,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Low",0,"Low"
-"Cook Islands","COK",0.91,0.72,0,0,0,208,6,"3 doses","1 dose","4 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Costa Rica","CRI",0.98,0.95,1,0,0,208,8.66,"4 doses","1 dose","5 doses",1,0,"aP","Low","Low",0,"Low"
-"Côte d'Ivoire","CIV",0.85,0.76,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Resurgence",3,"Low"
-"Croatia","HRV",0.98,0.92,0,0,0,312,8.66,"4 doses","1 dose","5 doses",1,0,"aP","Low","Unavailable",0,"Low"
-"Cuba","CUB",0.99,0.99,0,0,1,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Curaçao","CUW",NA,NA,0,0,0,64.95,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Cyprus","CYP",0.98,0.96,1,1,0,598,10.825,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Low",0,"Low"
-"Czechia","CZE",0.98,0.94,0,0,0,520,12.99,"3 doses","2 doses","5 doses",1,0,"aP","Low","Low",0,"Mild"
-"Democratic People's Republic of Korea","PRK",0.4,0,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Democratic Republic of the Congo","COD",0.81,0.65,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Normal","Low",1,"Low"
-"Denmark","DNK",0.98,0.97,1,0,0,260,12.99,"3 doses","1 dose","4 doses",1,0,"aP","Low","Unavailable",0,"Mild"
-"Djibouti","DJI",0.7,0.59,0,0,0,64.95,6,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Dominica","DMA",0.95,0.92,0,0,0,156,8.66,"3 doses","1 dose","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Dominican Republic","DOM",0.99,0.88,1,0,1,208,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Low","Low",0,"Low"
-"Ecuador","ECU",0.74,0.7,0,0,0,260,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Normal","Resurgence",3,"Low"
-"Egypt","EGY",0.97,0.97,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"El Salvador","SLV",0.76,0.75,1,0,1,208,8.66,"4 doses","1 dose","5 doses",1,1,"Both","Unavailable","Unavailable",NA,"Low"
-"Equatorial Guinea","GNQ",0.77,0.53,0,0,0,77.94,6,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Eritrea","ERI",0.97,0.95,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Estonia","EST",0.86,0.85,0,0,0,806,12.99,"3 doses","3 doses","6 doses",1,0,"aP","Low","Low",0,"Mild"
-"Eswatini","SWZ",0.99,0.97,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Ethiopia","ETH",0.7,0.65,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Low",0,"Low"
-"Fiji","FJI",0.99,0.99,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Finland","FIN",0.97,0.91,0,1,0,754,12.99,"3 doses","2 doses","5 doses",1,0,"aP","Low","Low",0,"Mild"
-"France","FRA",0.99,0.96,1,1,0,676,8.66,"3 doses","2 doses","5 doses",1,0,"aP","Low","Low",0,"Low"
-"French Polynesia","PYF",NA,NA,0,0,0,572,8.66,"3 doses","2 doses","5 doses",1,0,"aP","Unavailable","Unavailable",NA,"Mild"
-"Gabon","GAB",0.65,0.6,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Gambia","GMB",0.85,0.79,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Georgia","GEO",0.95,0.85,0,0,0,260,8.66,"4 doses","1 dose","5 doses",1,0,"aP","Low","Normal",1,"Low"
-"Germany","DEU",0.98,0.91,0,1,0,650,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Unavailable",NA,"Mild"
-"Ghana","GHA",0.99,0.99,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Greece","GRC",0.99,0.99,0,1,0,598,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Low",0,"Low"
-"Grenada","GRD",0.79,0.77,0,0,0,77.94,6,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Guam","GUM",NA,NA,0,1,0,572,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Guatemala","GTM",0.92,0.79,1,0,1,208,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Guinea","GIN",0.62,0.47,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Guinea-Bissau","GNB",0.81,0.74,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Guyana","GUY",0.98,0.98,0,0,0,25.98,8.66,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Haiti","HTI",0.75,0.51,0,0,0,64.95,6,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Low",0,"Low"
-"Honduras","HND",0.8,0.78,1,0,1,208,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Low",0,"Low"
-"Hungary","HUN",0.99,0.99,0,0,0,572,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Low",0,"Low"
-"Iceland","ISL",0.95,0.92,1,0,0,728,12.99,"3 doses","2 doses","5 doses",1,0,"aP","Unavailable","Unavailable",NA,"Mild"
-"India","IND",0.95,0.93,0,0,0,286,6,"4 doses","1 dose","5 doses",0,1,"wP","Low","Unavailable",0,"Low"
-"Indonesia","IDN",0.87,0.85,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Low","Normal",1,"Low"
-"Iran (Islamic Republic of)","IRN",0.99,0.99,0,0,0,312,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Low","Low",0,"Low"
-"Iraq","IRQ",0.99,0.93,0,0,0,260,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Low","Low",0,"Low"
-"Ireland","IRL",0.97,0.93,1,0,1,650,8.66,"3 doses","2 doses","5 doses",1,0,"aP","Low","Low",0,"Low"
-"Israel","ISR",0.99,0.98,1,0,1,676,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Unavailable",NA,"Mild"
-"Italy","ITA",0.98,0.95,1,1,0,780,12.99,"3 doses","2 doses","5 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Jamaica","JAM",0.99,0.98,0,0,0,260,6,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Japan","JPN",0.99,0.99,0,0,0,77.94,12.99,"4 doses","Not provided","4 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Jordan","JOR",0.78,0.77,0,0,0,77.94,12.99,"4 doses","Not provided","4 doses",1,1,"Both","Low","Low",0,"Low"
-"Kazakhstan","KAZ",0.99,0.99,0,0,0,312,8.66,"4 doses","1 dose","5 doses",1,0,"aP","Low","Unavailable",0,"Low"
-"Kenya","KEN",0.95,0.9,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Kiribati","KIR",0.96,0.91,0,0,0,312,6,"3 doses","1 dose","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Kosovo (in accordance with UN Security Council resolution 1244 (1999))","XKX",NA,NA,0,0,0,51.96,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Kuwait","KWT",0.99,0.96,0,0,0,156,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Low","Low",0,"Low"
-"Kyrgyzstan","KGZ",0.9,0.9,0,0,0,104,8.66,"3 doses","1 dose","4 doses",0,1,"wP","Low","Resurgence",3,"Low"
-"Lao People's Democratic Republic","LAO",0.87,0.8,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Normal",1,"Low"
-"Latvia","LVA",0.99,0.95,1,0,1,728,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Normal",1,"Mild"
-"Lebanon","LBN",0.88,0.67,0,0,0,234,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","High",2,"Low"
-"Lesotho","LSO",0.92,0.87,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Liberia","LBR",0.93,0.78,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Libya","LBY",0.74,0.73,0,0,0,780,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Normal","High",2,"Mild"
-"Lithuania","LTU",0.93,0.9,0,0,0,806,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Low",0,"Low"
-"Luxembourg","LUX",0.99,0.99,0,0,0,806,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","High",2,"Low"
-"Madagascar","MDG",0.66,0.57,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Normal","Normal",1,"Low"
-"Malawi","MWI",0.89,0.86,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Malaysia","MYS",0.99,0.97,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",1,0,"aP","Low","Unavailable",0,"Low"
-"Maldives","MDV",0.99,0.99,0,0,0,208,8.66,"3 doses","1 dose","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Mali","MLI",0.82,0.77,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Malta","MLT",0.99,0.98,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",1,0,"aP","Unavailable","Low",0,"Low"
-"Marshall Islands","MHL",0.96,0.86,0,0,0,598,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Mauritania","MRT",0.84,0.76,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Mauritius","MUS",0.96,0.95,1,0,0,572,6,"4 doses","2 doses","6 doses",1,1,"Both","Unavailable","Unavailable",NA,"Low"
-"Mexico","MEX",0.93,0.83,1,0,0,208,8.66,"4 doses","1 dose","5 doses",1,1,"Both","Low","Low",0,"Low"
-"Micronesia (Federated States of)","FSM",0.92,0.69,0,0,0,598,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Monaco","MCO",0.99,0.99,0,1,0,676,8.66,"3 doses","2 doses","5 doses",1,0,"aP","Unavailable","Unavailable",NA,"Mild"
-"Mongolia","MNG",0.97,0.95,0,0,0,17.32,8.66,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Montenegro","MNE",0.93,0.8,0,0,0,312,9,"4 doses","1 dose","5 doses",1,0,"aP","Unavailable","Resurgence",3,"Low"
-"Montserrat","MSR",NA,NA,0,0,0,77.94,8.66,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Morocco","MAR",0.99,0.99,0,0,0,260,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Mozambique","MOZ",0.67,0.61,0,0,0,17.32,8.66,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Myanmar","MMR",0.81,0.71,0,0,0,25.98,8.66,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Resurgence",3,"Low"
-"Namibia","NAM",0.9,0.84,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Normal","Normal",1,"Low"
-"Nauru","NRU",0.99,0.98,0,0,0,208,6,"4 doses","1 dose","5 doses",1,1,"Both","Unavailable","Unavailable",NA,"Mild"
-"Nepal","NPL",0.95,0.9,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Normal","Normal",1,"Mild"
-"Netherlands (Kingdom of the)","NLD",0.97,0.93,1,0,1,208,12.99,"3 doses","1 dose","4 doses",1,0,"aP","Low","Unavailable",0,"High"
-"New Caledonia","NCL",NA,NA,0,1,0,572,8.66,"3 doses","2 doses","5 doses",1,0,"aP","Unavailable","Unavailable",NA,"Mild"
-"New Zealand","NZL",0.94,0.89,1,1,1,624,6,"3 doses","2 doses","5 doses",1,0,"aP","Low","Unavailable",0,"High"
-"Nicaragua","NIC",0.94,0.92,0,0,0,312,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Niger","NER",0.96,0.84,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Normal","High",2,"Low"
-"Nigeria","NGA",0.7,0.62,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Niue","NIU",0.99,0.99,1,0,0,572,6,"3 doses","2 doses","5 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"North Macedonia","MKD",0.92,0.84,0,0,0,364,8.66,"4 doses","1 dose","5 doses",1,0,"aP","Unavailable","Normal",1,"Low"
-"Northern Mariana Islands","MNP",NA,NA,0,0,0,650,6,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Norway","NOR",0.98,0.97,0,0,0,780,12.99,"3 doses","2 doses","5 doses",1,0,"aP","Low","Low",0,"High"
-"occupied Palestinian territory, including east Jerusalem","PSE",0.99,0.98,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Low","Normal",1,"Low"
-"Oman","OMN",0.99,0.99,0,0,1,77.94,8.66,"4 doses","Not provided","4 doses",1,1,"Both","Low","Normal",1,"Low"
-"Pakistan","PAK",0.93,0.85,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Normal","Normal",1,"Low"
-"Palau","PLW",0.99,0.94,0,0,0,520,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Panama","PAN",0.98,0.87,1,0,1,520,8.66,"4 doses","2 doses","6 doses",1,1,"Both","Low","Unavailable",0,"Low"
-"Papua New Guinea","PNG",0.45,0.36,0,0,0,12.99,4.33,"3 doses","Not provided","3 doses",0,1,"wP","Low","Low",0,"High"
-"Paraguay","PRY",0.82,0.69,1,0,1,520,8.66,"4 doses","2 doses","6 doses",1,1,"Both","Low","Low",0,"Low"
-"Peru","PER",0.93,0.82,1,0,0,208,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Low","Low",0,"Low"
-"Philippines","PHL",0.74,0.72,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Poland","POL",0.99,0.9,0,0,1,728,7.5,"4 doses","2 doses","6 doses",1,1,"Both","Low","Unavailable",0,"Mild"
-"Portugal","PRT",0.99,0.99,1,0,0,260,8.66,"4 doses","1 dose","5 doses",1,0,"aP","Low","Low",0,"Low"
-"Qatar","QAT",0.99,0.98,0,0,0,806,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Resurgence",3,"Low"
-"Republic of Korea","KOR",0.98,0.98,0,0,0,598,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Unavailable",0,"Low"
-"Republic of Moldova","MDA",0.89,0.88,0,0,0,104,8.66,"3 doses","1 dose","4 doses",0,1,"wP","Low","High",2,"Low"
-"Romania","ROU",0.89,0.85,1,0,0,728,8.66,"3 doses","2 doses","5 doses",1,0,"aP","Low","Low",0,"Low"
-"Russian Federation","RUS",0.97,0.97,0,0,1,77.94,12.99,"4 doses","Not provided","4 doses",0,1,"wP","Low","Resurgence",3,"Low"
-"Rwanda","RWA",0.99,0.98,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Saint Kitts and Nevis","KNA",0.96,0.96,0,0,0,234,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Saint Lucia","LCA",0.92,0.81,0,0,0,260,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Saint Vincent and the Grenadines","VCT",0.97,0.92,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Samoa","WSM",0.97,0.76,0,0,0,64.95,6,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"San Marino","SMR",0.93,0.92,0,1,0,780,12.99,"3 doses","2 doses","5 doses",1,0,"aP","Unavailable","Low",0,"High"
-"Sao Tome and Principe","STP",0.97,0.97,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Saudi Arabia","SAU",0.98,0.98,1,0,0,260,8.66,"4 doses","1 dose","5 doses",1,0,"aP","Normal","Normal",1,"Low"
-"Senegal","SEN",0.9,0.88,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Serbia","SRB",0.97,0.92,0,0,0,364,8,"4 doses","1 dose","5 doses",1,0,"aP","Low","Resurgence",3,"Low"
-"Seychelles","SYC",0.99,0.97,0,0,0,77.94,12.99,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Sierra Leone","SLE",0.92,0.91,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Singapore","SGP",0.99,0.97,1,0,0,572,12.99,"4 doses","1 dose","5 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Sint Maarten (Dutch part)","SXM",NA,NA,0,0,0,51.96,8.66,"4 doses","Not provided","4 doses",1,0,"aP","Unavailable","Unavailable",NA,"Low"
-"Slovakia","SVK",0.97,0.97,0,0,0,624,8.66,"3 doses","2 doses","5 doses",1,0,"aP","Low","Low",0,"Mild"
-"Slovenia","SVN",0.92,0.89,1,0,0,416,12.99,"3 doses","1 dose","4 doses",1,0,"aP","Low","Low",0,"Mild"
-"Solomon Islands","SLB",0.99,0.89,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Somalia","SOM",0.52,0.42,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"South Africa","ZAF",0.87,0.85,0,0,0,77.94,6,"4 doses","Not provided","4 doses",1,0,"aP","Resurgence","Normal",3,"Low"
-"South Sudan","SSD",0.76,0.73,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Spain","ESP",0.98,0.93,1,0,1,312,8.66,"3 doses","1 dose","4 doses",1,0,"aP","Low","Low",0,"Mild"
-"Sri Lanka","LKA",0.98,0.98,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Low",0,"Low"
-"Sudan","SDN",0.94,0.84,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Normal",1,"Low"
-"Suriname","SUR",0.83,0.77,1,0,1,234,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Resurgence","Unavailable",3,"Low"
-"Sweden","SWE",0.96,0.94,1,0,0,780,12.99,"3 doses","2 doses","5 doses",1,0,"aP","Low","Low",0,"Low"
-"Switzerland","CHE",0.97,0.96,0,0,0,676,8.66,"3 doses","2 doses","5 doses",1,0,"aP","Unavailable","Unavailable",NA,"High"
-"Syrian Arab Republic","SYR",0.64,0.46,0,0,0,77.94,8,"4 doses","Not provided","4 doses",0,1,"wP","Resurgence","High",3,"Low"
-"Tajikistan","TJK",0.98,0.97,0,0,0,99.59,99.59,"1 dose","Not provided","1 dose",0,1,"wP","High","Resurgence",3,"Low"
-"Thailand","THA",0.99,0.97,0,0,0,208,8.66,"3 doses","2 doses","5 doses",0,1,"wP","Low","Unavailable",0,"Low"
-"Timor-Leste","TLS",0.87,0.86,0,0,0,77.94,6,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Togo","TGO",0.88,0.82,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Resurgence",3,"Low"
-"Tokelau","TKL",NA,NA,0,0,0,260,6,"3 doses","1 dose","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Tonga","TON",0.99,0.99,0,0,0,260,6,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Trinidad and Tobago","TTO",0.97,0.93,0,0,0,234,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Tunisia","TUN",0.99,0.97,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Low","Unavailable",0,"Low"
-"Türkiye","TUR",0.99,0.99,0,0,0,207.84,8.66,"5 doses","Not provided","5 doses",1,0,"aP","Low","Unavailable",0,"Low"
-"Turkmenistan","TKM",0.99,0.98,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Turks and Caicos Islands","TCA",NA,NA,0,0,0,156,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Tuvalu","TUV",0.99,0.91,0,0,0,286,6,"3 doses","1 dose","4 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Uganda","UGA",0.94,0.89,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Mild"
-"Ukraine","UKR",0.78,0.73,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Low","Low",0,"Low"
-"United Arab Emirates","ARE",0.98,0.96,0,1,1,806,8.66,"4 doses","2 doses","6 doses",1,1,"Both","Unavailable","High",2,"Low"
-"United Kingdom of Great Britain and Northern Ireland","GBR",0.97,0.92,0,0,0,173.2,8,"3 doses","Not provided","3 doses",1,0,"aP","Low","Low",0,"Mild"
-"United Republic of Tanzania","TZA",0.91,0.88,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"United States of America","USA",0.98,0.94,1,1,0,572,8.66,"4 doses","2 doses","6 doses",1,0,"aP","Low","Unavailable",0,"Mild"
-"Uruguay","URY",0.99,0.94,1,0,1,572,8.66,"4 doses","2 doses","6 doses",1,1,"Both","Low","Low",0,"Mild"
-"Uzbekistan","UZB",0.99,0.99,0,0,0,69.28,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Low","Low",0,"Low"
-"Vanuatu","VUT",0.83,0.68,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Low","Low",0,"Mild"
-"Venezuela (Bolivarian Republic of)","VEN",0.73,0.56,0,0,0,260,8.66,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Viet Nam","VNM",0.92,0.91,0,0,0,77.94,8.66,"4 doses","Not provided","4 doses",0,1,"wP","Low","Low",0,"Low"
-"Wallis and Futuna","WLF",NA,NA,0,0,0,312,8.66,"3 doses","1 dose","4 doses",1,0,"aP","Unavailable","Unavailable",NA,"Mild"
-"Yemen","YEM",0.85,0.74,0,0,0,312,6,"4 doses","1 dose","5 doses",0,1,"wP","Unavailable","Low",0,"Mild"
-"Zambia","ZMB",0.86,0.82,0,0,0,14,6,"3 doses","Not provided","3 doses",0,1,"wP","Unavailable","Unavailable",NA,"Low"
-"Zimbabwe","ZWE",0.93,0.9,0,0,0,77.94,6,"4 doses","Not provided","4 doses",0,1,"wP","Resurgence","Resurgence",3,"Low"
+"WHO_REGION","CODE","NAME","CoverageDTP1","CoverageDTP3","VaccinePregnant","VaccineAdult","VaccineRisk","TimeLastShot","TimeFirstShot","GENERALM","GENERALY","VaccineGeneral","VaccineCode","OutbreakSize2022","OutbreakSize2023","OutbreakSize"
+"EMRO","AFG","Afghanistan",77,69,0,0,0,14,6,3,0,3,"wP","Low","High",2
+"EURO","ALB","Albania",98,97,0,0,0,104,8.66,3,1,4,"wP","Unavailable","Low",0
+"AFRO","DZA","Algeria",91,77,0,0,0,312,8.66,3,1,4,"aP","Unavailable","Low",0
+"EURO","AND","Andorra",99,98,1,0,0,780,8.66,3,2,5,"aP","Unavailable","Resurgence",3
+"AFRO","AGO","Angola",53,42,0,0,0,25.98,8.66,3,0,3,"aP","Unavailable","Unavailable",NA
+"AMRO","AIA","Anguilla",NA,NA,0,1,1,234,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"AMRO","ATG","Antigua and Barbuda",99,99,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
+"AMRO","ARG","Argentina",87,81,1,0,1,572,8.66,4,2,6,"Both","Low","Low",0
+"EURO","ARM","Armenia",96,93,0,0,0,806,6,4,2,6,"aP","Low","Normal",1
+"AMRO","ABW","Aruba",NA,NA,0,0,1,520,8.66,4,2,6,"aP","Unavailable","Low",0
+"WPRO","AUS","Australia",98,94,1,0,0,650,8.66,4,2,6,"aP","Low","Low",0
+"EURO","AUT","Austria",91,84,0,0,0,364,8.66,3,1,4,"aP","Low","Resurgence",3
+"EURO","AZE","Azerbaijan",90,83,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Low",0
+"AMRO","BHS","Bahamas",98,87,1,0,0,624,8.66,4,2,6,"Both","Unavailable","Unavailable",NA
+"EMRO","BHR","Bahrain",97,97,0,1,1,676,8.66,4,2,6,"Both","Unavailable","Unavailable",NA
+"SEARO","BGD","Bangladesh",99,98,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AMRO","BRB","Barbados",87,86,0,0,1,208,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"EURO","BLR","Belarus",98,98,0,0,1,77.94,8.66,4,0,4,"wP","Low","High",2
+"EURO","BEL","Belgium",98,98,1,1,0,780,8,4,2,6,"aP","Low","Normal",1
+"AMRO","BLZ","Belize",91,84,0,0,0,208,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"AFRO","BEN","Benin",84,76,0,0,0,14,6,3,0,3,"wP","Unavailable","Low",0
+"AMRO","BMU","Bermuda",NA,NA,1,0,0,754,8.66,4,2,6,"aP","Low","Unavailable",0
+"SEARO","BTN","Bhutan",98,98,0,0,0,103.92,6,4,0,4,"wP","Unavailable","Unavailable",NA
+"AMRO","BOL","Bolivia (Plurinational State of)",75,69,0,0,0,208,8.66,4,1,5,"wP","Resurgence","Resurgence",3
+"EURO","BIH","Bosnia and Herzegovina",85,75,0,0,0,312,8.66,4,1,5,"aP","Unavailable","Unavailable",NA
+"AFRO","BWA","Botswana",98,86,0,0,0,17.32,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
+"AMRO","BRA","Brazil",84,77,0,1,1,208,8.66,4,1,5,"wP","Low","Low",0
+"AMRO","VGB","British Virgin Islands",NA,NA,1,0,0,208,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"WPRO","BRN","Brunei Darussalam",99,99,0,0,0,260,8.66,3,1,4,"aP","Unavailable","Unavailable",NA
+"EURO","BGR","Bulgaria",94,91,0,0,0,624,8.66,4,2,6,"aP","Low","Low",0
+"AFRO","BFA","Burkina Faso",95,91,0,0,0,16,8,3,0,3,"wP","Low","Unavailable",0
+"AFRO","BDI","Burundi",93,91,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
+"AFRO","CPV","Cabo Verde",97,93,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
+"WPRO","KHM","Cambodia",92,85,0,0,0,14,6,3,0,3,"wP","Low","Low",0
+"AFRO","CMR","Cameroon",75,68,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AMRO","CAN","Canada",94,92,1,1,0,702,8.66,4,1,5,"aP","Low","Low",0
+"AMRO","CYM","Cayman Islands",NA,NA,1,0,0,780,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
+"AFRO","CAF","Central African Republic",54,42,0,0,0,14,6,3,0,3,"wP","Low","Normal",1
+"AFRO","TCD","Chad",74,60,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AMRO","CHL","Chile",99,96,1,0,0,676,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
+"WPRO","CHN","China",99,99,0,0,0,77.94,12.99,4,0,4,"aP","Resurgence","Unavailable",3
+"WPRO","HKG","China, Hong Kong SAR",NA,NA,1,0,0,572,8.66,4,2,6,"aP","Low","Low",0
+"WPRO","MAC","China, Macao SAR",NA,NA,1,0,1,598,8.66,4,2,6,"aP","Unavailable","Low",0
+"AMRO","COL","Colombia",91,87,1,0,1,77.94,8.66,4,0,4,"wP","Low","Low",0
+"AFRO","COM","Comoros",90,88,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AFRO","COG","Congo",82,78,0,0,0,16,8,3,0,3,"wP","Unavailable","Low",0
+"WPRO","COK","Cook Islands",91,72,0,0,0,208,6,3,1,4,"aP","Unavailable","Unavailable",NA
+"AMRO","CRI","Costa Rica",98,95,1,0,1,208,8.66,4,1,5,"aP","Low","Low",0
+"AFRO","CIV","Côte d'Ivoire",85,76,0,0,0,14,6,3,0,3,"wP","Unavailable","Resurgence",3
+"EURO","HRV","Croatia",98,92,0,0,0,312,8.66,4,1,5,"aP","Low","Unavailable",0
+"AMRO","CUB","Cuba",99,99,0,0,1,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
+"AMRO","CUW","Curaçao",NA,NA,0,0,0,64.95,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
+"EURO","CYP","Cyprus",98,96,1,1,0,598,10.825,4,2,6,"aP","Unavailable","Low",0
+"EURO","CZE","Czechia",98,94,0,0,0,520,12.99,3,2,5,"aP","Low","Low",0
+"SEARO","PRK","Democratic People's Republic of Korea",40,0,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AFRO","COD","Democratic Republic of the Congo",81,65,0,0,0,14,6,3,0,3,"wP","Normal","Low",1
+"EURO","DNK","Denmark",98,97,1,0,0,260,12.99,3,1,4,"aP","Low","Unavailable",0
+"EMRO","DJI","Djibouti",70,59,0,0,0,64.95,6,4,0,4,"wP","Unavailable","Unavailable",NA
+"AMRO","DMA","Dominica",95,92,0,0,0,156,8.66,3,1,4,"wP","Unavailable","Unavailable",NA
+"AMRO","DOM","Dominican Republic",99,88,1,0,1,208,8.66,4,1,5,"wP","Low","Low",0
+"AMRO","ECU","Ecuador",74,70,0,0,0,260,8.66,4,1,5,"wP","Normal","Resurgence",3
+"EMRO","EGY","Egypt",97,97,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
+"AMRO","SLV","El Salvador",76,75,1,0,1,208,8.66,4,1,5,"Both","Unavailable","Unavailable",NA
+"AFRO","GNQ","Equatorial Guinea",77,53,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
+"AFRO","ERI","Eritrea",97,95,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EURO","EST","Estonia",86,85,0,0,0,806,12.99,3,3,6,"aP","Low","Low",0
+"AFRO","SWZ","Eswatini",99,97,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
+"AFRO","ETH","Ethiopia",70,65,0,0,0,14,6,3,0,3,"wP","Unavailable","Low",0
+"WPRO","FJI","Fiji",99,99,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EURO","FIN","Finland",97,91,0,1,0,754,12.99,3,2,5,"aP","Low","Low",0
+"EURO","FRA","France",99,96,1,1,0,676,8.66,3,2,5,"aP","Low","Low",0
+"WPRO","PYF","French Polynesia",NA,NA,0,0,0,572,8.66,3,2,5,"aP","Unavailable","Unavailable",NA
+"AFRO","GAB","Gabon",65,60,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AFRO","GMB","Gambia",85,79,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
+"EURO","GEO","Georgia",95,85,0,0,0,260,8.66,4,1,5,"aP","Low","Normal",1
+"EURO","DEU","Germany",98,91,0,1,0,650,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
+"AFRO","GHA","Ghana",99,99,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EURO","GRC","Greece",99,99,0,1,0,598,8.66,4,2,6,"aP","Low","Low",0
+"AMRO","GRD","Grenada",79,77,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
+"WPRO","GUM","Guam",NA,NA,1,1,0,572,8.66,4,1,5,"aP","Unavailable","Unavailable",NA
+"AMRO","GTM","Guatemala",92,79,1,0,1,208,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"AFRO","GIN","Guinea",62,47,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AFRO","GNB","Guinea-Bissau",81,74,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AMRO","GUY","Guyana",98,98,0,0,0,25.98,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
+"AMRO","HTI","Haiti",75,51,0,0,0,64.95,6,4,0,4,"wP","Unavailable","Low",0
+"AMRO","HND","Honduras",80,78,1,0,1,208,8.66,4,1,5,"wP","Unavailable","Low",0
+"EURO","HUN","Hungary",99,99,0,0,0,572,8.66,4,2,6,"aP","Low","Low",0
+"EURO","ISL","Iceland",95,92,1,0,0,728,12.99,3,2,5,"aP","Unavailable","Unavailable",NA
+"SEARO","IND","India",95,93,0,0,0,286,6,4,1,5,"wP","Low","Unavailable",0
+"SEARO","IDN","Indonesia",87,85,0,0,0,77.94,8.66,4,0,4,"wP","Low","Normal",1
+"EMRO","IRN","Iran (Islamic Republic of)",99,99,0,0,0,312,8.66,4,1,5,"wP","Low","Low",0
+"EMRO","IRQ","Iraq",99,93,0,0,0,260,8.66,4,1,5,"wP","Low","Low",0
+"EURO","IRL","Ireland",97,93,1,0,1,650,8.66,3,2,5,"aP","Low","Low",0
+"EURO","ISR","Israel",99,98,1,0,1,676,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
+"EURO","ITA","Italy",98,95,1,1,0,780,12.99,3,2,5,"aP","Unavailable","Unavailable",NA
+"AMRO","JAM","Jamaica",99,98,0,0,0,260,6,4,1,5,"wP","Unavailable","Unavailable",NA
+"WPRO","JPN","Japan",99,99,0,0,0,77.94,12.99,4,0,4,"aP","Unavailable","Unavailable",NA
+"EMRO","JOR","Jordan",78,77,0,0,0,77.94,12.99,4,0,4,"Both","Low","Low",0
+"EURO","KAZ","Kazakhstan",99,99,0,0,0,312,8.66,4,1,5,"aP","Low","Unavailable",0
+"AFRO","KEN","Kenya",95,90,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"WPRO","KIR","Kiribati",96,91,0,0,0,312,6,3,1,4,"wP","Unavailable","Unavailable",NA
+"EURO","XKX","Kosovo (in accordance with UN Security Council resolution 1244 (1999))",NA,NA,0,0,0,51.96,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
+"EMRO","KWT","Kuwait",99,96,0,0,0,156,8.66,4,1,5,"wP","Low","Low",0
+"EURO","KGZ","Kyrgyzstan",90,90,0,0,0,104,8.66,3,1,4,"wP","Low","Resurgence",3
+"WPRO","LAO","Lao People's Democratic Republic",87,80,0,0,0,14,6,3,0,3,"wP","Unavailable","Normal",1
+"EURO","LVA","Latvia",99,95,1,0,1,728,8.66,4,2,6,"aP","Low","Normal",1
+"EMRO","LBN","Lebanon",88,67,0,0,0,234,8.66,4,1,5,"wP","Unavailable","High",2
+"AFRO","LSO","Lesotho",92,87,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AFRO","LBR","Liberia",93,78,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EMRO","LBY","Libya",74,73,0,0,0,780,8.66,4,2,6,"aP","Normal","High",2
+"EURO","LTU","Lithuania",93,90,0,0,0,806,8.66,4,2,6,"aP","Low","Low",0
+"EURO","LUX","Luxembourg",99,99,0,0,0,806,8.66,4,2,6,"aP","Low","High",2
+"AFRO","MDG","Madagascar",66,57,0,0,0,14,6,3,0,3,"wP","Normal","Normal",1
+"AFRO","MWI","Malawi",89,86,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"WPRO","MYS","Malaysia",99,97,0,0,0,77.94,8.66,4,0,4,"aP","Low","Unavailable",0
+"SEARO","MDV","Maldives",99,99,0,0,0,208,8.66,3,1,4,"wP","Unavailable","Unavailable",NA
+"AFRO","MLI","Mali",82,77,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EURO","MLT","Malta",99,98,0,0,0,77.94,8.66,4,0,4,"aP","Unavailable","Low",0
+"WPRO","MHL","Marshall Islands",96,86,0,0,0,598,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
+"AFRO","MRT","Mauritania",84,76,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AFRO","MUS","Mauritius",96,95,1,0,0,572,6,4,2,6,"Both","Unavailable","Unavailable",NA
+"AMRO","MEX","Mexico",93,83,1,0,0,208,8.66,4,1,5,"Both","Low","Low",0
+"WPRO","FSM","Micronesia (Federated States of)",92,69,0,0,0,598,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
+"EURO","MCO","Monaco",99,99,0,1,0,676,8.66,3,2,5,"aP","Unavailable","Unavailable",NA
+"WPRO","MNG","Mongolia",97,95,0,0,0,17.32,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
+"EURO","MNE","Montenegro",93,80,0,0,0,312,9,4,1,5,"aP","Unavailable","Resurgence",3
+"AMRO","MSR","Montserrat",NA,NA,0,0,0,77.94,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
+"EMRO","MAR","Morocco",99,99,0,0,0,260,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"AFRO","MOZ","Mozambique",67,61,0,0,0,17.32,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
+"SEARO","MMR","Myanmar",81,71,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Resurgence",3
+"AFRO","NAM","Namibia",90,84,0,0,0,14,6,3,0,3,"wP","Normal","Normal",1
+"WPRO","NRU","Nauru",99,98,0,0,0,208,6,4,1,5,"Both","Unavailable","Unavailable",NA
+"SEARO","NPL","Nepal",95,90,0,0,0,14,6,3,0,3,"wP","Normal","Normal",1
+"EURO","NLD","Netherlands (Kingdom of the)",97,93,1,0,1,208,12.99,3,1,4,"aP","Low","Unavailable",0
+"WPRO","NCL","New Caledonia",NA,NA,0,1,0,572,8.66,3,2,5,"aP","Unavailable","Unavailable",NA
+"WPRO","NZL","New Zealand",94,89,1,1,1,624,6,3,2,5,"aP","Low","Unavailable",0
+"AMRO","NIC","Nicaragua",94,92,0,0,0,312,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"AFRO","NER","Niger",96,84,0,0,0,14,6,3,0,3,"wP","Normal","High",2
+"AFRO","NGA","Nigeria",70,62,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"WPRO","NIU","Niue",99,99,1,0,0,572,6,3,2,5,"aP","Unavailable","Unavailable",NA
+"EURO","MKD","North Macedonia",92,84,0,0,0,364,8.66,4,1,5,"aP","Unavailable","Normal",1
+"WPRO","MNP","Northern Mariana Islands",NA,NA,0,0,0,650,6,4,2,6,"aP","Unavailable","Unavailable",NA
+"EURO","NOR","Norway",98,97,0,0,1,780,12.99,3,2,5,"aP","Low","Low",0
+"EMRO","PSE","occupied Palestinian territory, including east Jerusalem",99,98,0,0,0,77.94,8.66,4,0,4,"wP","Low","Normal",1
+"EMRO","OMN","Oman",99,99,1,0,1,77.94,8.66,3,0,3,"Both","Low","Normal",1
+"EMRO","PAK","Pakistan",93,85,0,0,0,14,6,3,0,3,"wP","Normal","Normal",1
+"WPRO","PLW","Palau",99,94,0,0,0,520,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
+"AMRO","PAN","Panama",98,87,1,0,1,520,8.66,4,2,6,"Both","Low","Unavailable",0
+"WPRO","PNG","Papua New Guinea",45,36,0,0,0,12.99,4.33,3,0,3,"wP","Low","Low",0
+"AMRO","PRY","Paraguay",82,69,1,0,1,520,8.66,4,2,6,"Both","Low","Low",0
+"AMRO","PER","Peru",93,82,1,0,0,208,8.66,4,1,5,"wP","Low","Low",0
+"WPRO","PHL","Philippines",74,72,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EURO","POL","Poland",99,90,0,0,1,728,7.5,4,2,6,"Both","Low","Unavailable",0
+"EURO","PRT","Portugal",99,99,1,0,0,260,8.66,4,1,5,"aP","Low","Low",0
+"EMRO","QAT","Qatar",99,98,0,0,0,806,8.66,4,2,6,"aP","Low","Resurgence",3
+"WPRO","KOR","Republic of Korea",98,98,0,0,0,598,8.66,4,2,6,"aP","Low","Unavailable",0
+"EURO","MDA","Republic of Moldova",89,88,0,0,0,104,8.66,3,1,4,"wP","Low","High",2
+"EURO","ROU","Romania",89,85,1,0,0,728,8.66,3,2,5,"aP","Low","Low",0
+"EURO","RUS","Russian Federation",97,97,0,0,1,77.94,12.99,4,0,4,"wP","Low","Resurgence",3
+"AFRO","RWA","Rwanda",99,98,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AMRO","KNA","Saint Kitts and Nevis",96,96,0,0,0,234,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"AMRO","LCA","Saint Lucia",92,81,0,0,0,260,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"AMRO","VCT","Saint Vincent and the Grenadines",97,92,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
+"WPRO","WSM","Samoa",97,76,0,0,0,64.95,6,4,0,4,"wP","Unavailable","Unavailable",NA
+"EURO","SMR","San Marino",93,92,0,1,0,780,12.99,3,2,5,"aP","Unavailable","Low",0
+"AFRO","STP","Sao Tome and Principe",97,97,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EMRO","SAU","Saudi Arabia",98,98,1,0,0,260,8.66,4,1,5,"aP","Normal","Normal",1
+"AFRO","SEN","Senegal",90,88,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EURO","SRB","Serbia",97,92,0,0,0,364,8,4,1,5,"aP","Low","Resurgence",3
+"AFRO","SYC","Seychelles",99,97,0,0,0,77.94,12.99,4,0,4,"wP","Unavailable","Unavailable",NA
+"AFRO","SLE","Sierra Leone",92,91,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"WPRO","SGP","Singapore",99,97,1,0,0,572,8.66,4,1,5,"aP","Unavailable","Unavailable",NA
+"AMRO","SXM","Sint Maarten (Dutch part)",NA,NA,0,0,0,51.96,8.66,4,0,4,"aP","Unavailable","Unavailable",NA
+"EURO","SVK","Slovakia",97,97,0,0,0,624,8.66,3,2,5,"aP","Low","Low",0
+"EURO","SVN","Slovenia",92,89,1,0,0,416,12.99,3,1,4,"aP","Low","Low",0
+"WPRO","SLB","Solomon Islands",99,89,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EMRO","SOM","Somalia",52,42,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AFRO","ZAF","South Africa",87,85,0,0,0,77.94,6,4,0,4,"aP","Resurgence","Normal",3
+"AFRO","SSD","South Sudan",76,73,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EURO","ESP","Spain",98,93,1,0,1,312,8.66,3,1,4,"aP","Low","Low",0
+"SEARO","LKA","Sri Lanka",98,98,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Low",0
+"EMRO","SDN","Sudan",94,84,0,0,0,14,6,3,0,3,"wP","Unavailable","Normal",1
+"AMRO","SUR","Suriname",83,77,0,0,1,234,8.66,4,1,5,"wP","Resurgence","Unavailable",3
+"EURO","SWE","Sweden",96,94,1,0,0,780,12.99,3,2,5,"aP","Low","Low",0
+"EURO","CHE","Switzerland",97,96,0,0,0,676,8.66,3,2,5,"aP","Unavailable","Unavailable",NA
+"EMRO","SYR","Syrian Arab Republic",64,46,0,0,0,77.94,8,4,0,4,"wP","Resurgence","High",3
+"EURO","TJK","Tajikistan",98,97,0,0,0,84.435,8.66,4,0,4,"wP","High","Resurgence",3
+"SEARO","THA","Thailand",99,97,0,0,0,208,8.66,3,2,5,"wP","Low","Unavailable",0
+"SEARO","TLS","Timor-Leste",87,86,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
+"AFRO","TGO","Togo",88,82,0,0,0,14,6,3,0,3,"wP","Unavailable","Resurgence",3
+"WPRO","TKL","Tokelau",NA,NA,0,0,0,260,6,3,1,4,"wP","Unavailable","Unavailable",NA
+"WPRO","TON","Tonga",99,99,0,0,0,260,6,4,1,5,"wP","Unavailable","Unavailable",NA
+"AMRO","TTO","Trinidad and Tobago",97,93,0,0,0,234,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"EMRO","TUN","Tunisia",99,97,0,0,0,77.94,8.66,4,0,4,"wP","Low","Unavailable",0
+"EURO","TUR","Türkiye",99,99,0,0,0,208,8.66,4,1,5,"aP","Low","Unavailable",0
+"EURO","TKM","Turkmenistan",99,98,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
+"AMRO","TCA","Turks and Caicos Islands",NA,NA,0,0,0,156,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"WPRO","TUV","Tuvalu",99,91,0,0,0,286,6,3,1,4,"wP","Unavailable","Unavailable",NA
+"AFRO","UGA","Uganda",94,89,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"EURO","UKR","Ukraine",78,73,0,0,0,77.94,8.66,4,0,4,"wP","Low","Low",0
+"EMRO","ARE","United Arab Emirates",98,96,0,1,1,806,8.66,4,2,6,"Both","Unavailable","High",2
+"EURO","GBR","United Kingdom of Great Britain and Northern Ireland",97,92,0,0,0,173.2,8,3,0,3,"aP","Low","Low",0
+"AFRO","TZA","United Republic of Tanzania",91,88,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AMRO","USA","United States of America",98,94,1,1,0,572,8.66,4,2,6,"aP","Low","Unavailable",0
+"AMRO","URY","Uruguay",99,94,1,0,1,572,8.66,4,2,6,"Both","Low","Low",0
+"EURO","UZB","Uzbekistan",99,99,0,0,0,69.28,8.66,4,0,4,"wP","Low","Low",0
+"WPRO","VUT","Vanuatu",83,68,0,0,0,14,6,3,0,3,"wP","Low","Low",0
+"AMRO","VEN","Venezuela (Bolivarian Republic of)",73,56,0,0,0,260,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
+"WPRO","VNM","Viet Nam",92,91,0,0,0,77.94,8.66,4,0,4,"wP","Low","Low",0
+"WPRO","WLF","Wallis and Futuna",NA,NA,0,0,0,312,8.66,3,1,4,"aP","Unavailable","Unavailable",NA
+"EMRO","YEM","Yemen",85,74,0,0,0,312,6,4,1,5,"wP","Unavailable","Low",0
+"AFRO","ZMB","Zambia",86,82,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
+"AFRO","ZWE","Zimbabwe",93,90,0,0,0,77.94,6,4,0,4,"wP","Resurgence","Resurgence",3

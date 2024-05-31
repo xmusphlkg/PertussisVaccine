@@ -4,12 +4,13 @@
 # Function to convert values in Y/M/W format to weeks
 convert_to_weeks <- function(value) {
      num <- as.numeric(str_extract(value, "\\d+"))  # Extract the numeric part
-     unit <- str_extract(value, "[YMW]")  # Extract the unit (Y, M, or W)
+     unit <- str_extract(value, "[YMWМ]")  # Extract the unit (Y, M, W, Cyrillic M)
      
      # Convert based on the unit to weeks
      switch(unit,
             "Y" = num * 52,    # Years to weeks: 1 year = 52 weeks
             "M" = num * 4.33,  # Months to weeks: 1 month ≈ 4.33 weeks
+            "М" = num * 4.33,  # Cyrillic 'M' months to weeks
             "W" = num)         # Weeks to weeks: already in weeks, so no conversion needed
 }
 

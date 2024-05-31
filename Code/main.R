@@ -12,8 +12,12 @@ remove(list = ls())
 source('./Code/fig2.R')
 remove(list = ls())
 
-# figure 3
-source('./Code/fig3.R')
+# figure 3&4
+source('./Code/fig3&4.R')
+remove(list = ls())
+
+# figure 5
+source('./Code/fig5.R')
 remove(list = ls())
 
 # table 1

@@ -1,313 +1,280 @@
 
-# This script generates Figure 1 in the manuscript.
+# This script generates Figure 4 in the manuscript.
+# To visual the distribution of DTP1 and DTP3 vaccine coverage, vaccination schedule,
+# targeting children, adult vaccination, and pregnant vaccination in the world.
 
 # packages ----------------------------------------------------------------
 
 library(tidyverse)
-library(lubridate)
 library(patchwork)
 library(openxlsx)
-library(ggridges)
-library(paletteer)
-library(grid)
-library(gtable)
 library(sf)
-library(ggh4x)
+library(cowplot)
+library(paletteer)
+library(Cairo)
+library(scales)
 
-scientific_10 <- function(x) {
-     x_f <- gsub("[+]", "", gsub("1e", "10^", scales::scientific_format()(x)))
-     x_f[x_f == "10^00"] <- "1"
-     # replace 10^0 with 1
-     x_f <- parse(text = x_f)
-     return(x_f)
-}
+source('./Code/function.R')
 
+# Data --------------------------------------------------------------------
 
-# data --------------------------------------------------------------------
+DataAll <- read.csv("./Outcome/S table1.csv") 
 
-country_names <- openxlsx::getSheetNames('./Data/Pertussis case year age.xlsx')
-
-# EU data
-
-data_EU <- read.xlsx('./Data/Pertussis case year age.xlsx', sheet = 'EU', detectDates = T)
-names(data_EU) <- c('Year', 'Country', 'Age', 'Weight')
-data_EU_all <- read.csv('./Data/ECDC_surveillance_data_Pertussis.csv') |> 
-     select(Time, RegionCode, NumValue) |> 
-     rename(Year = Time,
-            Country = RegionCode,
-            CasesAll = NumValue)
-data_EU <- data_EU |> 
-     mutate(Weight = as.numeric(Weight)/100,
-            StartAge = case_when(grepl("-", Age) ~ as.numeric(sub("-.*", "", Age)),
-                                 grepl("\\+", Age) ~ as.numeric(sub("\\+.*", "", Age)),
-                                 TRUE ~ NA_real_),
-            EndAge = case_when(grepl("-", Age) ~ as.numeric(sub(".*-", "", Age)),
-                               grepl("\\+", Age) ~ 100,
-                               TRUE ~ NA_real_)) |> 
-     filter(Country != 'UK' & !is.na(Weight) & !str_detect(Country, 'EU')) |> 
-     left_join(data_EU_all, by = c('Year', 'Country')) |> 
-     mutate(Cases = round(Weight * CasesAll))
-print(paste("EU data has", length(unique(data_EU$Country)), "countries", sep = " "))
-print(unique(data_EU$Country))
-
-# data without EU
-country_names <- country_names[country_names != 'EU']
-data_other <- lapply(country_names, function(x){
-     data <- read.xlsx('./Data/Pertussis case year age.xlsx', sheet = x, detectDates = T)
-     names(data)[1] <- 'Year'
-     data[is.na(data)] <- 0
-     data <- data |> 
-          # if exist unknow column, drop it
-          select(-contains("Unknow")) |>
-          pivot_longer(cols = -Year, names_to = 'Age', values_to = 'Incidence') |> 
-          filter(Year >= 2010)  |>
-          mutate(StartAge = case_when(grepl("-", Age) ~ as.numeric(sub("-.*", "", Age)),
-                                      grepl("\\+", Age) ~ as.numeric(sub("\\+.*", "", Age)),
-                                      TRUE ~ NA_real_),
-                 EndAge = case_when(grepl("-", Age) ~ as.numeric(sub(".*-", "", Age)),
-                                    grepl("\\+", Age) ~ 100,
-                                    TRUE ~ NA_real_),
-                 Country = x) |> 
-          rowwise() |> 
-          rename(Cases = Incidence) |> 
-          # standardize incidence by each country and year
-          group_by(Country, Year) |>
-          mutate(Weight = Cases/sum(Cases),
-                 Weight = case_when(is.na(Weight) ~ 0,
-                                    TRUE ~ Weight),
-                 CasesAll = sum(Cases))
-     
-     return(data)
-})
-data_other <- do.call(rbind, data_other)
-
-DataRaw <- rbind(data_EU, data_other) |> 
-     mutate(EndAge = case_when(EndAge == 100 ~ 100,
-                               TRUE ~ EndAge +0.9))
-
-write.csv(DataRaw, './Outcome/fig1.csv', row.names = F)
-
-remove(data_EU, data_other, data_EU_all)
-
-# appendix figure --------------------------------------------------------------------
-
-DataNorm <- DataRaw|>
-     rowwise() |>
-     mutate(AgeList = if_else(is.na(StartAge), list(NA_real_), list(seq(StartAge, EndAge)))) |>
-     unnest(cols = c(AgeList)) |>
-     filter(!is.na(AgeList)) |>
-     group_by(Year, Country, AgeList) |>
-     mutate(AverageCases = Cases / (EndAge - StartAge + 1)) |>
-     ungroup() |>
-     select(Country, Year, Age = AgeList, AverageCases) |>
-     group_by(Country, Year) |>
-     mutate(
-          Weight = AverageCases / sum(AverageCases),
-          Weight = case_when(
-               is.na(Weight) ~ 0,
-               TRUE ~ Weight
-          )
-     ) |>
-     ungroup() |>
-     group_by(Country, Year) |>
-     summarise(
-          Age_Density = list({
-               dens <- density(Age, weights = Weight, adjust = 0.5, from = 0)
-               data.frame(Age = dens$x, Density = dens$y)
-          }),
-          .groups = 'drop'
-     ) |>
-     unnest(cols = c(Age_Density))
-
-country_names <- c('AT', 'AU', 'BE', 'BG', 'BR', 'CA', 'CN', 'CY', 'CZ', 'DE',
-                   'DK', 'EE', 'GR', 'ES', 'FI', 'FR', 'GB', 'HR', 'HU', 'IE', 
-                   'IS', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'NZ', 'PL', 
-                   'PT', 'RO', 'SE', 'SG', 'SI', 'SK', 'US')
-country_labels <- c('Austria', 'Australia', 'Belgium', 'Bulgaria', 'Brazil', 'Canada', 'China', 'Cyprus', 'Czech Republic', 'Germany',
-                    'Denmark', 'Estonia', 'Greece', 'Spain', 'Finland', 'France', 'United Kingdom', 'Croatia', 'Hungary', 'Ireland', 
-                    'Iceland', 'Italy', 'Lithuania', 'Luxembourg', 'Latvia', 'Malta', 'Netherlands', 'Norway', 'New Zealand', 'Poland', 
-                    'Portugal', 'Romania', 'Sweden', 'Singapore', 'Slovenia', 'Slovakia', 'United States')
-fill_color <- rev(c("#1E313EFF", "#4E475FFF", "#8B5975FF", "#C86C7CFF", "#FA8975FF"))
-
-plot_ridges <- function(i){
-     df <- DataNorm |>
-          filter(Country == country_names[i])
-     
-     fig <- ggplot(df) +
-          geom_density_ridges_gradient(mapping = aes(x = Age,
-                                                     y = Year,
-                                                     group = Year,
-                                                     fill = Age,
-                                                     height = Density),
-                                       scale = 1.2,
-                                       stat = "identity",
-                                       rel_min_height = 0.01) +
-          scale_x_continuous(limits = c(0, 100),
-                             expand = c(0, 0),
-                             breaks = seq(0, 100, 10)) +
-          scale_y_continuous(breaks = seq(2010, 2023, 3),
-                             expand = expansion(mult = c(0, 0.04)))+
-          scale_fill_gradientn(colours = fill_color,
-                               limits = c(0, 100))+
-          labs(title = country_labels[i],
-               x = NULL,
-               y = NULL,
-               fill = "") +
-          theme_bw()+
-          theme(panel.grid.major.x = element_blank(),
-                panel.grid.minor.x = element_blank(),
-                plot.background = element_rect(color = 'black', fill = 'white'),
-                axis.text.y = element_text(color = 'black', face = 'plain'),
-                axis.text.x = element_text(color = 'black', face = 'plain', hjust = 1),
-                axis.title = element_text(color = 'black', face = 'plain'),
-                legend.box = 'horizontal',
-                plot.title.position = 'plot',
-                legend.position = "none")
-     ggsave(fig,
-            filename = paste0("./Outcome/S fig1_", i, ".png"),
-            dpi = 300,
-            width = 6,
-            height = 4)
-     
-     return(country_names[i])
-}
-
-fig_s <- map(1:length(country_names), plot_ridges)
-
-# panel b -----------------------------------------------------------------
-
-DataPeriod <- DataRaw |> 
-     mutate(Period = case_when(Year < 2020 ~ "Before 2020",
-                               TRUE ~ as.character(Year)),
-            Period = factor(Period, levels = c("Before 2020", "2020", "2021", "2022", "2023"))) |> 
-     rowwise() |>
-     mutate(AgeList = if_else(is.na(StartAge), list(NA_real_), list(seq(StartAge, EndAge)))) |>
-     unnest(cols = c(AgeList)) |>
-     filter(!is.na(AgeList)) |>
-     group_by(Period, Country, AgeList) |>
-     mutate(AverageCases = Cases / (EndAge - StartAge + 1)) |>
-     ungroup() |>
-     select(Country, Period, Age = AgeList, AverageCases) |>
-     group_by(Country, Period) |>
-     mutate(
-          Weight = AverageCases / sum(AverageCases),
-          Weight = case_when(
-               is.na(Weight) ~ 0,
-               TRUE ~ Weight
-          )
-     ) |>
-     ungroup() |>
-     group_by(Country, Period) |>
-     summarise(
-          Age_Density = list({
-               dens <- density(Age, weights = Weight, adjust = 0.5, from = 0)
-               data.frame(Age = dens$x, Density = dens$y)
-          }),
-          .groups = 'drop'
-     ) |>
-     unnest(cols = c(Age_Density))
-
-DataMedian <- DataPeriod |> 
-     group_by(Country, Period) |>
-     arrange(Age) |>
-     mutate(cum_weight = cumsum(Density)) |>
-     summarise(MedianAge = Age[min(which(cum_weight >= sum(Density) / 2))],
-               .groups = 'drop')
-
-fig_2 <- DataPeriod |> 
-     mutate(Period = factor(Period,
-                            levels = c("Before 2020", "2020", "2021", "2022", "2023"),
-                            labels = LETTERS[2:6])) |> 
-     ggplot()+
-     geom_density_ridges_gradient(mapping = aes(x = Age,
-                                                y = Country,
-                                                group = Country,
-                                                fill = Age,
-                                                height = Density),
-                                  color = 'white',
-                                  scale = 1.2,
-                                  stat = "identity",
-                                  rel_min_height = 0.01)+
-     # geom_point(data = DataMedian,
-     #            mapping = aes(x = MedianAge,
-     #                          y = Country))+
-     facet_wrap2(~Period, scales = 'free_y', axes = "all", ncol = 2)+
-     coord_flip()+
-     scale_x_continuous(limits = c(0, 100),
-                        expand = c(0, 0),
-                        breaks = seq(0, 100, 10))+
-     scale_fill_gradientn(colours = fill_color,
-                          limits = c(0, 100))+
-     scale_y_discrete(limits = rev(country_names),
-                      labels = rev(country_labels))+
-     labs(title = NULL,
-          y = NULL,
-          x = 'Age',
-          fill = "Age")+
-     theme_bw()+
-     theme(panel.grid.major.x = element_blank(),
-           panel.grid.minor.x = element_blank(),
-           strip.background = element_blank(),
-           strip.text = element_text(size = 14, hjust = 0, face = 'plain'),
-           strip.placement = 'outside',
-           axis.text.y = element_text(color = 'black', face = 'plain'),
-           axis.text.x = element_text(color = 'black', face = 'plain', hjust = 1, angle = 60, vjust = 1),
-           axis.title = element_text(color = 'black', face = 'plain'),
-           legend.direction = 'horizontal',
-           plot.title.position = 'plot',
-           legend.position = c(0.80, 0.15))+
-     guides(fill = guide_colorbar(barwidth = 20))
-
-
-# panel a ---------------------------------------------------------------------
-
-# using 2010-2019 data find the main age group
+DataAll <- DataAll |> 
+     mutate(CoverageDTP1 = CoverageDTP1/100,
+            CoverageDTP3 = CoverageDTP3/100,
+            VaccineGeneral = factor(VaccineGeneral,
+                                    levels = c(3:6),
+                                    labels = c(paste(c(3:6), 'doses'))),
+            GENERALY = case_when(GENERALY > 1 ~ paste0(GENERALY, ' doses'),
+                                 GENERALY == 1 ~ '1 dose',
+                                 GENERALY == 0 ~ 'Not provided',
+                                 TRUE ~ 'Unavailable'),
+            GENERALY = factor(GENERALY,
+                              levels = c('Not provided', '1 dose', '2 doses', '3 doses')),
+            GENERALM = paste0(GENERALM, ' doses'),
+            GENERALM = factor(GENERALM,
+                              levels = c('3 doses', '4 doses', '5 doses', '6 doses')),
+            VaccineAP = if_else(VaccineCode %in% c('aP', 'Both'), 1, 0),
+            VaccineWP = if_else(VaccineCode %in% c('wP', 'Both'), 1, 0),
+            VaccineGeneral = factor(VaccineGeneral,
+                                    levels =paste(c(3:6), 'doses')),
+            TimeLastShotG = case_when(
+                 TimeLastShot <= 52 ~ '-1',
+                 TimeLastShot <= 104 ~ '-2',
+                 TimeLastShot <= 156 ~ '-3',
+                 TimeLastShot <= 312 ~ '-6',
+                 TimeLastShot <= 416 ~ '-8',
+                 TimeLastShot <= 624 ~ '-12',
+                 TimeLastShot > 625 ~ '12+',
+                 TRUE ~ NA),
+            TimeLastShotG = factor(TimeLastShotG, levels = c('-1', '-2', '-3', '-6', '-8', '-12', '12+')),
+            VaccineAdultRisk = case_when(
+                 VaccineAdult == 0 & VaccineRisk == 0 ~ 'No',
+                 VaccineAdult == 1 & VaccineRisk == 0 ~ 'Only adult',
+                 VaccineAdult == 0 & VaccineRisk == 1 ~ 'Only risk',
+                 VaccineAdult == 1 & VaccineRisk == 1 ~ 'Adult and risk',
+                 TRUE ~ NA_character_),
+            VaccineAdultRisk = factor(VaccineAdultRisk,
+                                      levels = c('No', 'Only risk', 'Only adult', 'Adult and risk')),
+            VaccinePregnant = factor(VaccinePregnant,
+                                     levels = c(0:1),
+                                     labels = c('No', 'Yes')))
 
 DataMap <- st_read("./Data/world.zh.json") |> 
-     filter(iso_a3  != "ATA") |> 
-     left_join(filter(DataMedian, Period == 'Before 2020'), by = c("iso_a2" = "Country")) |> 
-     mutate(MedianAge = case_when(MedianAge > 20 ~ 20,
-                                  TRUE ~ MedianAge))
+     filter(iso_a3  != "ATA")
+
+# find the country not in Map data
+DataAll[!DataAll$CODE %in% DataMap$iso_a3, 'NAME']
+
+DataMapPlot <- DataMap |> 
+     left_join(DataAll, by = c('iso_a3' = 'CODE'))
+
+## panel a&b ----------------------------------------------------------------
 
 fill_color <- rev(c("#1D3141FF", "#096168FF", "#209478FF", "#75C56EFF", "#E2EE5EFF"))
 
-fig_1 <- ggplot(data = DataMap) +
-     geom_sf(aes(fill = MedianAge)) +
+fig_1_m <- plot_map_density(DataMapPlot$CoverageDTP1, fill_color)+
+     labs(title = 'DTP-containing\nvaccine, 1st dose')
+
+fig_1 <- ggplot(data = DataMapPlot) +
+     geom_sf(aes(fill = CoverageDTP1)) +
      # add x, y tick labels
      theme(axis.text.x = element_text(size = 8),
            axis.text.y = element_text(size = 8)) +
      scale_x_continuous(limits = c(-180, 180),
                         expand = c(0, 0)) + 
      scale_y_continuous(limits = c(-60, 75)) +
-     scale_fill_gradientn(colours = fill_color,
-                          limits = c(2, 20),
-                          breaks = c(2, 5, 10, 20),
-                          na.value = 'white',
-                          trans = 'log10')+
+     scale_fill_gradientn(colors = fill_color,
+                          limits = c(0, 1),
+                          breaks = seq(0, 1, 0.1),
+                          labels = scales::percent_format(accuracy = 1),
+                          na.value = "white")+
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           panel.background = element_rect(fill = "#C1CDCD", color = NA),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'none',
+           plot.title.position = 'plot') +
+     guides(fill = guide_colorbar(barwidth = 30)) +
+     labs(title = "A", x = NULL, y = NULL, fill = 'DTP vaccine\nCoverage(%)')
+
+fig_1 <- fig_1 + inset_element(fig_1_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.55)
+
+fig_2_m <- plot_map_density(DataMapPlot$CoverageDTP3, fill_color)+
+     labs(title = 'DTP-containing\nvaccine, 3rd dose')
+
+fig_2 <- ggplot(data = DataMapPlot) +
+     geom_sf(aes(fill = CoverageDTP3)) +
+     # add x, y tick labels
+     theme(axis.text.x = element_text(size = 8),
+           axis.text.y = element_text(size = 8)) +
+     scale_x_continuous(limits = c(-180, 180),
+                        expand = c(0, 0)) + 
+     scale_y_continuous(limits = c(-60, 75)) +
+     scale_fill_gradientn(colors = fill_color,
+                          limits = c(0, 1),
+                          breaks = seq(0, 1, 0.1),
+                          labels = scales::percent_format(accuracy = 1),
+                          na.value = "white")+
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           panel.background = element_rect(fill = "#C1CDCD", color = NA),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'none',
+           plot.title.position = 'plot') +
+     guides(fill = guide_colorbar(barwidth = 30)) +
+     labs(title = "B", x = NULL, y = NULL, fill = 'DTP vaccine\nCoverage(%)')
+
+fig_2 <- fig_2 + inset_element(fig_2_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.55)
+
+## panel c -----------------------------------------------------------------
+
+fill_color <- c("#FFC6C4FF", "#F4A3A8FF", "#E38191FF", "#CC607DFF", "#AD466CFF", "#8B3058FF", "#672044FF")
+
+fig_3_m <- plot_map_col(DataAll$VaccineGeneral, fill_color) +
+     scale_fill_manual(values = fill_color[c(1, 3, 5, 7)],
+                       breaks = levels(DataMapPlot$VaccineGeneral),
+                       limits = levels(DataMapPlot$VaccineGeneral))
+
+fig_3 <- ggplot(data = DataMapPlot) +
+     geom_sf(aes(fill = VaccineGeneral)) +
+     # add x, y tick labels
+     theme(axis.text.x = element_text(size = 8),
+           axis.text.y = element_text(size = 8)) +
+     scale_x_continuous(limits = c(-180, 180),
+                        expand = c(0, 0)) + 
+     scale_y_continuous(limits = c(-60, 75)) +
+     scale_fill_manual(values = fill_color[c(1, 3, 5, 7)],
+                       na.value = "white",
+                       breaks = levels(DataMapPlot$VaccineGeneral),
+                       limits = levels(DataMapPlot$VaccineGeneral))+
      theme_bw() +
      theme(panel.grid = element_blank(),
            panel.background = element_rect(fill = "#C1CDCD", color = NA),
            axis.text = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
            legend.position = 'bottom',
-           legend.direction = 'horizontal') +
-     labs(title = "A", x = NULL, y = NULL, fill = 'Median age\n(2010-2019)')+
-     guides(fill = guide_colorbar(barwidth = 20))
+           legend.box = 'horizontal',
+           plot.title.position = 'plot') +
+     labs(title = "C", x = NULL, y = NULL, fill = 'Vaccination schedule')+
+     guides(fill = guide_legend(nrow = 1))
 
-# generate legend ---------------------------------------------------------
+fig_3 <- fig_3 + inset_element(fig_3_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.45)
 
-design <- "
-AAACCC
-BBBBBB
-"
+## panel d -----------------------------------------------------------------
 
-fig <- fig_1 + fig_2 +
-     plot_layout(design = design, heights = c(1, 3.9))
+fig_4_m <- plot_map_col(DataAll$TimeLastShotG, fill_color) +
+     scale_fill_manual(values = fill_color[c(1:7)])
+
+fig_4 <- ggplot(data = DataMapPlot) +
+     geom_sf(aes(fill = TimeLastShotG)) +
+     # add x, y tick labels
+     theme(axis.text.x = element_text(size = 8),
+           axis.text.y = element_text(size = 8)) +
+     scale_x_continuous(limits = c(-180, 180),
+                        expand = c(0, 0)) + 
+     scale_y_continuous(limits = c(-60, 75)) +
+     scale_fill_manual(values = fill_color[c(1:7)],
+                       na.value = "white",
+                       breaks = levels(DataMapPlot$TimeLastShotG),
+                       limits = levels(DataMapPlot$TimeLastShotG))+
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           panel.background = element_rect(fill = "#C1CDCD", color = NA),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'bottom',
+           legend.box = 'horizontal',
+           plot.title.position = 'plot') +
+     labs(title = "D", x = NULL, y = NULL, fill = 'Targeting children (years)')+
+     guides(fill = guide_legend(nrow = 1))
+
+fig_4 <- fig_4 + inset_element(fig_4_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.45)
+
+## panel e -----------------------------------------------------------------
+
+fill_color <- paletteer_d("MetBrewer::Egypt")[c(1, 4, 2, 3)]
+
+fig_5_m <- plot_map_col(DataAll$VaccineAdultRisk, fill_color) +
+     scale_fill_manual(values = fill_color,
+                       breaks = c('No', 'Only risk', 'Only adult', 'Adult and risk'),
+                       limits = c('No', 'Only risk', 'Only adult', 'Adult and risk'),
+                       na.translate = F)
+
+fig_5 <- ggplot(data = DataMapPlot) +
+     geom_sf(aes(fill = VaccineAdultRisk)) +
+     theme(axis.text.x = element_text(size = 8),
+           axis.text.y = element_text(size = 8)) +
+     scale_x_continuous(limits = c(-180, 180),
+                        expand = c(0, 0)) +
+     scale_y_continuous(limits = c(-60, 75)) +
+     scale_fill_manual(values = fill_color,
+                       na.value = "white",
+                       breaks = levels(DataMapPlot$VaccineAdultRisk),
+                       limits = levels(DataMapPlot$VaccineAdultRisk))+
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           panel.background = element_rect(fill = "#C1CDCD", color = NA),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'bottom',
+           legend.box = 'horizontal',
+           plot.title.position = 'plot') +
+     labs(title = "E", x = NULL, y = NULL, fill = 'Adult vaccination')+
+     guides(fill = guide_legend(nrow = 1))
+
+fig_5 <- fig_5 + inset_element(fig_5_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.45)
+
+## panel f -------------------------------------------------------------
+
+fill_color <- paletteer_d("MetBrewer::Egypt")[c(1, 3)]
+
+fig_6_m <- plot_map_col(DataAll$VaccinePregnant, fill_color) +
+     scale_fill_manual(values = fill_color,
+                       na.translate = F)
+
+fig_6 <- ggplot(data = DataMapPlot) +
+     geom_sf(aes(fill = VaccinePregnant)) +
+     theme(axis.text.x = element_text(size = 8),
+           axis.text.y = element_text(size = 8)) +
+     scale_x_continuous(limits = c(-180, 180),
+                        expand = c(0, 0)) +
+     scale_y_continuous(limits = c(-60, 75)) +
+     scale_fill_manual(values = fill_color,
+                       na.value = "white",
+                       breaks = levels(DataMapPlot$VaccinePregnant),
+                       limits = levels(DataMapPlot$VaccinePregnant))+
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           panel.background = element_rect(fill = "#C1CDCD", color = NA),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'bottom',
+           legend.box = 'horizontal',
+           plot.title.position = 'plot') +
+     labs(title = "F", x = NULL, y = NULL, fill = 'Pregnant vaccination')+
+     guides(fill = guide_legend(nrow = 1))
+
+fig_6 <- fig_6 + inset_element(fig_6_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.45)
+
+# combine all figures -----------------------------------------------------
+
+fig <- cowplot::plot_grid(
+     fig_1, fig_2, fig_3, fig_4, fig_5, fig_6,
+     ncol = 2, align = 'hv', rel_widths = c(1, 1, 1)
+)
 
 ggsave("./Outcome/fig1.pdf",
        fig,
        width = 14,
-       height = 15,
-       device = cairo_pdf,
-       family = "Helvetica")
+       height = 11.5,
+       device = cairo_pdf)
 
+# content -----------------------------------------------------------------
+
+print('################## Figure 1 ##################')
+# print Coverages of DTP1 and DTP3 vaccines more than 90% in some countries.
+print(paste(length(which(!is.na(DataAll$CoverageDTP1))), 'countries have DTP1 vaccine coverage data.'))

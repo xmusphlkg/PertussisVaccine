@@ -220,7 +220,7 @@ fig_2 <- ggplot(data = DataMapPlot) +
            legend.position = 'bottom',
            legend.box = 'horizontal',
            plot.title.position = 'plot') +
-     labs(title = "D", x = NULL, y = NULL, fill = 'Pertussis status in 2023')+
+     labs(title = "D", x = NULL, y = NULL, fill = 'Pertussis status')+
      guides(fill = guide_legend(nrow = 1))
 
 fig_2 <- fig_2 + inset_element(fig_2_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.45)
@@ -247,3 +247,132 @@ ggsave("./Outcome/fig3.pdf",
        height = 9,
        device = cairo_pdf,
        family = "Helvetica")
+
+# fig4 ----------------------------------------------------------------
+
+## panel a -------------------------------------------------------------
+
+DataRe <- DataInci |> 
+     filter(NAME %in% DataAll$NAME[DataAll$OutbreakSize == 3]) |> 
+     group_by(NAME, Period) |>
+     summarise(Incidence_50 = median(Incidence, na.rm = T),
+               Incidence_25 = quantile(Incidence, 0.25, na.rm = T),
+               Incidence_75 = quantile(Incidence, 0.75, na.rm = T),
+               .groups = 'drop')
+DataRePre <- DataRe |> 
+     filter(Period == 'Pre-epidemic') |> 
+     select(-Period) |> 
+     arrange(desc(Incidence_50))
+DataReOut <- DataRe |> 
+     filter(Period %in% c(2022, 2023)) |> 
+     select(NAME, Incidence_50, Period) |> 
+     pivot_wider(names_from = Period,
+                 values_from = Incidence_50) |> 
+     mutate(`2022` = case_when(NAME %in% DataAll$NAME[DataAll$OutbreakSize2022 == 'Resurgence'] ~ `2022`,
+                               TRUE ~ NA_real_),
+            `2023` = case_when(NAME %in% DataAll$NAME[DataAll$OutbreakSize2023 == 'Resurgence'] ~ `2023`,
+                               TRUE ~ NA_real_)) |> 
+     pivot_longer(cols = c(`2022`, `2023`),
+                  names_to = 'Period',
+                  values_drop_na = T,
+                  values_to = 'Incidence_50')
+
+fig_1 <- ggplot(data = DataRePre,
+       mapping = aes(x = NAME, y = Incidence_50)) +
+     geom_pointrange(mapping = aes(color = '2010-2019', ymin = Incidence_25, ymax = Incidence_75)) +
+     geom_point(data = DataReOut,
+                mapping = aes(x = NAME, y = Incidence_50, color = as.factor(Period)),
+                shape = 3) +
+     geom_text(data = DataReOut,
+               mapping = aes(x = NAME, y = Incidence_50, label = Period),
+               hjust = -0.5,
+               vjust = 0.5,
+               color = 'black',
+               size = 2.5) +
+     coord_flip() +
+     scale_y_continuous(expand = expansion(mult = c(0.1, 0.15)),
+                        limits = c(0.1, NA),
+                        breaks = c(0.1, 1, 10, 100, 1000),
+                        labels = c(0.1, 1, 10, 100, 1000),
+                        trans = 'log10') +
+     scale_x_discrete(limits = DataRePre$NAME) +
+     scale_color_manual(values = fill_color[-2],
+                        breaks = c('2010-2019','2022', '2023'),
+                        na.translate = F) +
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'right',
+           plot.title.position = 'plot') +
+     labs(x = NULL, y = "Yearly incidence", color = 'Period', title = 'A')
+     
+
+## panel B -------------------------------------------------------------
+
+DataRe <- DataInci |> 
+     filter(NAME %in% DataAll$NAME[DataAll$OutbreakSize == 2]) |> 
+     group_by(NAME, Period) |>
+     summarise(Incidence_50 = median(Incidence, na.rm = T),
+               Incidence_25 = quantile(Incidence, 0.25, na.rm = T),
+               Incidence_75 = quantile(Incidence, 0.75, na.rm = T),
+               .groups = 'drop')
+DataRePre <- DataRe |> 
+     filter(Period == 'Pre-epidemic') |> 
+     select(-Period) |> 
+     arrange(desc(Incidence_50))
+DataReOut <- DataRe |> 
+     filter(Period %in% c(2022, 2023)) |> 
+     select(NAME, Incidence_50, Period) |> 
+     pivot_wider(names_from = Period,
+                 values_from = Incidence_50) |> 
+     mutate(`2022` = case_when(NAME %in% DataAll$NAME[DataAll$OutbreakSize2022 == 'High'] ~ `2022`,
+                               TRUE ~ NA_real_),
+            `2023` = case_when(NAME %in% DataAll$NAME[DataAll$OutbreakSize2023 == 'High'] ~ `2023`,
+                               TRUE ~ NA_real_)) |> 
+     pivot_longer(cols = c(`2022`, `2023`),
+                  names_to = 'Period',
+                  values_drop_na = T,
+                  values_to = 'Incidence_50')
+
+fig_2 <- ggplot(data = DataRePre,
+                mapping = aes(x = NAME, y = Incidence_50)) +
+     geom_pointrange(mapping = aes(color = '2010-2019', ymin = Incidence_25, ymax = Incidence_75)) +
+     geom_point(data = DataReOut,
+                mapping = aes(x = NAME, y = Incidence_50, color = as.factor(Period)),
+                shape = 3) +
+     geom_text(data = DataReOut,
+               mapping = aes(x = NAME, y = Incidence_50, label = Period),
+               hjust = -0.5,
+               vjust = 0.5,
+               color = 'black',
+               size = 2.5) +
+     coord_flip() +
+     scale_y_continuous(expand = expansion(mult = c(0.05, 0.2)),
+                        limits = c(0.1, NA),
+                        breaks = c(0.1, 1, 10, 100, 1000),
+                        labels = c(0.1, 1, 10, 100, 1000),
+                        trans = 'log10') +
+     scale_x_discrete(limits = DataRePre$NAME) +
+     scale_color_manual(values = fill_color[-2],
+                        breaks = c('2010-2019','2022', '2023'),
+                        limits = c('2010-2019','2022', '2023'),
+                        na.translate = F) +
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'right',
+           plot.title.position = 'plot') +
+     labs(x = NULL, y = "Yearly incidence", color = 'Period', title = 'B')
+
+
+fig <- fig_1 + fig_2 +
+     plot_layout(guides = 'collect')&
+     theme(legend.position = 'bottom')
+
+ggsave("./Outcome/fig4.pdf",
+       fig,
+       width = 10,
+       height = 5,
+       device = cairo_pdf)

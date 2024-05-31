@@ -106,7 +106,6 @@ DataCluster <- DataCluster |>
      mutate(Type = factor(Type, levels = c('Incidence', 'IncidenceImput'),
                           labels = c('Observed', 'Imputation')))
 
-
 # panel c -----------------------------------------------------------------
 
 fill_color <- rev(c('#DD5129FF', '#0F7BA2FF', '#43B284FF'))
@@ -305,5 +304,3 @@ ggsave("./Outcome/fig5.pdf",
        height = 7.5,
        device = cairo_pdf,
        family = "Helvetica")
-
-write.csv(DataAll, './Outcome/S table1.csv', row.names = F)

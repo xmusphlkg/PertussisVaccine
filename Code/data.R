@@ -40,11 +40,17 @@ DataVacCover <- DataVacCover |>
 ## Vaccination schedule for Pertussis
 ## The vaccine scheduler table summarizes the current vaccination schedule for young children, adolescents, and adults for Pertussis. The data is updated regularly with the most recent official country reporting collected through the WHO/UNICEF joint reporting process.
 
-DataVacSchedule <- read.xlsx("./Data/Vaccination schedule for Pertussis.xlsx")
+DataVacSchedule <- read.xlsx("./Data/Vaccination schedule for Pertussis.xlsx") |> 
+     filter(!is.na(COUNTRYNAME))
+DataInfo <- DataVacSchedule |> 
+     select(ISO_3_CODE, COUNTRYNAME, WHO_REGION) |>
+     unique() |>
+     rename(CODE = ISO_3_CODE, NAME = COUNTRYNAME)
 DataVacSchedule <- DataVacSchedule |> 
      select(ISO_3_CODE, COUNTRYNAME, VACCINECODE, SCHEDULEROUNDS, TARGETPOP_DESCRIPTION,
             AGEADMINISTERED, VACCINEDESCRIPTIONSHORT, YEAR, SCHEDULERCODE) |>
      rename(CODE = ISO_3_CODE, NAME = COUNTRYNAME)
+
 
 # Use wP vaccine
 DataVacWP <- DataVacSchedule |> 
@@ -92,7 +98,7 @@ DataVacSchedulePreg <- DataVacSchedule |>
 DataVacScheduleGenM <- DataVacSchedule |> 
      filter(TARGETPOP_DESCRIPTION == 'General/routine') |> 
      # filter AGEADMINISTERED contains M or W
-     filter(str_detect(AGEADMINISTERED, 'M|W')) |> 
+     filter(str_detect(AGEADMINISTERED, '[MМ]|W')) |> 
      select(CODE, NAME, SCHEDULEROUNDS, AGEADMINISTERED) |>
      unique() |> 
      group_by(CODE, NAME) |>
@@ -298,6 +304,11 @@ DataInci <- DataInci |>
 #      mutate(OutbreakNews = replace_na(Outbreak, 0)) |>
 #      merge(DataInci, by = c('NAME'), all = T) |>
 #      select(-Outbreak)
-Data <- DataVac |> merge(DataInci, by = c('NAME'), all = T)
+Data <- DataVac |> 
+     merge(DataInci, by = c('NAME'), all = T) |> 
+     left_join(DataInfo, by = c('CODE', 'NAME')) |> 
+     select(WHO_REGION, CODE, NAME, everything())
 
 write.csv(Data, './Outcome/S table1.csv', row.names = F)
+
+print("Data cleaned successfully!")
