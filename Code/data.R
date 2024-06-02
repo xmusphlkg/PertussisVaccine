@@ -196,7 +196,7 @@ DataVac <- DataVacCover |>
      merge(DataVacSchedule, by = c('CODE', 'NAME'), all = T) |>
      merge(DataVacWP, by = c('CODE', 'NAME'), all = T)
 
-remove(DataVacCover, DataVacSchedule, DataVacAP, DataVacWP)
+# remove(DataVacCover, DataVacSchedule, DataVacAP, DataVacWP)
 
 # ## Data from the HealthMap
 # ## https://www.healthmap.org/en/
@@ -244,6 +244,7 @@ remove(DataVacCover, DataVacSchedule, DataVacAP, DataVacWP)
 
 DataInci <- read.xlsx("./Data/Pertussis incidence.xlsx")[,1:17]
 DataInci <- DataInci |> 
+     filter(!is.na(Disease)) |> 
      select(-c(Denominator, Disease)) |> 
      rename(NAME = `Country./.Region`) |> 
      filter(NAME %in% DataVac$NAME) |>
@@ -256,10 +257,7 @@ DataInci <- DataInci |>
           YEAR == 2022 ~ '2022',
           YEAR == 2023 ~ '2023'),
           Period = factor(Period, levels = c('Pre-epidemic', 'Epidemic', '2023', '2022')),
-          Incidence = as.numeric(Incidence),
-          # replace all 0 with na
-          Incidence = case_when(Incidence == 0 ~ NA_real_,
-                                TRUE ~ Incidence)
+          Incidence = as.numeric(Incidence)
      ) |> 
      group_by(NAME, Period) |>
      summarise(Incidence_50 = median(Incidence, na.rm = T),
@@ -287,6 +285,8 @@ DataInci <- DataInci |>
                                               `2023` < `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'High',
                                          `2023` >= `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'Resurgence',
                                          TRUE ~ 'Unavailable'),
+            `2023-change` = `2023`/`Pre-epidemic_Incidence_50`,
+            `2022-change` = `2022`/`Pre-epidemic_Incidence_50`,
             OutbreakSize2022 = factor(OutbreakSize2022, levels = c('Low', 'Normal', 'High', 'Resurgence', 'Unavailable')),
             OutbreakSize2023 = factor(OutbreakSize2023, levels = c('Low', 'Normal', 'High', 'Resurgence', 'Unavailable')),
             OutbreakSize = case_when(
@@ -296,7 +296,7 @@ DataInci <- DataInci |>
                  OutbreakSize2022 == 'Low' | OutbreakSize2023 == 'Low' ~ 0,
                  TRUE ~ NA_real_
             )) |> 
-     select(NAME, OutbreakSize2022, OutbreakSize2023, OutbreakSize)
+     select(NAME, OutbreakSize2022, OutbreakSize2023, OutbreakSize, `2023-change`, `2022-change`)
 
 ## Merge all data
 # Data <- DataVac |> 

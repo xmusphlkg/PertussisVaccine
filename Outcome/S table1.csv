@@ -1,214 +1,214 @@
-"WHO_REGION","CODE","NAME","CoverageDTP1","CoverageDTP3","VaccinePregnant","VaccineAdult","VaccineRisk","TimeLastShot","TimeFirstShot","GENERALM","GENERALY","VaccineGeneral","VaccineCode","OutbreakSize2022","OutbreakSize2023","OutbreakSize"
-"EMRO","AFG","Afghanistan",77,69,0,0,0,14,6,3,0,3,"wP","Low","High",2
-"EURO","ALB","Albania",98,97,0,0,0,104,8.66,3,1,4,"wP","Unavailable","Low",0
-"AFRO","DZA","Algeria",91,77,0,0,0,312,8.66,3,1,4,"aP","Unavailable","Low",0
-"EURO","AND","Andorra",99,98,1,0,0,780,8.66,3,2,5,"aP","Unavailable","Resurgence",3
-"AFRO","AGO","Angola",53,42,0,0,0,25.98,8.66,3,0,3,"aP","Unavailable","Unavailable",NA
-"AMRO","AIA","Anguilla",NA,NA,0,1,1,234,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"AMRO","ATG","Antigua and Barbuda",99,99,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
-"AMRO","ARG","Argentina",87,81,1,0,1,572,8.66,4,2,6,"Both","Low","Low",0
-"EURO","ARM","Armenia",96,93,0,0,0,806,6,4,2,6,"aP","Low","Normal",1
-"AMRO","ABW","Aruba",NA,NA,0,0,1,520,8.66,4,2,6,"aP","Unavailable","Low",0
-"WPRO","AUS","Australia",98,94,1,0,0,650,8.66,4,2,6,"aP","Low","Low",0
-"EURO","AUT","Austria",91,84,0,0,0,364,8.66,3,1,4,"aP","Low","Resurgence",3
-"EURO","AZE","Azerbaijan",90,83,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Low",0
-"AMRO","BHS","Bahamas",98,87,1,0,0,624,8.66,4,2,6,"Both","Unavailable","Unavailable",NA
-"EMRO","BHR","Bahrain",97,97,0,1,1,676,8.66,4,2,6,"Both","Unavailable","Unavailable",NA
-"SEARO","BGD","Bangladesh",99,98,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AMRO","BRB","Barbados",87,86,0,0,1,208,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"EURO","BLR","Belarus",98,98,0,0,1,77.94,8.66,4,0,4,"wP","Low","High",2
-"EURO","BEL","Belgium",98,98,1,1,0,780,8,4,2,6,"aP","Low","Normal",1
-"AMRO","BLZ","Belize",91,84,0,0,0,208,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"AFRO","BEN","Benin",84,76,0,0,0,14,6,3,0,3,"wP","Unavailable","Low",0
-"AMRO","BMU","Bermuda",NA,NA,1,0,0,754,8.66,4,2,6,"aP","Low","Unavailable",0
-"SEARO","BTN","Bhutan",98,98,0,0,0,103.92,6,4,0,4,"wP","Unavailable","Unavailable",NA
-"AMRO","BOL","Bolivia (Plurinational State of)",75,69,0,0,0,208,8.66,4,1,5,"wP","Resurgence","Resurgence",3
-"EURO","BIH","Bosnia and Herzegovina",85,75,0,0,0,312,8.66,4,1,5,"aP","Unavailable","Unavailable",NA
-"AFRO","BWA","Botswana",98,86,0,0,0,17.32,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
-"AMRO","BRA","Brazil",84,77,0,1,1,208,8.66,4,1,5,"wP","Low","Low",0
-"AMRO","VGB","British Virgin Islands",NA,NA,1,0,0,208,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"WPRO","BRN","Brunei Darussalam",99,99,0,0,0,260,8.66,3,1,4,"aP","Unavailable","Unavailable",NA
-"EURO","BGR","Bulgaria",94,91,0,0,0,624,8.66,4,2,6,"aP","Low","Low",0
-"AFRO","BFA","Burkina Faso",95,91,0,0,0,16,8,3,0,3,"wP","Low","Unavailable",0
-"AFRO","BDI","Burundi",93,91,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
-"AFRO","CPV","Cabo Verde",97,93,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
-"WPRO","KHM","Cambodia",92,85,0,0,0,14,6,3,0,3,"wP","Low","Low",0
-"AFRO","CMR","Cameroon",75,68,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AMRO","CAN","Canada",94,92,1,1,0,702,8.66,4,1,5,"aP","Low","Low",0
-"AMRO","CYM","Cayman Islands",NA,NA,1,0,0,780,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
-"AFRO","CAF","Central African Republic",54,42,0,0,0,14,6,3,0,3,"wP","Low","Normal",1
-"AFRO","TCD","Chad",74,60,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AMRO","CHL","Chile",99,96,1,0,0,676,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
-"WPRO","CHN","China",99,99,0,0,0,77.94,12.99,4,0,4,"aP","Resurgence","Unavailable",3
-"WPRO","HKG","China, Hong Kong SAR",NA,NA,1,0,0,572,8.66,4,2,6,"aP","Low","Low",0
-"WPRO","MAC","China, Macao SAR",NA,NA,1,0,1,598,8.66,4,2,6,"aP","Unavailable","Low",0
-"AMRO","COL","Colombia",91,87,1,0,1,77.94,8.66,4,0,4,"wP","Low","Low",0
-"AFRO","COM","Comoros",90,88,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AFRO","COG","Congo",82,78,0,0,0,16,8,3,0,3,"wP","Unavailable","Low",0
-"WPRO","COK","Cook Islands",91,72,0,0,0,208,6,3,1,4,"aP","Unavailable","Unavailable",NA
-"AMRO","CRI","Costa Rica",98,95,1,0,1,208,8.66,4,1,5,"aP","Low","Low",0
-"AFRO","CIV","Côte d'Ivoire",85,76,0,0,0,14,6,3,0,3,"wP","Unavailable","Resurgence",3
-"EURO","HRV","Croatia",98,92,0,0,0,312,8.66,4,1,5,"aP","Low","Unavailable",0
-"AMRO","CUB","Cuba",99,99,0,0,1,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
-"AMRO","CUW","Curaçao",NA,NA,0,0,0,64.95,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
-"EURO","CYP","Cyprus",98,96,1,1,0,598,10.825,4,2,6,"aP","Unavailable","Low",0
-"EURO","CZE","Czechia",98,94,0,0,0,520,12.99,3,2,5,"aP","Low","Low",0
-"SEARO","PRK","Democratic People's Republic of Korea",40,0,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AFRO","COD","Democratic Republic of the Congo",81,65,0,0,0,14,6,3,0,3,"wP","Normal","Low",1
-"EURO","DNK","Denmark",98,97,1,0,0,260,12.99,3,1,4,"aP","Low","Unavailable",0
-"EMRO","DJI","Djibouti",70,59,0,0,0,64.95,6,4,0,4,"wP","Unavailable","Unavailable",NA
-"AMRO","DMA","Dominica",95,92,0,0,0,156,8.66,3,1,4,"wP","Unavailable","Unavailable",NA
-"AMRO","DOM","Dominican Republic",99,88,1,0,1,208,8.66,4,1,5,"wP","Low","Low",0
-"AMRO","ECU","Ecuador",74,70,0,0,0,260,8.66,4,1,5,"wP","Normal","Resurgence",3
-"EMRO","EGY","Egypt",97,97,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
-"AMRO","SLV","El Salvador",76,75,1,0,1,208,8.66,4,1,5,"Both","Unavailable","Unavailable",NA
-"AFRO","GNQ","Equatorial Guinea",77,53,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
-"AFRO","ERI","Eritrea",97,95,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EURO","EST","Estonia",86,85,0,0,0,806,12.99,3,3,6,"aP","Low","Low",0
-"AFRO","SWZ","Eswatini",99,97,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
-"AFRO","ETH","Ethiopia",70,65,0,0,0,14,6,3,0,3,"wP","Unavailable","Low",0
-"WPRO","FJI","Fiji",99,99,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EURO","FIN","Finland",97,91,0,1,0,754,12.99,3,2,5,"aP","Low","Low",0
-"EURO","FRA","France",99,96,1,1,0,676,8.66,3,2,5,"aP","Low","Low",0
-"WPRO","PYF","French Polynesia",NA,NA,0,0,0,572,8.66,3,2,5,"aP","Unavailable","Unavailable",NA
-"AFRO","GAB","Gabon",65,60,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AFRO","GMB","Gambia",85,79,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
-"EURO","GEO","Georgia",95,85,0,0,0,260,8.66,4,1,5,"aP","Low","Normal",1
-"EURO","DEU","Germany",98,91,0,1,0,650,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
-"AFRO","GHA","Ghana",99,99,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EURO","GRC","Greece",99,99,0,1,0,598,8.66,4,2,6,"aP","Low","Low",0
-"AMRO","GRD","Grenada",79,77,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
-"WPRO","GUM","Guam",NA,NA,1,1,0,572,8.66,4,1,5,"aP","Unavailable","Unavailable",NA
-"AMRO","GTM","Guatemala",92,79,1,0,1,208,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"AFRO","GIN","Guinea",62,47,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AFRO","GNB","Guinea-Bissau",81,74,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AMRO","GUY","Guyana",98,98,0,0,0,25.98,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
-"AMRO","HTI","Haiti",75,51,0,0,0,64.95,6,4,0,4,"wP","Unavailable","Low",0
-"AMRO","HND","Honduras",80,78,1,0,1,208,8.66,4,1,5,"wP","Unavailable","Low",0
-"EURO","HUN","Hungary",99,99,0,0,0,572,8.66,4,2,6,"aP","Low","Low",0
-"EURO","ISL","Iceland",95,92,1,0,0,728,12.99,3,2,5,"aP","Unavailable","Unavailable",NA
-"SEARO","IND","India",95,93,0,0,0,286,6,4,1,5,"wP","Low","Unavailable",0
-"SEARO","IDN","Indonesia",87,85,0,0,0,77.94,8.66,4,0,4,"wP","Low","Normal",1
-"EMRO","IRN","Iran (Islamic Republic of)",99,99,0,0,0,312,8.66,4,1,5,"wP","Low","Low",0
-"EMRO","IRQ","Iraq",99,93,0,0,0,260,8.66,4,1,5,"wP","Low","Low",0
-"EURO","IRL","Ireland",97,93,1,0,1,650,8.66,3,2,5,"aP","Low","Low",0
-"EURO","ISR","Israel",99,98,1,0,1,676,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
-"EURO","ITA","Italy",98,95,1,1,0,780,12.99,3,2,5,"aP","Unavailable","Unavailable",NA
-"AMRO","JAM","Jamaica",99,98,0,0,0,260,6,4,1,5,"wP","Unavailable","Unavailable",NA
-"WPRO","JPN","Japan",99,99,0,0,0,77.94,12.99,4,0,4,"aP","Unavailable","Unavailable",NA
-"EMRO","JOR","Jordan",78,77,0,0,0,77.94,12.99,4,0,4,"Both","Low","Low",0
-"EURO","KAZ","Kazakhstan",99,99,0,0,0,312,8.66,4,1,5,"aP","Low","Unavailable",0
-"AFRO","KEN","Kenya",95,90,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"WPRO","KIR","Kiribati",96,91,0,0,0,312,6,3,1,4,"wP","Unavailable","Unavailable",NA
-"EURO","XKX","Kosovo (in accordance with UN Security Council resolution 1244 (1999))",NA,NA,0,0,0,51.96,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
-"EMRO","KWT","Kuwait",99,96,0,0,0,156,8.66,4,1,5,"wP","Low","Low",0
-"EURO","KGZ","Kyrgyzstan",90,90,0,0,0,104,8.66,3,1,4,"wP","Low","Resurgence",3
-"WPRO","LAO","Lao People's Democratic Republic",87,80,0,0,0,14,6,3,0,3,"wP","Unavailable","Normal",1
-"EURO","LVA","Latvia",99,95,1,0,1,728,8.66,4,2,6,"aP","Low","Normal",1
-"EMRO","LBN","Lebanon",88,67,0,0,0,234,8.66,4,1,5,"wP","Unavailable","High",2
-"AFRO","LSO","Lesotho",92,87,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AFRO","LBR","Liberia",93,78,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EMRO","LBY","Libya",74,73,0,0,0,780,8.66,4,2,6,"aP","Normal","High",2
-"EURO","LTU","Lithuania",93,90,0,0,0,806,8.66,4,2,6,"aP","Low","Low",0
-"EURO","LUX","Luxembourg",99,99,0,0,0,806,8.66,4,2,6,"aP","Low","High",2
-"AFRO","MDG","Madagascar",66,57,0,0,0,14,6,3,0,3,"wP","Normal","Normal",1
-"AFRO","MWI","Malawi",89,86,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"WPRO","MYS","Malaysia",99,97,0,0,0,77.94,8.66,4,0,4,"aP","Low","Unavailable",0
-"SEARO","MDV","Maldives",99,99,0,0,0,208,8.66,3,1,4,"wP","Unavailable","Unavailable",NA
-"AFRO","MLI","Mali",82,77,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EURO","MLT","Malta",99,98,0,0,0,77.94,8.66,4,0,4,"aP","Unavailable","Low",0
-"WPRO","MHL","Marshall Islands",96,86,0,0,0,598,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
-"AFRO","MRT","Mauritania",84,76,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AFRO","MUS","Mauritius",96,95,1,0,0,572,6,4,2,6,"Both","Unavailable","Unavailable",NA
-"AMRO","MEX","Mexico",93,83,1,0,0,208,8.66,4,1,5,"Both","Low","Low",0
-"WPRO","FSM","Micronesia (Federated States of)",92,69,0,0,0,598,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
-"EURO","MCO","Monaco",99,99,0,1,0,676,8.66,3,2,5,"aP","Unavailable","Unavailable",NA
-"WPRO","MNG","Mongolia",97,95,0,0,0,17.32,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
-"EURO","MNE","Montenegro",93,80,0,0,0,312,9,4,1,5,"aP","Unavailable","Resurgence",3
-"AMRO","MSR","Montserrat",NA,NA,0,0,0,77.94,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
-"EMRO","MAR","Morocco",99,99,0,0,0,260,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"AFRO","MOZ","Mozambique",67,61,0,0,0,17.32,8.66,3,0,3,"wP","Unavailable","Unavailable",NA
-"SEARO","MMR","Myanmar",81,71,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Resurgence",3
-"AFRO","NAM","Namibia",90,84,0,0,0,14,6,3,0,3,"wP","Normal","Normal",1
-"WPRO","NRU","Nauru",99,98,0,0,0,208,6,4,1,5,"Both","Unavailable","Unavailable",NA
-"SEARO","NPL","Nepal",95,90,0,0,0,14,6,3,0,3,"wP","Normal","Normal",1
-"EURO","NLD","Netherlands (Kingdom of the)",97,93,1,0,1,208,12.99,3,1,4,"aP","Low","Unavailable",0
-"WPRO","NCL","New Caledonia",NA,NA,0,1,0,572,8.66,3,2,5,"aP","Unavailable","Unavailable",NA
-"WPRO","NZL","New Zealand",94,89,1,1,1,624,6,3,2,5,"aP","Low","Unavailable",0
-"AMRO","NIC","Nicaragua",94,92,0,0,0,312,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"AFRO","NER","Niger",96,84,0,0,0,14,6,3,0,3,"wP","Normal","High",2
-"AFRO","NGA","Nigeria",70,62,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"WPRO","NIU","Niue",99,99,1,0,0,572,6,3,2,5,"aP","Unavailable","Unavailable",NA
-"EURO","MKD","North Macedonia",92,84,0,0,0,364,8.66,4,1,5,"aP","Unavailable","Normal",1
-"WPRO","MNP","Northern Mariana Islands",NA,NA,0,0,0,650,6,4,2,6,"aP","Unavailable","Unavailable",NA
-"EURO","NOR","Norway",98,97,0,0,1,780,12.99,3,2,5,"aP","Low","Low",0
-"EMRO","PSE","occupied Palestinian territory, including east Jerusalem",99,98,0,0,0,77.94,8.66,4,0,4,"wP","Low","Normal",1
-"EMRO","OMN","Oman",99,99,1,0,1,77.94,8.66,3,0,3,"Both","Low","Normal",1
-"EMRO","PAK","Pakistan",93,85,0,0,0,14,6,3,0,3,"wP","Normal","Normal",1
-"WPRO","PLW","Palau",99,94,0,0,0,520,8.66,4,2,6,"aP","Unavailable","Unavailable",NA
-"AMRO","PAN","Panama",98,87,1,0,1,520,8.66,4,2,6,"Both","Low","Unavailable",0
-"WPRO","PNG","Papua New Guinea",45,36,0,0,0,12.99,4.33,3,0,3,"wP","Low","Low",0
-"AMRO","PRY","Paraguay",82,69,1,0,1,520,8.66,4,2,6,"Both","Low","Low",0
-"AMRO","PER","Peru",93,82,1,0,0,208,8.66,4,1,5,"wP","Low","Low",0
-"WPRO","PHL","Philippines",74,72,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EURO","POL","Poland",99,90,0,0,1,728,7.5,4,2,6,"Both","Low","Unavailable",0
-"EURO","PRT","Portugal",99,99,1,0,0,260,8.66,4,1,5,"aP","Low","Low",0
-"EMRO","QAT","Qatar",99,98,0,0,0,806,8.66,4,2,6,"aP","Low","Resurgence",3
-"WPRO","KOR","Republic of Korea",98,98,0,0,0,598,8.66,4,2,6,"aP","Low","Unavailable",0
-"EURO","MDA","Republic of Moldova",89,88,0,0,0,104,8.66,3,1,4,"wP","Low","High",2
-"EURO","ROU","Romania",89,85,1,0,0,728,8.66,3,2,5,"aP","Low","Low",0
-"EURO","RUS","Russian Federation",97,97,0,0,1,77.94,12.99,4,0,4,"wP","Low","Resurgence",3
-"AFRO","RWA","Rwanda",99,98,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AMRO","KNA","Saint Kitts and Nevis",96,96,0,0,0,234,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"AMRO","LCA","Saint Lucia",92,81,0,0,0,260,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"AMRO","VCT","Saint Vincent and the Grenadines",97,92,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
-"WPRO","WSM","Samoa",97,76,0,0,0,64.95,6,4,0,4,"wP","Unavailable","Unavailable",NA
-"EURO","SMR","San Marino",93,92,0,1,0,780,12.99,3,2,5,"aP","Unavailable","Low",0
-"AFRO","STP","Sao Tome and Principe",97,97,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EMRO","SAU","Saudi Arabia",98,98,1,0,0,260,8.66,4,1,5,"aP","Normal","Normal",1
-"AFRO","SEN","Senegal",90,88,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EURO","SRB","Serbia",97,92,0,0,0,364,8,4,1,5,"aP","Low","Resurgence",3
-"AFRO","SYC","Seychelles",99,97,0,0,0,77.94,12.99,4,0,4,"wP","Unavailable","Unavailable",NA
-"AFRO","SLE","Sierra Leone",92,91,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"WPRO","SGP","Singapore",99,97,1,0,0,572,8.66,4,1,5,"aP","Unavailable","Unavailable",NA
-"AMRO","SXM","Sint Maarten (Dutch part)",NA,NA,0,0,0,51.96,8.66,4,0,4,"aP","Unavailable","Unavailable",NA
-"EURO","SVK","Slovakia",97,97,0,0,0,624,8.66,3,2,5,"aP","Low","Low",0
-"EURO","SVN","Slovenia",92,89,1,0,0,416,12.99,3,1,4,"aP","Low","Low",0
-"WPRO","SLB","Solomon Islands",99,89,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EMRO","SOM","Somalia",52,42,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AFRO","ZAF","South Africa",87,85,0,0,0,77.94,6,4,0,4,"aP","Resurgence","Normal",3
-"AFRO","SSD","South Sudan",76,73,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EURO","ESP","Spain",98,93,1,0,1,312,8.66,3,1,4,"aP","Low","Low",0
-"SEARO","LKA","Sri Lanka",98,98,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Low",0
-"EMRO","SDN","Sudan",94,84,0,0,0,14,6,3,0,3,"wP","Unavailable","Normal",1
-"AMRO","SUR","Suriname",83,77,0,0,1,234,8.66,4,1,5,"wP","Resurgence","Unavailable",3
-"EURO","SWE","Sweden",96,94,1,0,0,780,12.99,3,2,5,"aP","Low","Low",0
-"EURO","CHE","Switzerland",97,96,0,0,0,676,8.66,3,2,5,"aP","Unavailable","Unavailable",NA
-"EMRO","SYR","Syrian Arab Republic",64,46,0,0,0,77.94,8,4,0,4,"wP","Resurgence","High",3
-"EURO","TJK","Tajikistan",98,97,0,0,0,84.435,8.66,4,0,4,"wP","High","Resurgence",3
-"SEARO","THA","Thailand",99,97,0,0,0,208,8.66,3,2,5,"wP","Low","Unavailable",0
-"SEARO","TLS","Timor-Leste",87,86,0,0,0,77.94,6,4,0,4,"wP","Unavailable","Unavailable",NA
-"AFRO","TGO","Togo",88,82,0,0,0,14,6,3,0,3,"wP","Unavailable","Resurgence",3
-"WPRO","TKL","Tokelau",NA,NA,0,0,0,260,6,3,1,4,"wP","Unavailable","Unavailable",NA
-"WPRO","TON","Tonga",99,99,0,0,0,260,6,4,1,5,"wP","Unavailable","Unavailable",NA
-"AMRO","TTO","Trinidad and Tobago",97,93,0,0,0,234,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"EMRO","TUN","Tunisia",99,97,0,0,0,77.94,8.66,4,0,4,"wP","Low","Unavailable",0
-"EURO","TUR","Türkiye",99,99,0,0,0,208,8.66,4,1,5,"aP","Low","Unavailable",0
-"EURO","TKM","Turkmenistan",99,98,0,0,0,77.94,8.66,4,0,4,"wP","Unavailable","Unavailable",NA
-"AMRO","TCA","Turks and Caicos Islands",NA,NA,0,0,0,156,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"WPRO","TUV","Tuvalu",99,91,0,0,0,286,6,3,1,4,"wP","Unavailable","Unavailable",NA
-"AFRO","UGA","Uganda",94,89,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"EURO","UKR","Ukraine",78,73,0,0,0,77.94,8.66,4,0,4,"wP","Low","Low",0
-"EMRO","ARE","United Arab Emirates",98,96,0,1,1,806,8.66,4,2,6,"Both","Unavailable","High",2
-"EURO","GBR","United Kingdom of Great Britain and Northern Ireland",97,92,0,0,0,173.2,8,3,0,3,"aP","Low","Low",0
-"AFRO","TZA","United Republic of Tanzania",91,88,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AMRO","USA","United States of America",98,94,1,1,0,572,8.66,4,2,6,"aP","Low","Unavailable",0
-"AMRO","URY","Uruguay",99,94,1,0,1,572,8.66,4,2,6,"Both","Low","Low",0
-"EURO","UZB","Uzbekistan",99,99,0,0,0,69.28,8.66,4,0,4,"wP","Low","Low",0
-"WPRO","VUT","Vanuatu",83,68,0,0,0,14,6,3,0,3,"wP","Low","Low",0
-"AMRO","VEN","Venezuela (Bolivarian Republic of)",73,56,0,0,0,260,8.66,4,1,5,"wP","Unavailable","Unavailable",NA
-"WPRO","VNM","Viet Nam",92,91,0,0,0,77.94,8.66,4,0,4,"wP","Low","Low",0
-"WPRO","WLF","Wallis and Futuna",NA,NA,0,0,0,312,8.66,3,1,4,"aP","Unavailable","Unavailable",NA
-"EMRO","YEM","Yemen",85,74,0,0,0,312,6,4,1,5,"wP","Unavailable","Low",0
-"AFRO","ZMB","Zambia",86,82,0,0,0,14,6,3,0,3,"wP","Unavailable","Unavailable",NA
-"AFRO","ZWE","Zimbabwe",93,90,0,0,0,77.94,6,4,0,4,"wP","Resurgence","Resurgence",3
+"WHO_REGION","CODE","NAME","CoverageDTP1","CoverageDTP3","VaccinePregnant","VaccineAdult","VaccineRisk","TimeLastShot","TimeFirstShot","GENERALM","GENERALY","VaccineGeneral","VaccineCode","OutbreakSize2022","OutbreakSize2023","OutbreakSize","2023-change","2022-change"
+"EMRO","AFG","Afghanistan",77,69,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Resurgence",3,Inf,Inf
+"EURO","ALB","Albania",98,97,0,0,0,24,2,3,1,4,"wP","Low","Low",0,0.129032258064516,0
+"AFRO","DZA","Algeria",91,77,0,0,0,72,2,3,1,4,"aP","Normal","Normal",1,Inf,NA
+"EURO","AND","Andorra",99,98,1,0,0,180,2,3,2,5,"aP","Low","Resurgence",3,5.07402031930334,0
+"AFRO","AGO","Angola",53,42,0,0,0,6,2,3,0,3,"aP","Unavailable","Unavailable",NA,NA,NA
+"AMRO","AIA","Anguilla",NA,NA,0,1,1,54,2,4,1,5,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","ATG","Antigua and Barbuda",99,99,0,0,0,18,2,4,0,4,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","ARG","Argentina",87,81,1,0,1,132,2,4,2,6,"Both","Low","Low",0,0.595936794582393,0.194130925507901
+"EURO","ARM","Armenia",96,93,0,0,0,186,1.37931034482759,4,2,6,"aP","Low","Normal",1,1.82741116751269,0.0406091370558376
+"AMRO","ABW","Aruba",NA,NA,0,0,1,120,2,4,2,6,"aP","Low","Normal",1,1,0
+"WPRO","AUS","Australia",98,94,1,0,0,150,2,4,2,6,"aP","Low","Low",0,0.183115338882283,0.0362663495838288
+"EURO","AUT","Austria",91,84,0,0,0,84,2,3,1,4,"aP","Low","Resurgence",3,4.62360801781737,0.271714922048998
+"EURO","AZE","Azerbaijan",90,83,0,0,0,18,2,4,0,4,"wP","Normal","Normal",1,Inf,NA
+"AMRO","BHS","Bahamas",98,87,1,0,0,144,2,4,2,6,"Both","Resurgence","Resurgence",3,NA,Inf
+"EMRO","BHR","Bahrain",97,97,0,1,1,156,2,4,2,6,"Both","Normal","Normal",1,0,0
+"SEARO","BGD","Bangladesh",99,98,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Normal",1,0,0
+"AMRO","BRB","Barbados",87,86,0,0,1,48,2,4,1,5,"wP","Resurgence","Resurgence",3,NA,NA
+"EURO","BLR","Belarus",98,98,0,0,1,18,2,4,0,4,"wP","Low","High",2,1.76593720266413,0.055185537583254
+"EURO","BEL","Belgium",98,98,1,1,0,180,1.83908045977012,4,2,6,"aP","Low","Normal",1,0.853193517635844,0.0657769304099142
+"AMRO","BLZ","Belize",91,84,0,0,0,48,2,4,1,5,"wP","Normal","Normal",1,0,0
+"AFRO","BEN","Benin",84,76,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","Resurgence",3,Inf,NA
+"AMRO","BMU","Bermuda",NA,NA,1,0,0,174,2,4,2,6,"aP","Low","Low",0,0.495238095238095,0.495238095238095
+"SEARO","BTN","Bhutan",98,98,0,0,0,24,1.37931034482759,4,0,4,"wP","Normal","Normal",1,0,0
+"AMRO","BOL","Bolivia (Plurinational State of)",75,69,0,0,0,48,2,4,1,5,"wP","Resurgence","Resurgence",3,47.7142857142857,13
+"EURO","BIH","Bosnia and Herzegovina",85,75,0,0,0,72,2,4,1,5,"aP","Low","Unavailable",0,NA,0
+"AFRO","BWA","Botswana",98,86,0,0,0,4,2,3,0,3,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","BRA","Brazil",84,77,0,1,1,48,2,4,1,5,"wP","Low","Low",0,0.0909090909090909,0.1
+"AMRO","VGB","British Virgin Islands",NA,NA,1,0,0,48,2,4,1,5,"wP","Resurgence","Resurgence",3,NA,NA
+"WPRO","BRN","Brunei Darussalam",99,99,0,0,0,60,2,3,1,4,"aP","Normal","Normal",1,0,0
+"EURO","BGR","Bulgaria",94,91,0,0,0,144,2,4,2,6,"aP","Low","Low",0,0.273972602739726,0.228310502283105
+"AFRO","BFA","Burkina Faso",95,91,0,0,0,3.67816091954023,1.83908045977012,3,0,3,"wP","Normal","Low",1,0,0.5
+"AFRO","BDI","Burundi",93,91,0,0,0,18,1.37931034482759,4,0,4,"wP","Unavailable","Unavailable",NA,NA,NA
+"AFRO","CPV","Cabo Verde",97,93,0,0,0,18,2,4,0,4,"wP","Normal","Normal",1,NA,NA
+"WPRO","KHM","Cambodia",92,85,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Low","Low",0,0.416666666666667,0.0833333333333333
+"AFRO","CMR","Cameroon",75,68,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"AMRO","CAN","Canada",94,92,1,1,0,162,2,4,1,5,"aP","Low","Low",0,0.654288240495137,0.0954907161803714
+"AMRO","CYM","Cayman Islands",NA,NA,1,0,0,180,2,4,2,6,"aP","Resurgence","Resurgence",3,NA,NA
+"AFRO","CAF","Central African Republic",54,42,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Low","Normal",1,0.549918166939444,0.044189852700491
+"AFRO","TCD","Chad",74,60,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"AMRO","CHL","Chile",99,96,1,0,0,156,2,4,2,6,"aP","Low","Low",0,0.465016146393972,0
+"WPRO","CHN","China",99,99,0,0,0,18,3,4,0,4,"aP","Resurgence","Resurgence",3,8.86153846153846,8.27692307692308
+"WPRO","HKG","China, Hong Kong SAR",NA,NA,1,0,0,132,2,4,2,6,"aP","Low","Low",0,0.481927710843373,0.0963855421686747
+"WPRO","MAC","China, Macao SAR",NA,NA,1,0,1,138,2,4,2,6,"aP","Normal","Normal",1,0.875,0
+"AMRO","COL","Colombia",91,87,1,0,1,18,2,4,0,4,"wP","Low","Low",0,0.0740740740740741,0.155555555555556
+"AFRO","COM","Comoros",90,88,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Resurgence",3,NA,NA
+"AFRO","COG","Congo",82,78,0,0,0,3.67816091954023,1.83908045977012,3,0,3,"wP","Unavailable","Normal",1,Inf,NA
+"WPRO","COK","Cook Islands",91,72,0,0,0,48,1.37931034482759,3,1,4,"aP","Unavailable","Unavailable",NA,NA,NA
+"AMRO","CRI","Costa Rica",98,95,1,0,1,48,2,4,1,5,"aP","Low","Low",0,0.388888888888889,0.0925925925925926
+"AFRO","CIV","Côte d'Ivoire",85,76,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Resurgence",3,160.5,NA
+"EURO","HRV","Croatia",98,92,0,0,0,72,2,4,1,5,"aP","Low","Unavailable",0,NA,0.0261780104712042
+"AMRO","CUB","Cuba",99,99,0,0,1,18,2,4,0,4,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","CUW","Curaçao",NA,NA,0,0,0,15,2,4,0,4,"wP","Unavailable","Unavailable",NA,NA,NA
+"EURO","CYP","Cyprus",98,96,1,1,0,138,2.5,4,2,6,"aP","Low","Low",0,0.941176470588235,0
+"EURO","CZE","Czechia",98,94,0,0,0,120,3,3,2,5,"aP","Low","Low",0,0.70561797752809,0.134831460674157
+"SEARO","PRK","Democratic People's Republic of Korea",40,0,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","Unavailable",3,NA,NA
+"AFRO","COD","Democratic Republic of the Congo",81,65,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Normal",1,0.388157894736842,1.82894736842105
+"EURO","DNK","Denmark",98,97,1,0,0,60,3,3,1,4,"aP","Low","Unavailable",0,NA,0.0511033681765389
+"EMRO","DJI","Djibouti",70,59,0,0,0,15,1.37931034482759,4,0,4,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","DMA","Dominica",95,92,0,0,0,36,2,3,1,4,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","DOM","Dominican Republic",99,88,1,0,1,48,2,4,1,5,"wP","Low","Low",0,0.363636363636364,0.103896103896104
+"AMRO","ECU","Ecuador",74,70,0,0,0,60,2,4,1,5,"wP","High","Resurgence",3,7.28571428571429,2.28571428571429
+"EMRO","EGY","Egypt",97,97,0,0,0,18,2,4,0,4,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","SLV","El Salvador",76,75,1,0,1,48,2,4,1,5,"Both","Low","Low",0,0,0
+"AFRO","GNQ","Equatorial Guinea",77,53,0,0,0,18,1.37931034482759,4,0,4,"wP","Unavailable","Unavailable",NA,NA,NA
+"AFRO","ERI","Eritrea",97,95,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Normal",1,0,0
+"EURO","EST","Estonia",86,85,0,0,0,186,3,3,3,6,"aP","Low","Low",0,0.395470383275261,0.104529616724739
+"AFRO","SWZ","Eswatini",99,97,0,0,0,18,1.37931034482759,4,0,4,"wP","Resurgence","Unavailable",3,NA,NA
+"AFRO","ETH","Ethiopia",70,65,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Low","Low",0,0.582568807339449,0
+"WPRO","FJI","Fiji",99,99,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","Resurgence",3,Inf,NA
+"EURO","FIN","Finland",97,91,0,1,0,174,3,3,2,5,"aP","Low","Low",0,0.286092715231788,0.0834437086092715
+"EURO","FRA","France",99,96,1,1,0,156,2,3,2,5,"aP","Low","Low",0,0.461538461538462,0.538461538461538
+"WPRO","PYF","French Polynesia",NA,NA,0,0,0,132,2,3,2,5,"aP","Low","Unavailable",0,NA,0
+"AFRO","GAB","Gabon",65,60,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"AFRO","GMB","Gambia",85,79,0,0,0,18,2,4,0,4,"wP","Resurgence","Resurgence",3,NA,NA
+"EURO","GEO","Georgia",95,85,0,0,0,60,2,4,1,5,"aP","Low","Normal",1,0.8,0.272611464968153
+"EURO","DEU","Germany",98,91,0,1,0,150,2,4,2,6,"aP","Low","Unavailable",0,NA,0.0930278232405892
+"AFRO","GHA","Ghana",99,99,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Normal",1,0,0
+"EURO","GRC","Greece",99,99,0,1,0,138,2,4,2,6,"aP","Low","Low",0,0.4,0.0444444444444444
+"AMRO","GRD","Grenada",79,77,0,0,0,18,1.37931034482759,4,0,4,"wP","Resurgence","Unavailable",3,NA,NA
+"WPRO","GUM","Guam",NA,NA,1,1,0,132,2,4,1,5,"aP","Unavailable","Normal",1,0,NA
+"AMRO","GTM","Guatemala",92,79,1,0,1,48,2,4,1,5,"wP","Low","Low",0,0,0
+"AFRO","GIN","Guinea",62,47,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","Unavailable",3,NA,Inf
+"AFRO","GNB","Guinea-Bissau",81,74,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","GUY","Guyana",98,98,0,0,0,6,2,3,0,3,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","HTI","Haiti",75,51,0,0,0,15,1.37931034482759,4,0,4,"wP","Normal","Normal",1,Inf,NA
+"AMRO","HND","Honduras",80,78,1,0,1,48,2,4,1,5,"wP","Low","Low",0,0.025974025974026,0
+"EURO","HUN","Hungary",99,99,0,0,0,132,2,4,2,6,"aP","Low","Low",0,0.166666666666667,0.166666666666667
+"EURO","ISL","Iceland",95,92,1,0,0,168,3,3,2,5,"aP","Low","Low",0,0,0
+"SEARO","IND","India",95,93,0,0,0,66,1.37931034482759,4,1,5,"wP","Low","Unavailable",0,NA,0.119460500963391
+"SEARO","IDN","Indonesia",87,85,0,0,0,18,2,4,0,4,"wP","Low","Normal",1,2,0.384615384615385
+"EMRO","IRN","Iran (Islamic Republic of)",99,99,0,0,0,72,2,4,1,5,"wP","Low","Low",0,0.149253731343284,0.208955223880597
+"EMRO","IRQ","Iraq",99,93,0,0,0,60,2,4,1,5,"wP","Low","Low",0,0.395031055900621,0.0447204968944099
+"EURO","IRL","Ireland",97,93,1,0,1,150,2,3,2,5,"aP","Low","Low",0,0.100278551532033,0.0389972144846797
+"EURO","ISR","Israel",99,98,1,0,1,156,2,4,2,6,"aP","Unavailable","Unavailable",NA,NA,NA
+"EURO","ITA","Italy",98,95,1,1,0,180,3,3,2,5,"aP","Low","Unavailable",0,NA,0.0229885057471264
+"AMRO","JAM","Jamaica",99,98,0,0,0,60,1.37931034482759,4,1,5,"wP","Normal","Unavailable",1,NA,NA
+"WPRO","JPN","Japan",99,99,0,0,0,18,3,4,0,4,"aP","Low","Low",0,0.238779174147217,0.102692998204668
+"EMRO","JOR","Jordan",78,77,0,0,0,18,3,4,0,4,"Both","Normal","Normal",1,0.8,0.8
+"EURO","KAZ","Kazakhstan",99,99,0,0,0,72,2,4,1,5,"aP","Low","Unavailable",0,NA,0.0816326530612245
+"AFRO","KEN","Kenya",95,90,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"WPRO","KIR","Kiribati",96,91,0,0,0,72,1.37931034482759,3,1,4,"wP","Resurgence","Resurgence",3,Inf,NA
+"EURO","XKX","Kosovo (in accordance with UN Security Council resolution 1244 (1999))",NA,NA,0,0,0,12,2,4,0,4,"wP","Unavailable","Unavailable",NA,NA,NA
+"EMRO","KWT","Kuwait",99,96,0,0,0,36,2,4,1,5,"wP","Low","Low",0,0.372093023255814,0.383720930232558
+"EURO","KGZ","Kyrgyzstan",90,90,0,0,0,24,2,3,1,4,"wP","Low","Resurgence",3,12.5021645021645,0.432900432900433
+"WPRO","LAO","Lao People's Democratic Republic",87,80,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Low","Normal",1,0.540880503144654,0
+"EURO","LVA","Latvia",99,95,1,0,1,168,2,4,2,6,"aP","Low","Normal",1,0.669613259668508,0.275138121546961
+"EMRO","LBN","Lebanon",88,67,0,0,0,54,2,4,1,5,"wP","Unavailable","High",2,1.85294117647059,NA
+"AFRO","LSO","Lesotho",92,87,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"AFRO","LBR","Liberia",93,78,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Unavailable",1,NA,NA
+"EMRO","LBY","Libya",74,73,0,0,0,180,2,4,2,6,"aP","Normal","High",2,1.46657929226737,0.81127129750983
+"EURO","LTU","Lithuania",93,90,0,0,0,186,2,4,2,6,"aP","Low","Low",0,0.236363636363636,0.0636363636363636
+"EURO","LUX","Luxembourg",99,99,0,0,0,186,2,4,2,6,"aP","Low","High",2,2.29166666666667,0.383333333333333
+"AFRO","MDG","Madagascar",66,57,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","High","Normal",2,0.611940298507463,1.8955223880597
+"AFRO","MWI","Malawi",89,86,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"WPRO","MYS","Malaysia",99,97,0,0,0,18,2,4,0,4,"aP","Low","High",2,3.42439024390244,0.292682926829268
+"SEARO","MDV","Maldives",99,99,0,0,0,48,2,3,1,4,"wP","Resurgence","Resurgence",3,NA,NA
+"AFRO","MLI","Mali",82,77,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","Resurgence",3,NA,NA
+"EURO","MLT","Malta",99,98,0,0,0,18,2,4,0,4,"aP","Low","Normal",1,0.746666666666667,0
+"WPRO","MHL","Marshall Islands",96,86,0,0,0,138,2,4,2,6,"aP","Resurgence","Unavailable",3,NA,NA
+"AFRO","MRT","Mauritania",84,76,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","Unavailable",3,NA,NA
+"AFRO","MUS","Mauritius",96,95,1,0,0,132,1.37931034482759,4,2,6,"Both","Normal","Unavailable",1,NA,NA
+"AMRO","MEX","Mexico",93,83,1,0,0,48,2,4,1,5,"Both","Low","Low",0,0.2,0.0666666666666667
+"WPRO","FSM","Micronesia (Federated States of)",92,69,0,0,0,138,2,4,2,6,"aP","Resurgence","Unavailable",3,NA,Inf
+"EURO","MCO","Monaco",99,99,0,1,0,156,2,3,2,5,"aP","Unavailable","Unavailable",NA,NA,NA
+"WPRO","MNG","Mongolia",97,95,0,0,0,4,2,3,0,3,"wP","Unavailable","Resurgence",3,NA,NA
+"EURO","MNE","Montenegro",93,80,0,0,0,72,2.06896551724138,4,1,5,"aP","Low","Resurgence",3,53.0793650793651,0
+"AMRO","MSR","Montserrat",NA,NA,0,0,0,18,2,3,0,3,"wP","Resurgence","Resurgence",3,NA,NA
+"EMRO","MAR","Morocco",99,99,0,0,0,60,2,4,1,5,"wP","Unavailable","Unavailable",NA,NA,NA
+"AFRO","MOZ","Mozambique",67,61,0,0,0,4,2,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"SEARO","MMR","Myanmar",81,71,0,0,0,18,2,4,0,4,"wP","Unavailable","Resurgence",3,9,NA
+"AFRO","NAM","Namibia",90,84,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","High",3,Inf,Inf
+"WPRO","NRU","Nauru",99,98,0,0,0,48,1.37931034482759,4,1,5,"Both","Unavailable","Unavailable",NA,NA,NA
+"SEARO","NPL","Nepal",95,90,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Normal",1,1.00442804428044,1.16605166051661
+"EURO","NLD","Netherlands (Kingdom of the)",97,93,1,0,1,48,3,3,1,4,"aP","Low","Unavailable",0,NA,0.0234500481850305
+"WPRO","NCL","New Caledonia",NA,NA,0,1,0,132,2,3,2,5,"aP","Low","Low",0,0,0
+"WPRO","NZL","New Zealand",94,89,1,1,1,144,1.37931034482759,3,2,5,"aP","Low","Unavailable",0,NA,0.0137578616352201
+"AMRO","NIC","Nicaragua",94,92,0,0,0,72,2,4,1,5,"wP","Low","Low",0,0,0
+"AFRO","NER","Niger",96,84,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","High","High",2,2.43454038997214,1.42618384401114
+"AFRO","NGA","Nigeria",70,62,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"WPRO","NIU","Niue",99,99,1,0,0,132,1.37931034482759,3,2,5,"aP","Resurgence","Resurgence",3,NA,NA
+"EURO","MKD","North Macedonia",92,84,0,0,0,84,2,4,1,5,"aP","Low","Normal",1,1,0
+"WPRO","MNP","Northern Mariana Islands",NA,NA,0,0,0,150,1.37931034482759,4,2,6,"aP","Unavailable","Resurgence",3,NA,NA
+"EURO","NOR","Norway",98,97,0,0,1,180,3,3,2,5,"aP","Low","Low",0,0.44412955465587,0.0163967611336032
+"EMRO","PSE","occupied Palestinian territory, including east Jerusalem",99,98,0,0,0,18,2,4,0,4,"wP","Low","Normal",1,1.04310344827586,0.413793103448276
+"EMRO","OMN","Oman",99,99,1,0,1,18,2,3,0,3,"Both","Low","Normal",1,0.876790830945559,0.0315186246418338
+"EMRO","PAK","Pakistan",93,85,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Normal",1,1.5,1.75
+"WPRO","PLW","Palau",99,94,0,0,0,120,2,4,2,6,"aP","Resurgence","Resurgence",3,NA,NA
+"AMRO","PAN","Panama",98,87,1,0,1,120,2,4,2,6,"Both","Low","Unavailable",0,NA,0.0363636363636364
+"WPRO","PNG","Papua New Guinea",45,36,0,0,0,3,1,3,0,3,"wP","Normal","Normal",1,7.3595041322314,0.0330578512396694
+"AMRO","PRY","Paraguay",82,69,1,0,1,120,2,4,2,6,"Both","Low","Low",0,0.148760330578512,0.0991735537190083
+"AMRO","PER","Peru",93,82,1,0,0,48,2,4,1,5,"wP","Low","Low",0,0.372549019607843,0.00980392156862745
+"WPRO","PHL","Philippines",74,72,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","High",2,6.33333333333333,0
+"EURO","POL","Poland",99,90,0,0,1,168,1.72413793103448,4,2,6,"Both","Low","Unavailable",0,NA,0.136664217487142
+"EURO","PRT","Portugal",99,99,1,0,0,60,2,4,1,5,"aP","Low","Low",0,0.333333333333333,0.0888888888888889
+"EMRO","QAT","Qatar",99,98,0,0,0,186,2,4,2,6,"aP","Resurgence","Resurgence",3,Inf,Inf
+"WPRO","KOR","Republic of Korea",98,98,0,0,0,138,2,4,2,6,"aP","Low","Unavailable",0,NA,0.244897959183673
+"EURO","MDA","Republic of Moldova",89,88,0,0,0,24,2,3,1,4,"wP","Low","High",2,2.73132664437012,0.040133779264214
+"EURO","ROU","Romania",89,85,1,0,0,168,2,3,2,5,"aP","Low","Low",0,0.183908045977012,0.114942528735632
+"EURO","RUS","Russian Federation",97,97,0,0,1,18,3,4,0,4,"wP","Low","Resurgence",3,8.93398533007335,0.537897310513447
+"AFRO","RWA","Rwanda",99,98,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","KNA","Saint Kitts and Nevis",96,96,0,0,0,54,2,4,1,5,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","LCA","Saint Lucia",92,81,0,0,0,60,2,4,1,5,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","VCT","Saint Vincent and the Grenadines",97,92,0,0,0,18,2,4,0,4,"wP","Resurgence","Unavailable",3,NA,NA
+"WPRO","WSM","Samoa",97,76,0,0,0,15,1.37931034482759,4,0,4,"wP","Normal","Normal",1,NA,NA
+"EURO","SMR","San Marino",93,92,0,1,0,180,3,3,2,5,"aP","Resurgence","Resurgence",3,Inf,NA
+"AFRO","STP","Sao Tome and Principe",97,97,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"EMRO","SAU","Saudi Arabia",98,98,1,0,0,60,2,4,1,5,"aP","Normal","Resurgence",3,10.8,2
+"AFRO","SEN","Senegal",90,88,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Normal",1,NA,NA
+"EURO","SRB","Serbia",97,92,0,0,0,84,1.83908045977012,4,1,5,"aP","Low","Resurgence",3,16.8474576271186,0.0593220338983051
+"AFRO","SYC","Seychelles",99,97,0,0,0,18,3,4,0,4,"wP","Normal","Normal",1,NA,NA
+"AFRO","SLE","Sierra Leone",92,91,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"WPRO","SGP","Singapore",99,97,1,0,0,132,2,4,1,5,"aP","Low","Low",0,0.449651678277391,0.0443318556048132
+"AMRO","SXM","Sint Maarten (Dutch part)",NA,NA,0,0,0,12,2,4,0,4,"aP","Unavailable","Unavailable",NA,NA,NA
+"EURO","SVK","Slovakia",97,97,0,0,0,144,2,3,2,5,"aP","Low","Low",0,0.259959486833221,0.151924375422012
+"EURO","SVN","Slovenia",92,89,1,0,0,96,3,3,1,4,"aP","Low","Low",0,0.634954569748797,0.257616247995724
+"WPRO","SLB","Solomon Islands",99,89,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Resurgence","Unavailable",3,NA,Inf
+"EMRO","SOM","Somalia",52,42,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"AFRO","ZAF","South Africa",87,85,0,0,0,18,1.37931034482759,4,0,4,"aP","Resurgence","Normal",3,1.54385964912281,4.63157894736842
+"AFRO","SSD","South Sudan",76,73,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Resurgence",3,Inf,NA
+"EURO","ESP","Spain",98,93,1,0,1,72,2,3,1,4,"aP","Low","Low",0,0.771653543307087,0.0644237652111668
+"SEARO","LKA","Sri Lanka",98,98,0,0,0,18,2,4,0,4,"wP","Low","Low",0,0.0689655172413793,0
+"EMRO","SDN","Sudan",94,84,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Normal",1,0.696969696969697,NA
+"AMRO","SUR","Suriname",83,77,0,0,1,54,2,4,1,5,"wP","Resurgence","Normal",3,0,62.8235294117647
+"EURO","SWE","Sweden",96,94,1,0,0,180,3,3,2,5,"aP","Low","Low",0,0.200927357032457,0.0185471406491499
+"EURO","CHE","Switzerland",97,96,0,0,0,156,2,3,2,5,"aP","Unavailable","Unavailable",NA,NA,NA
+"EMRO","SYR","Syrian Arab Republic",64,46,0,0,0,18,1.83908045977012,4,0,4,"wP","Resurgence","High",3,3.25,9.6875
+"EURO","TJK","Tajikistan",98,97,0,0,0,19.5,2,4,0,4,"wP","High","Resurgence",3,83.8571428571429,10.5714285714286
+"SEARO","THA","Thailand",99,97,0,0,0,48,2,3,2,5,"wP","Low","Resurgence",3,10.94,0.2
+"SEARO","TLS","Timor-Leste",87,86,0,0,0,18,1.37931034482759,4,0,4,"wP","Normal","Normal",1,0,0
+"AFRO","TGO","Togo",88,82,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Resurgence",3,5.02173913043478,NA
+"WPRO","TKL","Tokelau",NA,NA,0,0,0,60,1.37931034482759,3,1,4,"wP","Unavailable","Unavailable",NA,NA,NA
+"WPRO","TON","Tonga",99,99,0,0,0,60,1.37931034482759,4,1,5,"wP","Unavailable","Resurgence",3,NA,NA
+"AMRO","TTO","Trinidad and Tobago",97,93,0,0,0,54,2,4,1,5,"wP","Resurgence","Resurgence",3,NA,NA
+"EMRO","TUN","Tunisia",99,97,0,0,0,18,2,4,0,4,"wP","Normal","Unavailable",1,NA,0.444444444444445
+"EURO","TUR","Türkiye",99,99,0,0,0,48,2,4,1,5,"aP","Low","Unavailable",0,NA,0.125
+"EURO","TKM","Turkmenistan",99,98,0,0,0,18,2,4,0,4,"wP","Resurgence","Resurgence",3,NA,NA
+"AMRO","TCA","Turks and Caicos Islands",NA,NA,0,0,0,36,2,4,1,5,"wP","Resurgence","Resurgence",3,NA,NA
+"WPRO","TUV","Tuvalu",99,91,0,0,0,66,1.37931034482759,3,1,4,"wP","Unavailable","Unavailable",NA,NA,NA
+"AFRO","UGA","Uganda",94,89,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"EURO","UKR","Ukraine",78,73,0,0,0,18,2,4,0,4,"wP","Low","Low",0,0.361581920903955,0.0150659133709981
+"EMRO","ARE","United Arab Emirates",98,96,0,1,1,186,2,4,2,6,"Both","Low","High",2,3,0
+"EURO","GBR","United Kingdom of Great Britain and Northern Ireland",97,92,0,0,0,40,1.83908045977012,3,0,3,"aP","Low","Low",0,0.190020505809979,0.0164046479835953
+"AFRO","TZA","United Republic of Tanzania",91,88,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"AMRO","USA","United States of America",98,94,1,1,0,132,2,4,2,6,"aP","Low","Low",0,0.257613814756672,0.0989010989010989
+"AMRO","URY","Uruguay",99,94,1,0,1,132,2,4,2,6,"Both","Low","Low",0,0.0773053561568194,0.0198785201546107
+"EURO","UZB","Uzbekistan",99,99,0,0,0,16,2,4,0,4,"wP","Low","Low",0,0.228571428571429,0.0571428571428571
+"WPRO","VUT","Vanuatu",83,68,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Normal","Normal",1,Inf,Inf
+"AMRO","VEN","Venezuela (Bolivarian Republic of)",73,56,0,0,0,60,2,4,1,5,"wP","Unavailable","Low",0,0,NA
+"WPRO","VNM","Viet Nam",92,91,0,0,0,18,2,4,0,4,"wP","Low","Low",0,0.195121951219512,0.0975609756097561
+"WPRO","WLF","Wallis and Futuna",NA,NA,0,0,0,72,2,3,1,4,"aP","Unavailable","Unavailable",NA,NA,NA
+"EMRO","YEM","Yemen",85,74,0,0,0,72,1.37931034482759,4,1,5,"wP","Unavailable","Low",0,0.00101988781234064,NA
+"AFRO","ZMB","Zambia",86,82,0,0,0,3.2183908045977,1.37931034482759,3,0,3,"wP","Unavailable","Unavailable",NA,NA,NA
+"AFRO","ZWE","Zimbabwe",93,90,0,0,0,18,1.37931034482759,4,0,4,"wP","Resurgence","Resurgence",3,Inf,Inf

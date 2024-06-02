@@ -363,7 +363,7 @@ fig_s <- DataYear |>
                    group = Country))+
      geom_line()+
      geom_point()+
-     facet_wrap(~Country, scales = 'fixed', ncol = 8)+
+     facet_wrap(~Country, scales = 'free_y', ncol = 8)+
      scale_color_viridis_d()+
      labs(x = 'Year',
           y = 'Estimated median age')
@@ -388,5 +388,9 @@ ggsave("./Outcome/fig2.pdf",
        width = 8,
        height = 11,
        device = cairo_pdf)
+
+DataYear <- DataYear |> 
+     mutate(MedianAge = round(MedianAge, 2)) |> 
+     pivot_wider(names_from = Year, values_from = MedianAge)
 
 write.csv(DataYear, './Outcome/S table3.csv', row.names = F)

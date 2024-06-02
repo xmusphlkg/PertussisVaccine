@@ -24,6 +24,7 @@ DataAll <- read.csv("./Outcome/S table1.csv")|>
      )
 
 DataInci <- read.xlsx("./Data/Pertussis incidence.xlsx")[,1:17]|> 
+     filter(!is.na(Disease)) |> 
      select(-c(Denominator, Disease)) |> 
      rename(NAME = `Country./.Region`) |> 
      pivot_longer(cols = -c(NAME),
@@ -35,10 +36,7 @@ DataInci <- read.xlsx("./Data/Pertussis incidence.xlsx")[,1:17]|>
           YEAR == 2022 ~ '2022',
           YEAR == 2023 ~ '2023'),
           Period = factor(Period, levels = c('Pre-epidemic', 'Epidemic', '2023', '2022')),
-          Incidence = as.numeric(Incidence),
-          # replace all 0 with na
-          Incidence = case_when(Incidence == 0 ~ NA_real_,
-                                TRUE ~ Incidence)
+          Incidence = as.numeric(Incidence)
      )
 
 DataMap <- st_read("./Data/world.zh.json") |> 
@@ -310,18 +308,18 @@ fig_1 <- ggplot(data = DataRePre,
 
 ## panel B -------------------------------------------------------------
 
-DataRe <- DataInci |> 
+DataOut <- DataInci |> 
      filter(NAME %in% DataAll$NAME[DataAll$OutbreakSize == 2]) |> 
      group_by(NAME, Period) |>
      summarise(Incidence_50 = median(Incidence, na.rm = T),
                Incidence_25 = quantile(Incidence, 0.25, na.rm = T),
                Incidence_75 = quantile(Incidence, 0.75, na.rm = T),
                .groups = 'drop')
-DataRePre <- DataRe |> 
+DataOutPre <- DataOut |> 
      filter(Period == 'Pre-epidemic') |> 
      select(-Period) |> 
      arrange(desc(Incidence_50))
-DataReOut <- DataRe |> 
+DataOutOut <- DataOut |> 
      filter(Period %in% c(2022, 2023)) |> 
      select(NAME, Incidence_50, Period) |> 
      pivot_wider(names_from = Period,
@@ -335,10 +333,10 @@ DataReOut <- DataRe |>
                   values_drop_na = T,
                   values_to = 'Incidence_50')
 
-fig_2 <- ggplot(data = DataRePre,
+fig_2 <- ggplot(data = DataOutPre,
                 mapping = aes(x = NAME, y = Incidence_50)) +
      geom_pointrange(mapping = aes(color = '2010-2019', ymin = Incidence_25, ymax = Incidence_75)) +
-     geom_point(data = DataReOut,
+     geom_point(data = DataOutOut,
                 mapping = aes(x = NAME, y = Incidence_50, color = as.factor(Period)),
                 shape = 3) +
      geom_text(data = DataReOut,
@@ -374,5 +372,24 @@ fig <- fig_1 + fig_2 +
 ggsave("./Outcome/fig4.pdf",
        fig,
        width = 10,
-       height = 5,
+       height = 8,
        device = cairo_pdf)
+
+# table S4 ----------------------------------------------------------------
+
+DataTable <- rbind(DataRePre, DataOutPre) |> 
+     unique()
+DataTable <- rbind(DataReOut, DataOutOut) |> 
+     unique() |> 
+     pivot_wider(names_from = Period,
+                 values_from = Incidence_50) |> 
+     right_join(DataTable, by = 'NAME') |> 
+     rename(`2010-2019-Q2` = Incidence_50,
+            `2010-2019-Q1` = Incidence_25,
+            `2010-2019-Q3` = Incidence_75) |> 
+     mutate(`2023-change` = `2023`/`2010-2019-Q2`,
+            `2022-change` = `2022`/`2010-2019-Q2`)
+
+write.csv(DataTable, "./Outcome/S table4.csv", row.names = F)     
+     
+     
