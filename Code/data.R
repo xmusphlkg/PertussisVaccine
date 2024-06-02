@@ -257,7 +257,8 @@ DataInci <- DataInci |>
           YEAR == 2022 ~ '2022',
           YEAR == 2023 ~ '2023'),
           Period = factor(Period, levels = c('Pre-epidemic', 'Epidemic', '2023', '2022')),
-          Incidence = as.numeric(Incidence)
+          Incidence = as.numeric(Incidence),
+          Incidence = if_else(is.na(Incidence), Incidence, Incidence +0.001)
      ) |> 
      group_by(NAME, Period) |>
      summarise(Incidence_50 = median(Incidence, na.rm = T),
@@ -273,22 +274,22 @@ DataInci <- DataInci |>
             `2022_Incidence_50`, `2023_Incidence_50`) |>
      rename(`2022` = `2022_Incidence_50`,
             `2023` = `2023_Incidence_50`) |>
-     mutate(OutbreakSize2022 = case_when(`2022` < `Pre-epidemic_Incidence_25` ~ 'Low',
-                                         `2022` >= `Pre-epidemic_Incidence_25` & `2022` < `Pre-epidemic_Incidence_75` ~ 'Normal',
+     mutate(OutbreakSize2022 = case_when(`2022` <= `Pre-epidemic_Incidence_25` ~ 'Low',
+                                         `2022` > `Pre-epidemic_Incidence_25` & `2022` <= `Pre-epidemic_Incidence_75` ~ 'Normal',
                                          `2022` > `Pre-epidemic_Incidence_75` & 
-                                              `2022` < `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'High',
-                                         `2022` >= `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'Resurgence',
+                                              `2022` <= `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'High',
+                                         `2022` > `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'Resurgence',
                                          TRUE ~ 'Unavailable'),
-            OutbreakSize2023 = case_when(`2023` < `Pre-epidemic_Incidence_25` ~ 'Low',
-                                         `2023` >= `Pre-epidemic_Incidence_25` & `2023` < `Pre-epidemic_Incidence_75` ~ 'Normal',
+            OutbreakSize2023 = case_when(`2023` <= `Pre-epidemic_Incidence_25` ~ 'Low',
+                                         `2023` > `Pre-epidemic_Incidence_25` & `2023` <= `Pre-epidemic_Incidence_75` ~ 'Normal',
                                          `2023` > `Pre-epidemic_Incidence_75` & 
-                                              `2023` < `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'High',
-                                         `2023` >= `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'Resurgence',
+                                              `2023` <= `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'High',
+                                         `2023` > `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'Resurgence',
                                          TRUE ~ 'Unavailable'),
             `2023-change` = `2023`/`Pre-epidemic_Incidence_50`,
             `2022-change` = `2022`/`Pre-epidemic_Incidence_50`,
-            OutbreakSize2022 = factor(OutbreakSize2022, levels = c('Low', 'Normal', 'High', 'Resurgence', 'Unavailable')),
-            OutbreakSize2023 = factor(OutbreakSize2023, levels = c('Low', 'Normal', 'High', 'Resurgence', 'Unavailable')),
+            OutbreakSize2022 = factor(OutbreakSize2022, levels = c('Unavailable', 'Low', 'Normal', 'High', 'Resurgence')),
+            OutbreakSize2023 = factor(OutbreakSize2023, levels = c('Unavailable', 'Low', 'Normal', 'High', 'Resurgence')),
             OutbreakSize = case_when(
                  OutbreakSize2022 == 'Resurgence' | OutbreakSize2023 == 'Resurgence' ~ 3,
                  OutbreakSize2022 == 'High' | OutbreakSize2023 == 'High' ~ 2,
@@ -296,7 +297,24 @@ DataInci <- DataInci |>
                  OutbreakSize2022 == 'Low' | OutbreakSize2023 == 'Low' ~ 0,
                  TRUE ~ NA_real_
             )) |> 
-     select(NAME, OutbreakSize2022, OutbreakSize2023, OutbreakSize, `2023-change`, `2022-change`)
+     select(NAME, OutbreakSize2022, OutbreakSize2023, OutbreakSize,
+            `Pre-epidemic_Incidence_50`, `Pre-epidemic_Incidence_25`, `Pre-epidemic_Incidence_75`, `Pre-epidemic_IQR`,
+            `2022`, `2022-change`, `2023`, `2023-change`) |> 
+     rename(IncidencePre = `Pre-epidemic_Incidence_50`,
+            IncidencePre25 = `Pre-epidemic_Incidence_25`,
+            IncidencePre75 = `Pre-epidemic_Incidence_75`,
+            IncidencePreIQR = `Pre-epidemic_IQR`,
+            Incidence2022 = `2022`,
+            Incidence2023 = `2023`,
+            Change2022 = `2022-change`,
+            Change2023 = `2023-change`) |> 
+     mutate(IncidencePre = IncidencePre - 0.001,
+            IncidencePre25 = IncidencePre25 - 0.001,
+            IncidencePre75 = IncidencePre75 - 0.001,
+            Incidence2022 = Incidence2022 - 0.001,
+            Incidence2023 = Incidence2023 - 0.001,
+            Change2022 = round(Change2022, 2),
+            Change2023 = round(Change2023, 2))
 
 ## Merge all data
 # Data <- DataVac |> 

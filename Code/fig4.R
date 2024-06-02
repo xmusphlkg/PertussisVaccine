@@ -336,7 +336,7 @@ fig2 <- fig_3 + fig_4 + fig_5 + fig_6 + plot_layout(widths = c(2, 1, 1, 1))
 
 fig <- plot_grid(fig1, fig2, ncol = 1, rel_heights = c(1, 1))
 
-ggsave("./Outcome/fig5.pdf",
+ggsave("./Outcome/fig4.pdf",
        fig,
        width = 11.5,
        height = 7.5,
