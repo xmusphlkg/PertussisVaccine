@@ -221,19 +221,29 @@ DataRe <- DataAll |>
      mutate(OutbreakSize2022 = case_when(OutbreakSize2022 == 'Unavailable' ~ NA_character_,
                                          TRUE ~ OutbreakSize2022),
             OutbreakSize2023 = case_when(OutbreakSize2023 == 'Unavailable' ~ NA_character_,
-                                         TRUE ~ OutbreakSize2023))
+                                         TRUE ~ OutbreakSize2023)) |> 
+     # shorten the NAME of the country
+     mutate(NAME = case_when(
+          NAME == 'Micronesia (Federated States of)' ~ 'Micronesia',
+          NAME == 'Bolivia (Plurinational State of)' ~ 'Bolivia',
+          NAME == 'Russian Federation' ~ 'Russia',
+          NAME == 'Syrian Arab Republic' ~ 'Syria',
+          NAME == 'Solomon Islands' ~ 'Solomon',
+          TRUE ~ NAME
+     ))
 
 fig_3 <- ggplot(data = DataRe,
                 mapping = aes(x = NAME, y = IncidencePre)) +
      geom_pointrange(mapping = aes(color = '2010-2019', ymin = IncidencePre25, ymax = IncidencePre75)) +
-     geom_point(mapping = aes(x = NAME, y = Incidence2022, color = OutbreakSize2022)) +
+     geom_point(mapping = aes(x = NAME, y = Incidence2022, color = OutbreakSize2022),
+                size = 3) +
      coord_flip() +
      scale_y_continuous(expand = expansion(mult = c(0.1, 0.15)),
                         limits = c(0.1, NA),
                         breaks = c(0.1, 1, 10, 100, 1000),
                         labels = c(0.1, 1, 10, 100, 1000),
                         trans = 'log10') +
-     scale_x_discrete(limits = DataRePre$NAME) +
+     scale_x_discrete(limits = DataRe$NAME) +
      scale_color_manual(values = fill_color,
                         limits = c('2010-2019', 'Low', 'Normal', 'High', 'Resurgence'),
                         na.translate = F) +
@@ -250,14 +260,15 @@ fig_3 <- ggplot(data = DataRe,
 fig_4 <- ggplot(data = DataRe,
                 mapping = aes(x = NAME, y = IncidencePre)) +
      geom_pointrange(mapping = aes(color = '2010-2019', ymin = IncidencePre25, ymax = IncidencePre75)) +
-     geom_point(mapping = aes(x = NAME, y = Incidence2023, color = OutbreakSize2023)) +
+     geom_point(mapping = aes(x = NAME, y = Incidence2023, color = OutbreakSize2023),
+                size = 3) +
      coord_flip() +
      scale_y_continuous(expand = expansion(mult = c(0.1, 0.15)),
                         limits = c(0.1, NA),
                         breaks = c(0.1, 1, 10, 100, 1000),
                         labels = c(0.1, 1, 10, 100, 1000),
                         trans = 'log10') +
-     scale_x_discrete(limits = DataRePre$NAME) +
+     scale_x_discrete(limits = DataRe$NAME) +
      scale_color_manual(values = fill_color,
                         limits = c('2010-2019', 'Low', 'Normal', 'High', 'Resurgence'),
                         na.translate = F) +
