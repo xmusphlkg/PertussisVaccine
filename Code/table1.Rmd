@@ -18,26 +18,10 @@ DataAll <- DataAll |>
                                   labels = c('Low', 'Normal', 'High', 'Resurgence')),
             CoverageDTP1 = CoverageDTP1*100,
             CoverageDTP3 = CoverageDTP3*100,
-            VaccineGeneral = factor(VaccineGeneral,
-                                    levels = c('3 doses', '4 doses', '5 doses', '6 doses')),
-            GENERALY = factor(GENERALY,
-                              levels = c('Not provided', '1 dose', '2 doses', '3 doses')),
-            GENERALM = factor(GENERALM,
-                              levels = c('3 doses', '4 doses')),
-            VaccinePregnant = case_when(VaccinePregnant == 1 ~ 'Yes',
-                                        VaccinePregnant == 0 ~ 'No',
-                                        TRUE ~ 'Unavailable'),
-            VaccineAdult = case_when(VaccineAdult == 1 ~ 'Yes',
-                                     VaccineAdult == 0 ~ 'No',
-                                     TRUE ~ 'Unavailable'),
-            VaccineRisk = case_when(VaccineRisk == 1 ~ 'Yes',
-                                    VaccineRisk == 0 ~ 'No',
-                                    TRUE ~ 'Unavailable'),
             VaccineCode = factor(VaccineCode,
                                  levels = c('wP', 'aP', 'Both')),
             Cluster = factor(Cluster,
-                             levels = c('Low', 'Mild', 'High'))
-            )
+                             levels = c('Low', 'Mild', 'High')))
 
 table_1 <- tableby(Cluster~.,
                    data = DataAll,
@@ -48,7 +32,7 @@ table_1 <- tableby(Cluster~.,
                    numeric.stats = c("Nmiss", 'median', 'q1q3'))
 table_labels <- list(
   Cluster = 'Disease burden',
-  VaccineCode = 'Vaccine type',
+  VaccineCode = 'Avaliable vaccine type',
   CoverageDTP1 = 'Coverage of DTP1 (%)',
   CoverageDTP3 = 'Coverage of DTP3 (%)',
   VaccineGeneral = 'General vaccine recommendation',

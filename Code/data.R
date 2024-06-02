@@ -322,10 +322,19 @@ DataInci <- DataInci |>
 #      mutate(OutbreakNews = replace_na(Outbreak, 0)) |>
 #      merge(DataInci, by = c('NAME'), all = T) |>
 #      select(-Outbreak)
+
+DataClass <- read.xlsx('./Data/CLASS.xlsx') |> 
+     select(Code, Region, Income.group)
+
 Data <- DataVac |> 
      merge(DataInci, by = c('NAME'), all = T) |> 
      left_join(DataInfo, by = c('CODE', 'NAME')) |> 
-     select(WHO_REGION, CODE, NAME, everything())
+     select(WHO_REGION, CODE, NAME, everything()) |> 
+     left_join(DataClass, by = c(CODE = 'Code')) |> 
+     mutate(Income.group = case_when(
+          is.na(Income.group) ~ 'Low income',
+          TRUE ~ Income.group
+     ))
 
 write.csv(Data, './Outcome/S table1.csv', row.names = F)
 
