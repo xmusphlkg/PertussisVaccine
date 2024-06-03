@@ -22,6 +22,7 @@ library(mice)
 library(randomForest)
 library(edarf)
 library(GGally)
+library(scales)
 
 source('./Code/function.R')
 
@@ -63,18 +64,18 @@ DataMap <- st_read("./Data/world.zh.json") |>
 DataAll[!DataAll$CODE %in% DataMap$iso_a3, 'NAME']
 
 DataInciRaw <- read.xlsx("./Data/Pertussis incidence.xlsx") |> 
-     select(1:3, `2023`:`2015`)
+     select(1:3, `2023`:`2010`)
 DataInciRaw <- DataInciRaw |> 
      filter(!is.na(Disease)) |> 
      select(-c(Denominator, Disease)) |> 
      rename(NAME = `Country./.Region`) |> 
      filter(NAME %in% DataAll$NAME) |>
      # trance 2023:2010 to numeric
-     mutate(across('2023':'2015', ~as.numeric(.)))
+     mutate(across('2023':'2010', ~as.numeric(.)))
 
 DataInciRaw |> 
-     select(NAME, `2019`:`2015`) |> 
-     pivot_longer(cols = `2019`:`2015`, names_to = 'Year', values_to = 'Incidence') |>
+     select(NAME, `2019`:`2010`) |> 
+     pivot_longer(cols = `2019`:`2010`, names_to = 'Year', values_to = 'Incidence') |>
      group_by(NAME) |>
      summarise(Incidence = median(Incidence, na.rm = T)) |> 
      arrange(desc(Incidence)) |> 
@@ -88,7 +89,7 @@ set.seed(20240521)
 fill_color_disease <- rev(c('#DD5129FF', '#FAB255FF', '#0F7BA2FF', '#43B284FF' ))
 
 DataInci <- DataInciRaw |>
-     select('2019':'2015') 
+     select('2019':'2010') 
 names(DataInci) <- paste0("X", names(DataInci))
 rownames(DataInci) <- DataInciRaw$NAME
 
@@ -105,7 +106,7 @@ hcdata <- scale(DataMatInci) |>
 DataCluster <- hcdata$cluster |>
      as.data.frame() |>
      mutate(Cluster = as.factor(hcdata$cluster),
-            Cluster = fct_recode(Cluster, 'Low' = '1', 'Mild' = '3', 'High' = '2'),
+            Cluster = fct_recode(Cluster, 'Low' = '3', 'Mild' = '1', 'High' = '2'),
             Cluster = factor(Cluster, levels = c('Low', 'Mild', 'High'))) |>  
      select(Cluster) |> 
      rownames_to_column('NAME')
@@ -116,6 +117,10 @@ DataCluster <- cbind(DataCluster, exp(DataMatInci)) |>
      mutate(Year = as.numeric(gsub('X', '', Year)))
 
 table(hcdata$cluster)
+
+DataAll |> 
+     group_by(Cluster) |>
+     summarise(Incidence = mean(IncidencePre, na.rm = T))
 
 write.csv(DataAll, "./Outcome/S table1.csv", row.names = F)
 
@@ -132,26 +137,27 @@ DataCluster <- DataCluster |>
 
 # panel a -----------------------------------------------------------------
 
-fill_color <- c('#DD5129FF', '#43B284FF', '#FAB255FF')
+fill_color <- c('#43B284FF', '#FAB255FF', '#DD5129FF')
 
-# visualize cluster
-
-fig_1 <- fviz_cluster(hcdata,
-                      data = scale(DataMatInci),
-                      main = 'B',
-                      repel = TRUE,
-                      ggtheme = theme_bw(),
-                      palette = fill_color,
-                      geom = 'point',
-                      show.clust.cent = F) +
-     theme(legend.position = "none",
-           panel.grid = element_blank(),
-           plot.title.position = 'plot')
-
+fig_1 <- ggplot(DataAll, aes(x = Cluster, y = IncidencePre + 0.001, fill = Cluster)) +
+     geom_boxplot(show.legend = F) +
+     scale_fill_manual(values = fill_color,
+                       breaks = levels(DataAll$Cluster),
+                       limits = levels(DataAll$Cluster)) +
+     scale_x_discrete(limits = levels(DataAll$Cluster)) +
+     scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
+                        limits = c(0.001, NA),
+                        breaks = c(0, 0.1, 1, 10, 100, 1000) + 0.001,
+                        labels = c(0, 0.1, 1, 10, 100, 1000),
+                        trans = 'log10') +
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           plot.title.position = 'plot') +
+     labs(title = "A", x = NULL, y = "Median incidence (2010-2019)")
 
 # panel b -----------------------------------------------------------------
-
-fill_color <- c('#43B284FF', '#FAB255FF', '#DD5129FF')
 
 DataMapPlot <- DataMap |> 
      left_join(DataAll[,c('CODE', 'Cluster')], by = c('iso_a3' = 'CODE'))
