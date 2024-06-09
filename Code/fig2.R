@@ -13,6 +13,7 @@ library(grid)
 library(gtable)
 library(sf)
 library(ggh4x)
+library(randomForest)
 
 scientific_10 <- function(x) {
      x_f <- gsub("[+]", "", gsub("1e", "10^", scales::scientific_format()(x)))
@@ -104,17 +105,24 @@ DataRaw <- rbind(data_EU, data_other) |>
                                TRUE ~ EndAge +0.9)) |> 
      filter(Year >= 2010)
 
-write.csv(DataRaw, './Outcome/S table2.csv', row.names = F)
-
 remove(data_EU, data_other, data_EU_all)
 
 # print the date range for each country
 DataRaw |> 
      group_by(Country) |> 
      summarise(Start = min(Year),
-               End = max(Year)) |> 
+               End = max(Year),
+               Case = paste(min(CasesAll), max(CasesAll), sep = '-')) |> 
      arrange(Start) |> 
      print(n = Inf)
+
+# Vaccination strategy data
+
+DataVac <- read.csv('./Outcome/S table1.csv')
+DataVac <- DataVac |> 
+     select(CODE, NAME, VaccineGeneral, TimeLastShot,
+            VaccineAdult, VaccineRisk, VaccinePregnant, 
+            CoverageDTP1, CoverageDTP3)
 
 # appendix figure --------------------------------------------------------------------
 
@@ -124,7 +132,7 @@ DataNorm <- DataRaw|>
      unnest(cols = c(AgeList)) |>
      filter(!is.na(AgeList)) |>
      group_by(Year, Country, AgeList) |>
-     mutate(AverageCases = Cases / (EndAge - StartAge + 1)) |>
+     mutate(AverageCases = Cases / (EndAge - StartAge + 0.1)) |>
      ungroup() |>
      select(Country, Year, Age = AgeList, AverageCases) |>
      group_by(Country, Year) |>
@@ -241,8 +249,71 @@ fig_1 <- ggplot(data = DataMap) +
      labs(title = "A", x = NULL, y = NULL, fill = 'Estimated median age')+
      guides(fill = guide_colorbar(barwidth = 20,
                                   title.position = 'top'))
+# panel b ---------------------------------------------------------------------
 
-# panel b -----------------------------------------------------------------
+DataYear <- DataNorm |> 
+     group_by(Country, Year) |>
+     arrange(Age) |>
+     mutate(cum_weight = cumsum(Density)) |>
+     summarise(MedianAge = Age[min(which(cum_weight >= sum(Density) / 2))],
+               .groups = 'drop')
+
+fig_2 <- DataYear |> 
+     mutate(MedianAge = case_when(MedianAge > 30 ~ 30,
+                                  TRUE ~ MedianAge),
+            Year = as.character(Year)) |> 
+     ggplot()+
+     geom_tile(aes(x = Year,
+                   y = Country,
+                   fill = MedianAge))+
+     scale_fill_gradientn(colours = fill_color,
+                          limits = c(2, 30),
+                          breaks = c(2, 5, 10, 20, 30),
+                          trans = 'log10',
+                          na.value = 'white')+
+     scale_y_discrete(limits = country_names,
+                      labels = country_labels)+
+     labs(title = 'B',
+          x = 'Year',
+          y = NULL,
+          fill = 'Median age')+
+     theme_bw()+
+     theme(panel.grid.major.x = element_blank(),
+           panel.grid.minor.x = element_blank(),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'none',
+           plot.title.position = 'plot')
+
+data <- DataYear |> 
+     mutate(MedianAge = round(MedianAge, 2)) |> 
+     rbind(DataMedian |> mutate(Year = 'Total')) |> 
+     pivot_wider(names_from = Year, values_from = MedianAge)
+
+write.csv(data, './Outcome/fig data/fig2.csv', row.names = F)
+
+# appendix fig ------------------------------------------------------------
+
+fig_s <- DataYear |> 
+     mutate(Country = factor(Country,
+                             levels = country_names,
+                             labels = country_labels)) |>
+     ggplot(aes(x = as.numeric(Year),
+                   y = MedianAge,
+                   group = Country))+
+     geom_line()+
+     geom_point()+
+     facet_wrap(~Country, scales = 'free_y', ncol = 8)+
+     scale_color_viridis_d()+
+     labs(x = 'Year',
+          y = 'Estimated median age')
+
+ggsave("./Outcome/S fig1_37.png",
+       fig_s,
+       width = 16,
+       height = 10)
+
+# panel c -----------------------------------------------------------------
 
 fill_color <- rev(c("#1E313EFF", "#4E475FFF", "#8B5975FF", "#C86C7CFF", "#FA8975FF"))
 
@@ -272,7 +343,7 @@ DataAll <- DataRaw|>
      ) |>
      unnest(cols = c(Age_Density))
 
-fig_2 <- DataAll |> 
+fig_3 <- DataAll |> 
      ggplot()+
      geom_density_ridges_gradient(mapping = aes(x = Age,
                                                 y = Country,
@@ -283,11 +354,6 @@ fig_2 <- DataAll |>
                                   scale = 1.2,
                                   stat = "identity",
                                   rel_min_height = 0.01)+
-     # geom_point(data = DataMedian,
-     #            mapping = aes(x = MedianAge,
-     #                          y = Country))+
-     # facet_wrap2(~Period, scales = 'free_y', axes = "all", ncol = 2)+
-     # coord_flip()+
      scale_x_continuous(limits = c(0, 100),
                         expand = c(0, 0),
                         breaks = seq(0, 100, 10))+
@@ -295,7 +361,7 @@ fig_2 <- DataAll |>
                           limits = c(0, 100))+
      scale_y_discrete(limits = country_names,
                       labels = country_labels)+
-     labs(title = 'B',
+     labs(title = 'C',
           y = NULL,
           x = 'Age',
           fill = "Age")+
@@ -305,92 +371,107 @@ fig_2 <- DataAll |>
            strip.background = element_blank(),
            strip.text = element_text(size = 14, hjust = 0, face = 'plain'),
            strip.placement = 'outside',
-           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.text.y = element_blank(),
+           axis.text.x = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
            legend.direction = 'horizontal',
            plot.title.position = 'plot',
            legend.position = 'none')+
      guides(fill = guide_colorbar(barwidth = 20))
 
-# panel c ---------------------------------------------------------------------
+# panel d -----------------------------------------------------------------
 
-fill_color <- rev(c("#1D3141FF", "#096168FF", "#209478FF", "#75C56EFF", "#E2EE5EFF"))
+DataYear <- DataRaw|>
+     rowwise() |>
+     mutate(AgeList = if_else(is.na(StartAge), list(NA_real_), list(seq(StartAge, EndAge)))) |>
+     unnest(cols = c(AgeList)) |>
+     filter(!is.na(AgeList)) |>
+     group_by(Year, AgeList) |>
+     mutate(AverageCases = Cases / (EndAge - StartAge + 0.1)) |>
+     ungroup() |>
+     select(Year, Age = AgeList, AverageCases) |>
+     group_by(Year) |>
+     mutate(
+          Weight = AverageCases / sum(AverageCases),
+          Weight = case_when(
+               is.na(Weight) ~ 0,
+               TRUE ~ Weight
+          )
+     ) |>
+     ungroup() |>
+     group_by(Year) |>
+     summarise(
+          Age_Density = list({
+               dens <- density(Age, weights = Weight, kernel = "epanechnikov", adjust = 0.3, from = 0)
+               data.frame(Age = dens$x, Density = dens$y)
+          }),
+          .groups = 'drop'
+     ) |>
+     unnest(cols = c(Age_Density))
 
-DataYear <- DataNorm |> 
-     group_by(Country, Year) |>
-     arrange(Age) |>
-     mutate(cum_weight = cumsum(Density)) |>
-     summarise(MedianAge = Age[min(which(cum_weight >= sum(Density) / 2))],
-               .groups = 'drop')
-
-fig_3 <- DataYear |> 
-     mutate(MedianAge = case_when(MedianAge > 30 ~ 30,
-                                  TRUE ~ MedianAge),
-            Year = as.character(Year)) |> 
+fig_4 <- DataYear |>
      ggplot()+
-     geom_tile(aes(x = Year,
-                   y = Country,
-                   fill = MedianAge))+
+     geom_density_ridges_gradient(mapping = aes(x = Age,
+                                                y = Year,
+                                                group = Year,
+                                                fill = Age,
+                                                height = Density),
+                                  color = 'white',
+                                  scale = 1.2,
+                                  stat = "identity",
+                                  rel_min_height = 0.01)+
+     scale_x_continuous(limits = c(0, 100),
+                        expand = c(0, 0),
+                        breaks = seq(0, 100, 10))+
      scale_fill_gradientn(colours = fill_color,
-                          limits = c(2, 30),
-                          breaks = c(2, 5, 10, 20, 30),
-                          trans = 'log10',
-                          na.value = 'white')+
-     scale_y_discrete(limits = country_names,
-                      labels = country_labels)+
-     labs(title = 'C',
-          x = 'Year',
-          y = NULL,
-          fill = 'Median age')+
+                          limits = c(0, 100))+
+     scale_y_continuous(breaks = seq(2010, 2023, 1),
+                        expand = expansion(mult = c(0, 0.04)))+
+     labs(title = 'D',
+          x = 'Age',
+          y = 'Year',
+          fill = 'Age')+
      theme_bw()+
      theme(panel.grid.major.x = element_blank(),
            panel.grid.minor.x = element_blank(),
-           axis.text.y = element_blank(),
+           axis.text.y = element_text(color = 'black', face = 'plain'),
            axis.text.x = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
            legend.position = 'none',
            plot.title.position = 'plot')
 
+data <- DataYear |> 
+     group_by(Year) |> 
+     arrange(Age) |>
+     summarise(MedianAge = Age[min(which(cumsum(Density) >= sum(Density) / 2))])
+print(data)
 
-# appendix fig ------------------------------------------------------------
+data <- DataRaw |> 
+     group_by(Country, Year) |> 
+     filter(Year %in% 2010:2023) |>
+     summarise(CasesAll = round(sum(Cases)),
+               .groups = 'drop') |> 
+     arrange(CasesAll) |> 
+     pivot_wider(names_from = Year, values_from = CasesAll) |>
+     select(Country, `2010`, `2011`, `2012`, `2013`, `2014`, `2015`, `2016`, `2017`, `2018`, `2019`, `2020`, `2021`, `2022`, `2023`)
 
-fig_s <- DataYear |> 
-     mutate(Country = factor(Country,
-                             levels = country_names,
-                             labels = country_labels)) |>
-     ggplot(aes(x = as.numeric(Year),
-                   y = MedianAge,
-                   group = Country))+
-     geom_line()+
-     geom_point()+
-     facet_wrap(~Country, scales = 'free_y', ncol = 8)+
-     scale_color_viridis_d()+
-     labs(x = 'Year',
-          y = 'Estimated median age')
+data[data$Country == 'CN',-1]/colSums(data[-1], na.rm = T)
 
-ggsave("./Outcome/S fig1_37.png",
-       fig_s,
-       width = 16,
-       height = 10)
+write.csv(data, './Outcome/S table2.csv', row.names = F)
 
 # outcome -----------------------------------------------------------------
 
 design <- "
-AAAAAA
-BBCCCC
+ABC
+DBC
 "
 
-fig <- fig_1 + fig_2 + fig_3 +
-     plot_layout(design = design, heights = c(1, 2.1))
+fig <- fig_1 + fig_2 + fig_3 + fig_4 +
+     plot_layout(design = design, widths = c(2.5, 2, 1.5), heights = c(1, 1.5))
 
 ggsave("./Outcome/fig2.pdf",
        fig,
-       width = 8,
-       height = 11,
+       width = 15,
+       height = 8,
        device = cairo_pdf)
 
-DataYear <- DataYear |> 
-     mutate(MedianAge = round(MedianAge, 2)) |> 
-     pivot_wider(names_from = Year, values_from = MedianAge)
-
-write.csv(DataYear, './Outcome/S table3.csv', row.names = F)

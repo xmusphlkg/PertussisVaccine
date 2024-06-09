@@ -279,6 +279,10 @@ ggsave("./Outcome/fig1.pdf",
        height = 11,
        device = cairo_pdf)
 
+write.csv(DataAll,
+          "./Outcome/fig data/fig1.csv",
+          row.names = F)
+
 # content -----------------------------------------------------------------
 
 print('################## Figure 1 ##################')

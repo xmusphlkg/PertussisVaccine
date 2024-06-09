@@ -151,7 +151,8 @@ fig_1_m <- plot_map_col(DataAll$OutbreakSize2022, fill_color) +
      scale_fill_manual(values = fill_color,
                        breaks = levels(DataAll$OutbreakSize2022),
                        limits = levels(DataAll$OutbreakSize2022),
-                       na.translate = F)
+                       na.translate = F)+
+     theme(axis.text.x = element_blank())
 
 fig_1 <- ggplot(data = DataMapPlot) +
      geom_sf(aes(fill = factor(OutbreakSize2022)),
@@ -183,7 +184,8 @@ fig_2_m <- plot_map_col(DataAll$OutbreakSize2023, fill_color) +
      scale_fill_manual(values = fill_color,
                        breaks = levels(DataAll$OutbreakSize2022),
                        limits = levels(DataAll$OutbreakSize2022),
-                       na.translate = F)
+                       na.translate = F)+
+     theme(axis.text.x = element_blank())
 
 fig_2 <- ggplot(data = DataMapPlot) +
      geom_sf(aes(fill = factor(OutbreakSize2023))) +
@@ -210,96 +212,23 @@ fig_2 <- ggplot(data = DataMapPlot) +
 
 fig_2 <- fig_2 + inset_element(fig_2_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.45)
 
-# fig3 ----------------------------------------------------------------
-
-fill_color <- c("black", '#43B284FF', '#0F7BA2FF', '#FAB255FF', '#DD5129FF')
-
-DataRe <- DataAll |> 
-     filter(OutbreakSize2022 == 'Resurgence' | OutbreakSize2023 == 'Resurgence') |> 
-     select(NAME, IncidencePre25, IncidencePre, IncidencePre75, IncidencePreIQR,
-            Incidence2022, Incidence2023, OutbreakSize2022, OutbreakSize2023) |> 
-     mutate(OutbreakSize2022 = case_when(OutbreakSize2022 == 'Unavailable' ~ NA_character_,
-                                         TRUE ~ OutbreakSize2022),
-            OutbreakSize2023 = case_when(OutbreakSize2023 == 'Unavailable' ~ NA_character_,
-                                         TRUE ~ OutbreakSize2023)) |> 
-     # shorten the NAME of the country
-     mutate(NAME = case_when(
-          NAME == 'Micronesia (Federated States of)' ~ 'Micronesia',
-          NAME == 'Bolivia (Plurinational State of)' ~ 'Bolivia',
-          NAME == 'Russian Federation' ~ 'Russia',
-          NAME == 'Syrian Arab Republic' ~ 'Syria',
-          NAME == 'Solomon Islands' ~ 'Solomon',
-          TRUE ~ NAME
-     ))
-
-fig_3 <- ggplot(data = DataRe,
-                mapping = aes(x = NAME, y = IncidencePre)) +
-     geom_pointrange(mapping = aes(color = '2010-2019', ymin = IncidencePre25, ymax = IncidencePre75)) +
-     geom_point(mapping = aes(x = NAME, y = Incidence2022, color = OutbreakSize2022),
-                size = 3) +
-     coord_flip() +
-     scale_y_continuous(expand = expansion(mult = c(0.1, 0.15)),
-                        limits = c(0.1, NA),
-                        breaks = c(0.1, 1, 10, 100, 1000),
-                        labels = c(0.1, 1, 10, 100, 1000),
-                        trans = 'log10') +
-     scale_x_discrete(limits = DataRe$NAME) +
-     scale_color_manual(values = fill_color,
-                        limits = c('2010-2019', 'Low', 'Normal', 'High', 'Resurgence'),
-                        na.translate = F) +
-     theme_bw() +
-     theme(panel.grid = element_blank(),
-           axis.text = element_text(color = 'black', face = 'plain'),
-           axis.title = element_text(color = 'black', face = 'plain'),
-           legend.position = 'none',
-           plot.title.position = 'plot') +
-     labs(x = NULL, y = NULL, color = 'Pertussis status', title = 'E')
-
-# fig4 -------------------------------------------------------------
-
-fig_4 <- ggplot(data = DataRe,
-                mapping = aes(x = NAME, y = IncidencePre)) +
-     geom_pointrange(mapping = aes(color = '2010-2019', ymin = IncidencePre25, ymax = IncidencePre75)) +
-     geom_point(mapping = aes(x = NAME, y = Incidence2023, color = OutbreakSize2023),
-                size = 3) +
-     coord_flip() +
-     scale_y_continuous(expand = expansion(mult = c(0.1, 0.15)),
-                        limits = c(0.1, NA),
-                        breaks = c(0.1, 1, 10, 100, 1000),
-                        labels = c(0.1, 1, 10, 100, 1000),
-                        trans = 'log10') +
-     scale_x_discrete(limits = DataRe$NAME) +
-     scale_color_manual(values = fill_color,
-                        limits = c('2010-2019', 'Low', 'Normal', 'High', 'Resurgence'),
-                        na.translate = F) +
-     theme_bw() +
-     theme(panel.grid = element_blank(),
-           axis.text = element_text(color = 'black', face = 'plain'),
-           axis.title = element_text(color = 'black', face = 'plain'),
-           legend.position = 'bottom',
-           legend.justification = 1,
-           plot.title.position = 'plot') +
-     labs(x = NULL, y = "Yearly incidence", color = 'Pertussis status', title = 'F')
-
 # combine -----------------------------------------------------------------
 
 design <- "
-AAAB
-CCCC
-DDDD
+AB
+CC
+DD
 "
 
 fig_r <- fig_0_1 + fig_0_2 + fig_1 + fig_2 +
-     plot_layout(design = design)
-fig_l <- fig_3 + fig_4 + 
-     plot_layout(ncol = 1)
-
-fig <- cowplot::plot_grid(fig_r, fig_l, nrow = 1, rel_widths = c(1, 1))
+     plot_layout(design = design, widths = c(3, 1.1))
+# fig_l <- fig_3 + fig_4 + 
+#      plot_layout(ncol = 1)
+# 
+# fig <- cowplot::plot_grid(fig_r, fig_l, nrow = 1, rel_widths = c(1, 1))
 
 ggsave("./Outcome/fig3.pdf",
-       fig,
-       width = 12,
+       fig_r,
+       width = 6,
        height = 9,
        device = cairo_pdf)
-     
-     
