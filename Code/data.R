@@ -153,90 +153,11 @@ DataVacSchedule <- DataVacSchedule |>
 remove(DataVacSchedulePreg, DataVacScheduleAdult, DataVacScheduleRisk,
        DataVacScheduleGen, DataVacScheduleGenM, DataVacScheduleGenY)
 
-# ## Data from the World Health Organization (WHO)
-# ## https://immunizationdata.who.int/global/wiise-detail-page/introduction-of-ap-(acellular-pertussis)-vaccine?ISO_3_CODE=&YEAR=
-# ## Introduction of aP (acellular pertussis) vaccine
-# ## Introduction status of aP (acellular pertussis) vaccine over time. These data summarize country introduction status of aP (acellular pertussis) vaccine in the national immunization programme. Data are updated regularly and are derived from official country reporting to the World Health Organization.
-# 
-# DataVacAP <- read.xlsx("./Data/Introduction of aP.xlsx")
-# print(length(unique(DataVacAP$COUNTRYNAME)))
-# 
-# # Introduction of aP (acellular pertussis) vaccine
-# DataVacAPYes <- DataVacAP |> 
-#      select(ISO_3_CODE, COUNTRYNAME, INTRO, YEAR) |>
-#      filter(INTRO == 'Yes') |> 
-#      # find the min year of introduction
-#      group_by(ISO_3_CODE, COUNTRYNAME) |>
-#      summarise(IntroAPYear = min(YEAR),
-#                .groups = 'drop') |> 
-#      rename(CODE = ISO_3_CODE, NAME = COUNTRYNAME) |> 
-#      select(CODE, NAME, IntroAPYear)
-# 
-# # No introduction of aP (acellular pertussis) vaccine
-# DataVacAPNo <- DataVacAP |> 
-#      select(ISO_3_CODE, COUNTRYNAME, INTRO, YEAR) |>
-#      # find the country which has no introduction of aP vaccine
-#      group_by(ISO_3_CODE, COUNTRYNAME) |>
-#      summarise(Intro = all(unique(INTRO) != 'Yes'),
-#                IntroAPYear = NA,
-#                .groups = 'drop') |> 
-#      filter(Intro == TRUE) |>
-#      rename(CODE = ISO_3_CODE, NAME = COUNTRYNAME) |> 
-#      select(CODE, NAME, IntroAPYear)
-# 
-# # Merge data
-# DataVacAP <- DataVacAPYes |>
-#      bind_rows(DataVacAPNo) |>
-#      mutate(IntroAP = !is.na(IntroAPYear))
-# remove(DataVacAPYes, DataVacAPNo)
-
 ## Data from the World Health Organization (WHO)
 ## Merge all data
 DataVac <- DataVacCover |> 
      merge(DataVacSchedule, by = c('CODE', 'NAME'), all = T) |>
      merge(DataVacWP, by = c('CODE', 'NAME'), all = T)
-
-# remove(DataVacCover, DataVacSchedule, DataVacAP, DataVacWP)
-
-# ## Data from the HealthMap
-# ## https://www.healthmap.org/en/
-# ## HealthMap is a global disease alert mapping system that provides real-time information on infectious diseases around the world. The system is used by governments, international organizations, and the public to monitor the spread of diseases and plan interventions.
-# 
-# DataOutbreak <- read_json('./Data/healthmap_pertussis.json')
-# DataOutbreak <- DataOutbreak$markers
-# DataOutbreak <- DataOutbreak |> 
-#      map_df(~as.data.frame(.x), .id = 'id') |> 
-#      select(place_id, place_name, html) |> 
-#      mutate(Date = as.Date(str_extract(html, "\\d{1,2} \\w+ \\d{4}"), format = "%d %b %Y"),
-#             YEAR = year(Date),
-#             # get the country name from place_name
-#             NAME = str_extract(place_name, "[^,]+$"),
-#             # remove the space at the beginning of the country name
-#             NAME = str_remove(NAME, "^ ")) |> 
-#      select(Date, YEAR, NAME) |> 
-#      group_by(NAME) |>
-#      summarise(Outbreak = 1,
-#                .groups = 'drop') |> 
-#      mutate(NameCheck = !NAME %in% DataVac$NAME)
-# 
-# # replace unknown country names
-# print(DataOutbreak$NAME[DataOutbreak$NameCheck])
-# DataName <- c(
-#      "Bolivia" = "Bolivia (Plurinational State of)",
-#      "Czech Republic" = "Czechia",
-#      "Macau" = "China, Macao SAR",
-#      "Netherlands" = "Netherlands (Kingdom of the)",
-#      "Northern Ireland" = "United Kingdom of Great Britain and Northern Ireland",
-#      "United Kingdom" = "United Kingdom of Great Britain and Northern Ireland",
-#      "United States" = "United States of America",
-#      "Vietnam" = "Viet Nam"
-# )
-# DataOutbreak <- DataOutbreak |> 
-#      mutate(NAME = recode(NAME, !!!DataName),
-#             NameCheck = !NAME %in% DataVac$NAME) |> 
-#      select(NAME, Outbreak) |> 
-#      # remove duplicates
-#      unique()
 
 ## Data from the World Health Organization (WHO)
 ## https://immunizationdata.who.int/global/wiise-detail-page/pertussis-reported-cases-and-incidence

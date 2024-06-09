@@ -48,15 +48,17 @@ plot_map_density <- function(x, fill_color) {
           geom_line() + 
           geom_segment(aes(xend = x, yend = 0, colour = x))+
           geom_hline(yintercept = 0, linetype = 'dashed')+
-          scale_x_continuous(limits = c(0, 1),
+          scale_x_continuous(limits = c(0.3, 1),
                              labels = scales::percent_format(accuracy = 1),
                              expand = c(0, 0))+
           scale_y_continuous(limits = c(0, NA),
                              expand = expansion(mult = c(0, 0.2)))+
-          scale_color_gradientn(colors = fill_color)+
+          scale_color_gradientn(colors = fill_color,
+                                limits = c(0.3, 1),
+                                breaks = c(0.3, 0.5, 0.7, 0.8, 0.9, 0.95, 1))+
           theme_minimal()+
           theme(panel.grid = element_blank(),
-                axis.text = element_text(color = 'black', face = 'plain'),
+                axis.text.x = element_text(color = 'black', face = 'plain'),
                 axis.title = element_blank(),
                 axis.text.y = element_blank(),
                 panel.border = element_rect(color = 'black', fill = NA),
@@ -88,9 +90,11 @@ plot_map_col <- function(x, fill_color) {
           theme_minimal()+
           theme(panel.grid = element_blank(),
                 axis.title = element_blank(),
-                axis.text = element_blank(),
+                axis.text.x = element_text(color = 'black', face = 'plain'),
+                axis.text.y = element_blank(),
                 panel.border = element_rect(color = 'black', fill = NA),
                 plot.title.position = 'plot',
+                plot.title = element_text(size = 11),
                 legend.position = 'none')+
           labs(colour = NULL)
 }
