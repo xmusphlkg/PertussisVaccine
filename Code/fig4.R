@@ -34,13 +34,11 @@ DataAll <- read.csv("./Outcome/S table1.csv") |>
             VaccineGeneral = as.factor(VaccineGeneral),
             GENERALY = as.factor(GENERALY),
             GENERALM = as.factor(GENERALM),
-            VaccineAdult = if_else(VaccineAdult == 1, 'Yes', 'No'),
-            VaccinePregnant = if_else(VaccinePregnant == 1, 'Yes', 'No'),
-            VaccineRisk = if_else(VaccineRisk == 1, 'Yes', 'No'),
-            VaccineAP = if_else(VaccineCode %in% c('aP', 'Both'), 1, 0),
-            VaccineWP = if_else(VaccineCode %in% c('wP', 'Both'), 1, 0),
+            VaccineAP = as.factor(VaccineCode %in% c('aP', 'Both')),
+            VaccineWP = as.factor(VaccineCode %in% c('wP', 'Both')),
             OutbreakSize2022 = factor(OutbreakSize2022, levels = c('Low', 'Normal', 'High', 'Resurgence')),
             OutbreakSize2023 = factor(OutbreakSize2023, levels = c('Low', 'Normal', 'High', 'Resurgence')))
+DataAll <- DataAll[,names(DataAll) != 'Cluster']
 
 ggsave("./Outcome/S fig2_1.png",
        DataAll |>
@@ -229,13 +227,10 @@ plot_rf <- function(i){
                GENERALY = as.numeric(str_extract(as.character(GENERALY), '\\d+')),
                GENERALY = case_when(is.na(GENERALY) ~ 0,
                                     TRUE ~ GENERALY),
-               VaccinePregnant = factor(VaccinePregnant),
-               VaccineAdult = factor(VaccineAdult),
-               VaccineRisk = factor(VaccineRisk),
-               VaccineGeneral = factor(VaccineGeneral),
-               GENERALM = factor(GENERALM),
-               GENERALY = factor(GENERALY)
+               VaccineAP = as.numeric(VaccineAP == 'TRUE'),
+               VaccineWP = as.numeric(VaccineWP == 'TRUE')
           )  |>
+          mutate_at(vars(VaccinePregnant, VaccineAdult, VaccineRisk, VaccineAP, VaccineWP), as.character) |>
           filter(!is.na(OutbreakSize) & !is.infinite(OutbreakSize))  |>
           select(-c(VaccineCode, VaccineGeneral, TimeFirstShot)) |> 
           na.omit()
@@ -281,7 +276,8 @@ plot_rf <- function(i){
                        names_to = 'centile',
                        values_to = 'value') |> 
           drop_na() |> 
-          left_join(DataLabel, by = c(centile = 'Variable'))
+          left_join(DataLabel, by = c(centile = 'Variable')) |> 
+          mutate(cluster = cl)
      
      # Creat the plot
      fig2 <- ggplot(pd_df, aes(x = value, y = prediction)) +
@@ -301,6 +297,8 @@ plot_rf <- function(i){
             width = 8,
             height = 6,
             dpi = 300)
+     
+     write.csv(pd_df, paste0('./Outcome/S table3_', i[1], '.csv'), row.names = F)
      
      return(fig1)
 }
@@ -329,3 +327,10 @@ ggsave("./Outcome/fig4.pdf",
 data <- rbind(fig_4$data, fig_5$data, fig_6$data)
 
 write.csv(data, "./Outcome/fig data/fig4.csv", row.names = F)
+
+data <- map(1:3, ~read.csv(paste0('./Outcome/S table3_', .x, '.csv')))
+data <- bind_rows(data, .id = 'Cluster')
+write.csv(data, "./Outcome/S table3.csv", row.names = F)
+# remove the temporary files
+file.remove(paste0('./Outcome/S table3_', 1:3, '.csv'))
+
