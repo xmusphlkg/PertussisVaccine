@@ -48,6 +48,15 @@ DataAll[!DataAll$CODE %in% DataMap$iso_a3, 'NAME']
 DataMapPlot <- DataMap |> 
      left_join(DataAll, by = c('iso_a3' = 'CODE'))
 
+# write csv
+data <- DataAll |> 
+     select(WHO_REGION, NAME, CODE, 
+            IncidencePre, IncidencePre25, IncidencePre75, IncidencePreIQR,
+            Incidence2022, OutbreakSize2022, 
+            Incidence2023, OutbreakSize2023)
+
+write.csv(data, './Outcome/fig data/fig3.csv', row.names = F)
+
 # panel a -----------------------------------------------------------------
 
 fill_color <- rev(c("grey50", '#DD5129FF', '#FAB255FF', '#0F7BA2FF', '#43B284FF'))

@@ -179,7 +179,7 @@ DataInci <- DataInci |>
           YEAR == 2023 ~ '2023'),
           Period = factor(Period, levels = c('Pre-epidemic', 'Epidemic', '2023', '2022')),
           Incidence = as.numeric(Incidence),
-          Incidence = if_else(is.na(Incidence), Incidence, Incidence +0.001)
+          Incidence = if_else(is.na(Incidence), Incidence, Incidence + 0.001)
      ) |> 
      group_by(NAME, Period) |>
      summarise(Incidence_50 = median(Incidence, na.rm = T),

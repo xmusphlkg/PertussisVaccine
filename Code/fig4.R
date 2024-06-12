@@ -252,8 +252,8 @@ plot_rf <- function(i){
      importance_data <- importance(rf_model, scale = FALSE, type = 1)
      importance_df <- data.frame(Variable = rownames(importance_data), Importance = importance_data[,1]) |> 
           arrange(desc(Importance)) |> 
-          left_join(DataLabel, by = 'Variable')
-     print(importance_df)
+          left_join(DataLabel, by = 'Variable') |> 
+          mutate(cluster = cl)
      
      # Plotting the importance of each variable
      fig1 <- ggplot(importance_df, aes(x = reorder(Variable, Importance), y = Importance)) +
@@ -304,7 +304,6 @@ plot_rf <- function(i){
      return(fig1)
 }
 
-
 fig_4 <- plot_rf(1)
 fig_5 <- plot_rf(2)
 fig_6 <- plot_rf(3)
@@ -323,3 +322,9 @@ ggsave("./Outcome/fig4.pdf",
        height = 7.5,
        device = cairo_pdf,
        family = "Helvetica")
+
+# data --------------------------------------------------------------------
+
+data <- rbind(fig_4$data, fig_5$data, fig_6$data)
+
+write.csv(data, "./Outcome/fig data/fig4.csv", row.names = F)
