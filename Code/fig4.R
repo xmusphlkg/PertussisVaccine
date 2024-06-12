@@ -207,7 +207,7 @@ DataLabel <- data.frame(
                   "TimeLastShot", "TimeFirstShot",
                   "GENERALM", "GENERALY", "VaccineGeneral", "VaccineAP", "VaccineWP"),
      text = c("DTP1 coverage", "DTP3 coverage", 
-              "Vaccine for pregnant", "Vaccine for adult", "Vaccine for risk",
+              "Maternal immunization", "Vaccine for adult", "Vaccine for risk",
               "aP vaccine, wP vaccine",
               "Time of last shot", "Time of first shot",
               "Vaccine dose (<3 years) ", "Vaccine dose (3 years+)",
