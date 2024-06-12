@@ -210,7 +210,7 @@ DataLabel <- data.frame(
               "Maternal immunization", "Vaccine for adult", "Vaccine for risk",
               "aP vaccine, wP vaccine",
               "Time of last shot", "Time of first shot",
-              "Vaccine dose (<3 years) ", "Vaccine dose (3 years+)",
+              "Vaccine dose (<2 years) ", "Vaccine dose (2 years+)",
               "General vaccine schedule",
               "aP vaccine", "wP vaccine")
 )
@@ -245,6 +245,7 @@ plot_rf <- function(i){
      x <- Data |> select(-OutbreakSize)
      
      # Fit random forest model
+     set.seed(20240612)
      rf_model <- randomForest(x, y, importance = TRUE, ntree = 500)
      print(rf_model)
      
