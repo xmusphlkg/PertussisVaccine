@@ -257,6 +257,6 @@ Data <- DataVac |>
           TRUE ~ Income.group
      ))
 
-write.csv(Data, './Outcome/S table1.csv', row.names = F)
+write.csv(Data, './Outcome/S table2.csv', row.names = F)
 
 print("Data cleaned successfully!")

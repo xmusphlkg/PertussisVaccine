@@ -18,7 +18,7 @@ source('./Code/function.R')
 
 # Data --------------------------------------------------------------------
 
-DataAll <- read.csv("./Outcome/S table1.csv") 
+DataAll <- read.csv("./Outcome/S table2.csv") 
 
 DataAll <- DataAll |> 
      mutate(CoverageDTP1 = CoverageDTP1/100,

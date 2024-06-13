@@ -118,7 +118,7 @@ DataRaw |>
 
 # Vaccination strategy data
 
-DataVac <- read.csv('./Outcome/S table1.csv')
+DataVac <- read.csv('./Outcome/S table2.csv')
 DataVac <- DataVac |> 
      select(CODE, NAME, VaccineGeneral, TimeLastShot,
             VaccineAdult, VaccineRisk, VaccinePregnant, 
@@ -457,7 +457,7 @@ data <- DataRaw |>
 
 data[data$Country == 'CN',-1]/colSums(data[-1], na.rm = T)
 
-write.csv(data, './Outcome/S table2.csv', row.names = F)
+write.csv(data, './Outcome/S table3.csv', row.names = F)
 
 # outcome -----------------------------------------------------------------
 

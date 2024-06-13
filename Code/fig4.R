@@ -28,7 +28,7 @@ source('./Code/function.R')
 
 # Data --------------------------------------------------------------------
 
-DataAll <- read.csv("./Outcome/S table1.csv") |> 
+DataAll <- read.csv("./Outcome/S table2.csv") |> 
      mutate(CoverageDTP1 = CoverageDTP1/100,
             CoverageDTP3 = CoverageDTP3/100,
             VaccineGeneral = as.factor(VaccineGeneral),
@@ -120,7 +120,7 @@ DataAll |>
      group_by(Cluster) |>
      summarise(Incidence = mean(IncidencePre, na.rm = T))
 
-write.csv(DataAll, "./Outcome/S table1.csv", row.names = F)
+write.csv(DataAll, "./Outcome/S table2.csv", row.names = F)
 
 # merge data
 DataInci$NAME <- rownames(DataInci)
@@ -298,7 +298,7 @@ plot_rf <- function(i){
             height = 6,
             dpi = 300)
      
-     write.csv(pd_df, paste0('./Outcome/S table3_', i[1], '.csv'), row.names = F)
+     write.csv(pd_df, paste0('./Outcome/S table4_', i[1], '.csv'), row.names = F)
      
      return(fig1)
 }
@@ -328,9 +328,9 @@ data <- rbind(fig_4$data, fig_5$data, fig_6$data)
 
 write.csv(data, "./Outcome/fig data/fig4.csv", row.names = F)
 
-data <- map(1:3, ~read.csv(paste0('./Outcome/S table3_', .x, '.csv')))
+data <- map(1:3, ~read.csv(paste0('./Outcome/S table4_', .x, '.csv')))
 data <- bind_rows(data, .id = 'Cluster')
-write.csv(data, "./Outcome/S table3.csv", row.names = F)
+write.csv(data, "./Outcome/S table4.csv", row.names = F)
 # remove the temporary files
-file.remove(paste0('./Outcome/S table3_', 1:3, '.csv'))
+file.remove(paste0('./Outcome/S table4_', 1:3, '.csv'))
 
