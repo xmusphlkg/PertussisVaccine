@@ -222,7 +222,7 @@ plot_rf <- function(i){
           select(CoverageDTP1:VaccineCode, VaccineAP, VaccineWP, OutbreakSize)  |>
           mutate(
                VaccineGeneral = as.numeric(str_extract(as.character(VaccineGeneral), '\\d+')),
-               TimeLastShot = log10(TimeLastShot),
+               # TimeLastShot = log10(TimeLastShot),
                GENERALM = as.numeric(str_extract(as.character(GENERALM), '\\d+')),
                GENERALY = as.numeric(str_extract(as.character(GENERALY), '\\d+')),
                GENERALY = case_when(is.na(GENERALY) ~ 0,
