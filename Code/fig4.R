@@ -263,7 +263,7 @@ plot_rf <- function(i){
                 axis.text = element_text(color = 'black', face = 'plain'),
                 axis.title = element_text(color = 'black', face = 'plain'),
                 plot.title.position = 'plot') +
-          labs(title = LETTERS[i+3], 
+          labs(title = LETTERS[i+2], 
                x = NULL, y = "Mean decrease in accuracy")
      
      # Plotting the partial dependence plot
