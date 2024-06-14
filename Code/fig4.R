@@ -153,7 +153,7 @@ fig_1 <- ggplot(DataAll, aes(x = Cluster, y = IncidencePre + 0.001, fill = Clust
            axis.text = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
            plot.title.position = 'plot') +
-     labs(title = "A", x = NULL, y = "Median incidence (2010-2019)")
+     labs(title = "A", x = NULL, y = "Median incidence rate (2010-2019)")
 
 # panel b -----------------------------------------------------------------
 
