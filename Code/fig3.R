@@ -12,6 +12,7 @@ library(sf)
 library(cowplot)
 library(paletteer)
 library(Cairo)
+library(ggpubr)
 
 source('./Code/function.R')
 
@@ -56,6 +57,28 @@ data <- DataAll |>
             Incidence2023, OutbreakSize2023)
 
 write.csv(data, './Outcome/fig data/fig3.csv', row.names = F)
+
+
+# appendix ----------------------------------------------------------------
+
+# visualize the pertussis incidence and income.group
+fig <- ggboxplot(DataAll,
+          x = "Income.group",
+          y = "IncidencePre", 
+          color = "Income.group",
+          add = "jitter", 
+          ylab = "Average incidence in pre-epidemic period",
+          xlab = "Income group",
+          ggtheme = theme_bw()) +
+     stat_compare_means(aes(group = Income.group),
+                        method = "anova") +
+     theme(plot.title = element_text(hjust = 0.5),
+           legend.position = "none")
+ggsave("./Outcome/S fig3_1.png",
+       fig,
+       width = 6,
+       dpi = 300,
+       height = 4)
 
 # panel a -----------------------------------------------------------------
 

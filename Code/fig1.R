@@ -23,7 +23,6 @@ scientific_10 <- function(x) {
      return(x_f)
 }
 
-
 # data --------------------------------------------------------------------
 
 country_names <- openxlsx::getSheetNames('./Data/Pertussis case year age.xlsx')

@@ -6,7 +6,7 @@ library(arsenal)
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
-DataAll <- read.csv("../Outcome/S table1.csv")
+DataAll <- read.csv("../Outcome/S table2.csv")
 DataAll <- DataAll |> 
      select(VaccineCode, CoverageDTP1, CoverageDTP3,
             VaccineGeneral, GENERALM, GENERALY, TimeLastShot, VaccinePregnant, VaccineAdult, VaccineRisk,

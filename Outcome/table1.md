@@ -29,14 +29,14 @@
 |&nbsp;&nbsp;&nbsp;Median                              |    18.00     |    18.00     |     72.00     |     48.00     |        |
 |&nbsp;&nbsp;&nbsp;Q1, Q3                              | 3.22, 54.00  | 3.22, 60.00  | 18.00, 150.00 | 12.00, 120.00 |        |
 |**Vaccine recommendation for pregnant**               |              |              |               |               | < 0.001|
-|&nbsp;&nbsp;&nbsp;No                                  | 62 (93.94%)  | 46 (85.19%)  |  60 (64.52%)  | 168 (78.87%)  |        |
-|&nbsp;&nbsp;&nbsp;Yes                                 |  4 (6.06%)   |  8 (14.81%)  |  33 (35.48%)  |  45 (21.13%)  |        |
-|**Vaccine recommendation for adults**                 |              |              |               |               |   0.141|
-|&nbsp;&nbsp;&nbsp;No                                  | 64 (96.97%)  | 49 (90.74%)  |  82 (88.17%)  | 195 (91.55%)  |        |
-|&nbsp;&nbsp;&nbsp;Yes                                 |  2 (3.03%)   |  5 (9.26%)   |  11 (11.83%)  |  18 (8.45%)   |        |
+|&nbsp;&nbsp;&nbsp;Median                              |     0.00     |     0.00     |     0.00      |     0.00      |        |
+|&nbsp;&nbsp;&nbsp;Q1, Q3                              |  0.00, 0.00  |  0.00, 0.00  |  0.00, 1.00   |  0.00, 0.00   |        |
+|**Vaccine recommendation for adults**                 |              |              |               |               |   0.142|
+|&nbsp;&nbsp;&nbsp;Median                              |     0.00     |     0.00     |     0.00      |     0.00      |        |
+|&nbsp;&nbsp;&nbsp;Q1, Q3                              |  0.00, 0.00  |  0.00, 0.00  |  0.00, 0.00   |  0.00, 0.00   |        |
 |**Vaccine recommendation for risk groups**            |              |              |               |               |   0.001|
-|&nbsp;&nbsp;&nbsp;No                                  | 63 (95.45%)  | 49 (90.74%)  |  71 (76.34%)  | 183 (85.92%)  |        |
-|&nbsp;&nbsp;&nbsp;Yes                                 |  3 (4.55%)   |  5 (9.26%)   |  22 (23.66%)  |  30 (14.08%)  |        |
+|&nbsp;&nbsp;&nbsp;Median                              |     0.00     |     0.00     |     0.00      |     0.00      |        |
+|&nbsp;&nbsp;&nbsp;Q1, Q3                              |  0.00, 0.00  |  0.00, 0.00  |  0.00, 0.00   |  0.00, 0.00   |        |
 |**Pertussis status in 2022/2023**                     |              |              |               |               |   0.027|
 |&nbsp;&nbsp;&nbsp;N-Miss                              |      15      |      4       |      10       |      29       |        |
 |&nbsp;&nbsp;&nbsp;Low                                 | 37 (72.55%)  | 25 (50.00%)  |  55 (66.27%)  | 117 (63.59%)  |        |

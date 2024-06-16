@@ -245,7 +245,14 @@ DataInci <- DataInci |>
 #      select(-Outbreak)
 
 DataClass <- read.xlsx('./Data/CLASS.xlsx') |> 
-     select(Code, Region, Income.group)
+     select(Code, Region, Income.group) |> 
+     mutate(Income.group = case_when(
+          Income.group == 'Low income' ~ 'Low income',
+          Income.group == 'Lower middle income' ~ 'Mild income',
+          Income.group == 'Upper middle income' ~ 'Mild income',
+          Income.group == 'High income' ~ 'High income',
+          TRUE ~ NA_character_
+     ))
 
 Data <- DataVac |> 
      merge(DataInci, by = c('NAME'), all = T) |> 
