@@ -74,11 +74,11 @@ country_names <- country_names[country_names != 'EU']
 data_other <- lapply(country_names, function(x){
      data <- read.xlsx('./Data/Pertussis case year age.xlsx', sheet = x, detectDates = T)
      names(data)[1] <- 'Year'
-     data[is.na(data)] <- 0
      data <- data |> 
           # if exist unknow column, drop it
           select(-contains("Unknow")) |>
           pivot_longer(cols = -Year, names_to = 'Age', values_to = 'Incidence') |> 
+          filter(!is.na(Incidence)) |>
           mutate(StartAge = case_when(grepl("-", Age) ~ as.numeric(sub("-.*", "", Age)),
                                       grepl("\\+", Age) ~ as.numeric(sub("\\+.*", "", Age)),
                                       TRUE ~ NA_real_),
@@ -91,8 +91,6 @@ data_other <- lapply(country_names, function(x){
           # standardize incidence by each country and year
           group_by(Country, Year) |>
           mutate(Weight = Cases/sum(Cases),
-                 Weight = case_when(is.na(Weight) ~ 0,
-                                    TRUE ~ Weight),
                  CasesAll = sum(Cases))
      
      return(data)
@@ -127,11 +125,11 @@ DataVac <- DataVac |>
 
 DataNorm <- DataRaw|>
      rowwise() |>
-     mutate(AgeList = if_else(is.na(StartAge), list(NA_real_), list(seq(StartAge, EndAge)))) |>
+     mutate(AgeList = if_else(is.na(StartAge), list(NA_real_), list(seq(StartAge, EndAge, 0.1)))) |>
      unnest(cols = c(AgeList)) |>
      filter(!is.na(AgeList)) |>
      group_by(Year, Country, AgeList) |>
-     mutate(AverageCases = Cases / (EndAge - StartAge + 0.1)) |>
+     mutate(AverageCases = Cases / ((EndAge - StartAge)*10 + 1)) |>
      ungroup() |>
      select(Country, Year, Age = AgeList, AverageCases) |>
      group_by(Country, Year) |>
@@ -190,7 +188,6 @@ plot_ridges <- function(i){
           theme_bw()+
           theme(panel.grid.major.x = element_blank(),
                 panel.grid.minor.x = element_blank(),
-                plot.background = element_rect(color = 'black', fill = 'white'),
                 axis.text.y = element_text(color = 'black', face = 'plain'),
                 axis.text.x = element_text(color = 'black', face = 'plain', hjust = 1),
                 axis.title = element_text(color = 'black', face = 'plain'),
@@ -234,8 +231,8 @@ fig_1 <- ggplot(data = DataMap) +
                         expand = c(0, 0)) + 
      scale_y_continuous(limits = c(-60, 75)) +
      scale_fill_gradientn(colours = fill_color,
-                          limits = c(2, 30),
-                          breaks = c(2, 5, 10, 20, 30),
+                          limits = c(1, 30),
+                          breaks = c(1, 5, 10, 20, 30),
                           na.value = 'white',
                           trans = 'log10')+
      theme_bw() +
@@ -266,8 +263,8 @@ fig_2 <- DataYear |>
                    y = Country,
                    fill = MedianAge))+
      scale_fill_gradientn(colours = fill_color,
-                          limits = c(2, 30),
-                          breaks = c(2, 5, 10, 20, 30),
+                          limits = c(1, 30),
+                          breaks = c(1, 5, 10, 20, 30),
                           trans = 'log10',
                           na.value = 'white')+
      scale_y_discrete(limits = country_names,
