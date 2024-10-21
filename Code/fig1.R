@@ -153,12 +153,12 @@ DataNorm <- DataRaw|>
 
 country_names <- c('AT', 'AU', 'BE', 'BG', 'BR', 'CA', 'CN', 'CY', 'CZ', 'DE',
                    'DK', 'EE', 'GR', 'ES', 'FI', 'GB', 'HR', 'HU', 'IE', 
-                   'IS', 'IT', 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'NZ', 'PL', 
-                   'PT', 'RO', 'SE', 'SG', 'SI', 'SK', 'US')
+                   'IS', 'IT', 'JP', 'LT', 'LU', 'LV', 'MT', 'NL', 'NO', 'NZ', 'PL', 
+                   'PT', 'RO', 'SE', 'SG', 'SI', 'SK', 'TH', 'US')
 country_labels <- c('Austria', 'Australia', 'Belgium', 'Bulgaria', 'Brazil', 'Canada', 'China', 'Cyprus', 'Czech Republic', 'Germany',
                     'Denmark', 'Estonia', 'Greece', 'Spain', 'Finland', 'United Kingdom', 'Croatia', 'Hungary', 'Ireland', 
-                    'Iceland', 'Italy', 'Lithuania', 'Luxembourg', 'Latvia', 'Malta', 'Netherlands', 'Norway', 'New Zealand', 'Poland', 
-                    'Portugal', 'Romania', 'Sweden', 'Singapore', 'Slovenia', 'Slovakia', 'United States')
+                    'Iceland', 'Italy', 'Japan', 'Lithuania', 'Luxembourg', 'Latvia', 'Malta', 'Netherlands', 'Norway', 'New Zealand', 'Poland', 
+                    'Portugal', 'Romania', 'Sweden', 'Singapore', 'Slovenia', 'Slovakia', 'Thailand', 'United States')
 fill_color <- rev(c("#1E313EFF", "#4E475FFF", "#8B5975FF", "#C86C7CFF", "#FA8975FF"))
 
 plot_ridges <- function(i){
@@ -207,20 +207,21 @@ fig_s <- map(1:length(country_names), plot_ridges)
 
 # panel a -----------------------------------------------------------------
 
-DataMedian <- DataNorm |> 
+DataCountry <- DataNorm |> 
      group_by(Country) |>
      arrange(Age) |>
      mutate(cum_weight = cumsum(Density)) |>
      summarise(MedianAge = Age[min(which(cum_weight >= sum(Density) / 2))],
-               .groups = 'drop')
+               .groups = 'drop') |> 
+     mutate(Name = country_labels[match(Country, country_names)])
 
 DataMap <- st_read("./Data/world.zh.json") |> 
      filter(iso_a3  != "ATA") |> 
-     left_join(DataMedian, by = c("iso_a2" = "Country")) |> 
+     left_join(DataCountry, by = c("iso_a2" = "Country")) |> 
      mutate(MedianAge = case_when(MedianAge > 30 ~ 30,
                                   TRUE ~ MedianAge))
 
-fill_color <- rev(c("#1D3141FF", "#096168FF", "#209478FF", "#75C56EFF", "#E2EE5EFF"))
+fill_color_1 <- rev(c("#1D3141FF", "#096168FF", "#209478FF", "#75C56EFF", "#E2EE5EFF"))
 
 fig_1 <- ggplot(data = DataMap) +
      geom_sf(aes(fill = MedianAge)) +
@@ -230,7 +231,7 @@ fig_1 <- ggplot(data = DataMap) +
      scale_x_continuous(limits = c(-180, 180),
                         expand = c(0, 0)) + 
      scale_y_continuous(limits = c(-60, 75)) +
-     scale_fill_gradientn(colours = fill_color,
+     scale_fill_gradientn(colours = fill_color_1,
                           limits = c(1, 30),
                           breaks = c(1, 5, 10, 20, 30),
                           na.value = 'white',
@@ -241,10 +242,12 @@ fig_1 <- ggplot(data = DataMap) +
            axis.text = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
            plot.title.position = 'plot',
+           legend.justification = 'right',
            legend.position = 'bottom') +
      labs(title = "A", x = NULL, y = NULL, fill = 'Estimated median age')+
      guides(fill = guide_colorbar(barwidth = 20,
-                                  title.position = 'top'))
+                                  barheight = 0.7,
+                                  title.position = 'left'))
 # panel b ---------------------------------------------------------------------
 
 DataYear <- DataNorm |> 
@@ -262,7 +265,7 @@ fig_2 <- DataYear |>
      geom_tile(aes(x = Year,
                    y = Country,
                    fill = MedianAge))+
-     scale_fill_gradientn(colours = fill_color,
+     scale_fill_gradientn(colours = fill_color_1,
                           limits = c(1, 30),
                           breaks = c(1, 5, 10, 20, 30),
                           trans = 'log10',
@@ -304,14 +307,12 @@ fig_s <- DataYear |>
      labs(x = 'Year',
           y = 'Estimated median age')
 
-ggsave("./Outcome/S fig1_37.png",
+ggsave("./Outcome/S fig1_39.png",
        fig_s,
        width = 16,
        height = 10)
 
 # panel c -----------------------------------------------------------------
-
-fill_color <- rev(c("#1E313EFF", "#4E475FFF", "#8B5975FF", "#C86C7CFF", "#FA8975FF"))
 
 DataAll <- DataRaw|>
      rowwise() |>
@@ -405,6 +406,13 @@ DataYear <- DataRaw|>
      ) |>
      unnest(cols = c(Age_Density))
 
+DataMedian <- DataYear |> 
+     group_by(Year) |>
+     arrange(Age) |>
+     mutate(cum_weight = cumsum(Density)) |>
+     summarise(MedianAge = Age[min(which(cum_weight >= sum(Density) / 2))],
+               .groups = 'drop')
+
 fig_4 <- DataYear |>
      ggplot()+
      geom_density_ridges_gradient(mapping = aes(x = Age,
@@ -415,32 +423,45 @@ fig_4 <- DataYear |>
                                   color = 'white',
                                   scale = 1.2,
                                   stat = "identity",
+                                  show.legend = T,
                                   rel_min_height = 0.01)+
+     geom_path(data = DataMedian,
+               aes(x = MedianAge,
+                   y = Year))+
+     geom_point(data = DataMedian,
+                aes(x = MedianAge,
+                    color = MedianAge,
+                    y = Year),
+                show.legend = F,
+                size = 2)+
      scale_x_continuous(limits = c(0, 100),
                         expand = c(0, 0),
                         breaks = seq(0, 100, 10))+
      scale_fill_gradientn(colours = fill_color,
                           limits = c(0, 100))+
+     scale_color_gradientn(colours = fill_color_1,
+                           limits = c(1, 30),
+                           breaks = c(1, 5, 10, 20, 30))+
      scale_y_continuous(breaks = seq(2010, 2023, 1),
                         expand = expansion(mult = c(0, 0.04)))+
      labs(title = 'D',
           x = 'Age',
           y = 'Year',
-          fill = 'Age')+
+          fill = 'Estimated age distribution')+
      theme_bw()+
      theme(panel.grid.major.x = element_blank(),
            panel.grid.minor.x = element_blank(),
            axis.text.y = element_text(color = 'black', face = 'plain'),
            axis.text.x = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
-           legend.position = 'none',
-           plot.title.position = 'plot')
+           legend.position = 'bottom',
+           legend.justification = 'right',
+           plot.title.position = 'plot')+
+     guides(fill = guide_colorbar(barwidth = 20,
+                                  barheight = 0.7,
+                                  title.position = 'left'))
 
-data <- DataYear |> 
-     group_by(Year) |> 
-     arrange(Age) |>
-     summarise(MedianAge = Age[min(which(cumsum(Density) >= sum(Density) / 2))])
-print(data)
+print(DataMedian)
 
 data <- DataRaw |> 
      group_by(Country, Year) |> 
@@ -468,6 +489,5 @@ fig <- fig_1 + fig_2 + fig_3 + fig_4 +
 ggsave("./Outcome/fig1.pdf",
        fig,
        width = 15,
-       height = 8,
+       height = 9,
        device = cairo_pdf)
-

@@ -104,8 +104,8 @@ hcdata <- scale(DataMatInci) |>
 DataCluster <- hcdata$cluster |>
      as.data.frame() |>
      mutate(Cluster = as.factor(hcdata$cluster),
-            Cluster = fct_recode(Cluster, 'Low' = '3', 'Mild' = '1', 'High' = '2'),
-            Cluster = factor(Cluster, levels = c('Low', 'Mild', 'High'))) |>  
+            Cluster = fct_recode(Cluster, 'Low' = '3', 'Moderate' = '1', 'High' = '2'),
+            Cluster = factor(Cluster, levels = c('Low', 'Moderate', 'High'))) |>  
      select(Cluster) |> 
      rownames_to_column('NAME')
 DataAll <- DataAll |> 
