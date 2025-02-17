@@ -165,7 +165,8 @@ fig_2_m <- plot_map_col(DataAll$Cluster, fill_color) +
      scale_fill_manual(values = fill_color,
                        breaks = levels(DataAll$Cluster),
                        limits = levels(DataAll$Cluster))+
-     scale_x_discrete(limits = levels(DataAll$Cluster))
+     scale_x_discrete(limits = levels(DataAll$Cluster))+
+     labs(title = 'Disease burden')
 
 fig_2 <- ggplot(data = DataMapPlot) +
      geom_sf(aes(fill = Cluster)) +
@@ -184,17 +185,12 @@ fig_2 <- ggplot(data = DataMapPlot) +
            panel.background = element_rect(fill = "#C1CDCD", color = NA),
            axis.text = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
-           legend.position = c(0.5, 0.05),
-           legend.justification = c(0.25, 0),
-           legend.background = element_rect(fill = "#C1CDCD"),
-           legend.direction = 'horizontal',
-           # legend title on right
-           legend.title = element_text(hjust = 0.5),
+           legend.position = 'none',
            plot.title.position = 'plot') +
      labs(title = "B", x = NULL, y = NULL, fill = 'Disease burden')+
      guides(fill = guide_legend(nrow = 1))
 
-fig_2 <- fig_2 + inset_element(fig_2_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.45)
+fig_2 <- fig_2 + inset_element(fig_2_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.55)
 
 # panel d -----------------------------------------------------------------
 

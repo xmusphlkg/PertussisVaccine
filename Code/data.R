@@ -40,21 +40,20 @@ DataVacCover <- DataVacCover |>
 ## Vaccination schedule for Pertussis
 ## The vaccine scheduler table summarizes the current vaccination schedule for young children, adolescents, and adults for Pertussis. The data is updated regularly with the most recent official country reporting collected through the WHO/UNICEF joint reporting process.
 
-DataVacSchedule <- read.xlsx("./Data/Vaccination schedule for Pertussis.xlsx") |> 
+DataVacScheduleRaw <- read.xlsx("./Data/Vaccination schedule for Pertussis 2025-21-01 12-27 UTC.xlsx") |> 
      filter(!is.na(COUNTRYNAME))
-DataInfo <- DataVacSchedule |> 
+DataInfo <- DataVacScheduleRaw |> 
      select(ISO_3_CODE, COUNTRYNAME, WHO_REGION) |>
      unique() |>
      rename(CODE = ISO_3_CODE, NAME = COUNTRYNAME)
-DataVacSchedule <- DataVacSchedule |> 
-     select(ISO_3_CODE, COUNTRYNAME, VACCINECODE, SCHEDULEROUNDS, TARGETPOP_DESCRIPTION,
+DataVacSchedule <- DataVacScheduleRaw |> 
+     select(ISO_3_CODE, COUNTRYNAME, VACCINECODE, SCHEDULEROUNDS, TARGETPOP_DESCRIPTION, TARGETPOP,
             AGEADMINISTERED, VACCINEDESCRIPTIONSHORT, YEAR, SCHEDULERCODE) |>
      rename(CODE = ISO_3_CODE, NAME = COUNTRYNAME)
 
-
 # Use wP vaccine
 DataVacWP <- DataVacSchedule |> 
-     filter(TARGETPOP_DESCRIPTION %in% c('General/routine')) |> 
+     filter(TARGETPOP_DESCRIPTION %in% c('General/routine', 'Catch-up children')) |> 
      select(CODE, NAME, SCHEDULERCODE) |> 
      unique() |> 
      mutate(A = T) |>
@@ -87,50 +86,60 @@ DataVacScheduleRisk <- DataVacSchedule |>
                .groups = 'drop')
 
 # Pregnant women
+DataAddition <- read.xlsx("./Data/Maternal pertussis immunization 2021.xlsx") |> 
+     filter(!is.na(DISEASE)) |> 
+     select(COUNTRYNAME) |>
+     rename(NAME = COUNTRYNAME) |> 
+     ## add CODE for the countries
+     left_join(DataInfo, by = c('NAME')) |>
+     select(CODE, NAME)
+
 DataVacSchedulePreg <- DataVacSchedule |> 
      filter(TARGETPOP_DESCRIPTION == 'Pregnant women') |> 
-     select(CODE, NAME, SCHEDULEROUNDS) |> 
+     select(CODE, NAME) |> 
+     # rbind with the data from the additional file
+     rbind(DataAddition) |> 
      unique() |> 
      group_by(CODE, NAME) |>
      summarise(PREGNANT = 1,
                .groups = 'drop')
+     
 # General/routine
 DataVacScheduleGenM <- DataVacSchedule |> 
-     filter(TARGETPOP_DESCRIPTION == 'General/routine') |> 
-     # filter AGEADMINISTERED contains M or W
-     filter(str_detect(AGEADMINISTERED, '[MМ]|W')) |> 
-     select(CODE, NAME, SCHEDULEROUNDS, AGEADMINISTERED) |>
-     unique() |> 
+     filter(TARGETPOP_DESCRIPTION %in% c('General/routine'),
+            # filter AGEADMINISTERED contains M or W
+            str_detect(AGEADMINISTERED, '[MМ]|W')) |> 
+     select(CODE, NAME, SCHEDULEROUNDS, AGEADMINISTERED, TARGETPOP) |>
+     unique() |>
+     mutate(SCHEDULEROUNDS = paste(SCHEDULEROUNDS, TARGETPOP, sep = '_')) |> 
      group_by(CODE, NAME) |>
-     summarise(AGEADMINISTERED = length(unique(AGEADMINISTERED)),
-               SCHEDULEROUNDS = length(unique(SCHEDULEROUNDS)),
+     summarise(GENERALM = length(unique(SCHEDULEROUNDS)),
                .groups = 'keep') |> 
-     mutate(GENERALM = min(SCHEDULEROUNDS, AGEADMINISTERED)) |> 
      select(CODE, NAME, GENERALM)
 
 DataVacScheduleGenY <- DataVacSchedule |>
-     filter(TARGETPOP_DESCRIPTION == 'General/routine') |> 
-     # filter AGEADMINISTERED contains Y
-     filter(str_detect(AGEADMINISTERED, 'Y')) |>
-     select(CODE, NAME, SCHEDULEROUNDS, AGEADMINISTERED) |>
+     filter(TARGETPOP_DESCRIPTION %in% c('General/routine'), 
+            # filter AGEADMINISTERED contains Y
+            str_detect(AGEADMINISTERED, 'Y')) |>
+     select(CODE, NAME, SCHEDULEROUNDS, AGEADMINISTERED, TARGETPOP) |>
      unique() |> 
+     mutate(SCHEDULEROUNDS = paste(SCHEDULEROUNDS, TARGETPOP)) |> 
      group_by(CODE, NAME) |>
-     summarise(AGEADMINISTERED = length(unique(AGEADMINISTERED)),
-               SCHEDULEROUNDS = length(unique(SCHEDULEROUNDS)),
+     summarise(GENERALY = length(unique(SCHEDULEROUNDS)),
                .groups = 'keep') |> 
-     mutate(GENERALY = min(SCHEDULEROUNDS, AGEADMINISTERED)) |> 
      select(CODE, NAME, GENERALY)
 
 DataVacScheduleGen <- DataVacSchedule |> 
-     filter(TARGETPOP_DESCRIPTION == 'General/routine') |> 
+     filter(TARGETPOP_DESCRIPTION %in% c('General/routine')) |> 
      group_by(CODE, NAME) |>
-     summarise(GENERALLASTSHOT = max(process_date_column(unique(AGEADMINISTERED))),
-               GENERALFIRSTSHOT = min(process_date_column(unique(AGEADMINISTERED))),
+     summarise(GENERALLASTSHOT = max(process_date_column(unique(AGEADMINISTERED), 'max')),
+               GENERALFIRSTSHOT = min(process_date_column(unique(AGEADMINISTERED), 'min')),
                .groups = 'drop') |>
-     left_join(DataVacScheduleGenM, by = c('CODE', 'NAME')) |> 
-     left_join(DataVacScheduleGenY, by = c('CODE', 'NAME')) |> 
-     mutate(GENERALY = replace_na(GENERALY, 0),
-            GENERAL = GENERALM + GENERALY)
+     # left_join(DataVacScheduleGenM, by = c('CODE', 'NAME')) |> 
+     # left_join(DataVacScheduleGenY, by = c('CODE', 'NAME')) |> 
+     # mutate(GENERALY = replace_na(GENERALY, 0),
+     #        GENERAL = GENERALM + GENERALY) |> 
+     arrange(CODE)
 
 DataVacSchedule <- DataVacSchedule |> 
      select(CODE, NAME) |> 
@@ -141,14 +150,13 @@ DataVacSchedule <- DataVacSchedule |>
      mutate(ADULT = replace_na(ADULT, 0)) |>
      full_join(DataVacScheduleRisk, by = c('CODE', 'NAME')) |>
      mutate(RISK = replace_na(RISK, 0)) |>
-     full_join(DataVacScheduleGen, by = c('CODE', 'NAME'))
-DataVacSchedule <- DataVacSchedule |>
+     full_join(DataVacScheduleGen, by = c('CODE', 'NAME')) |>
      rename(TimeFirstShot = GENERALFIRSTSHOT,
             TimeLastShot = GENERALLASTSHOT,
             VaccinePregnant = PREGNANT,
+            # VaccineGeneral = GENERAL,
             VaccineAdult = ADULT,
-            VaccineRisk = RISK,
-            VaccineGeneral = GENERAL)
+            VaccineRisk = RISK)
 
 remove(DataVacSchedulePreg, DataVacScheduleAdult, DataVacScheduleRisk,
        DataVacScheduleGen, DataVacScheduleGenM, DataVacScheduleGenY)
@@ -163,10 +171,10 @@ DataVac <- DataVacCover |>
 ## https://immunizationdata.who.int/global/wiise-detail-page/pertussis-reported-cases-and-incidence
 ## Pertussis incidence after 2010
 
-DataInci <- read.xlsx("./Data/Pertussis incidence.xlsx")[,1:17]
+DataInci <- read.xlsx("./Data/Pertussis reported cases and incidence 2025-12-02 17-37 UTC.xlsx")[,1:17]
 DataInci <- DataInci |> 
      filter(!is.na(Disease)) |> 
-     select(-c(Denominator, Disease)) |> 
+     select(-c(Disease)) |> 
      rename(NAME = `Country./.Region`) |> 
      filter(NAME %in% DataVac$NAME) |>
      pivot_longer(cols = -c(NAME),

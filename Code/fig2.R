@@ -23,22 +23,14 @@ DataAll <- read.csv("./Outcome/S table2.csv")
 DataAll <- DataAll |> 
      mutate(CoverageDTP1 = CoverageDTP1/100,
             CoverageDTP3 = CoverageDTP3/100,
-            VaccineGeneral = factor(VaccineGeneral,
-                                    levels = 3:6,
-                                    labels = as.character(3:6)),
-            VaccineGeneral = factor(VaccineGeneral,
-                                    levels = as.character(3:6)),
-            GENERALY = case_when(GENERALY > 1 ~ paste0(GENERALY, ' doses'),
-                                 GENERALY == 1 ~ '1 dose',
-                                 GENERALY == 0 ~ 'Not provided',
-                                 TRUE ~ 'Unavailable'),
-            GENERALY = factor(GENERALY,
-                              levels = c('Not provided', '1 dose', '2 doses', '3 doses')),
-            GENERALM = paste0(GENERALM, ' doses'),
-            GENERALM = factor(GENERALM,
-                              levels = c('3 doses', '4 doses', '5 doses', '6 doses')),
             VaccineAP = if_else(VaccineCode %in% c('aP', 'Both'), 1, 0),
             VaccineWP = if_else(VaccineCode %in% c('wP', 'Both'), 1, 0),
+            TimeFirstShotG = case_when(
+                 TimeFirstShot < 2 ~ '1+',
+                 TimeFirstShot < 3 ~ '2+',
+                 TimeFirstShot == 3 ~ '3+',
+                 TRUE ~ NA),
+            TimeFirstShotG = factor(TimeFirstShotG, levels = c('1+', '2+', '3+')),
             TimeLastShotG = case_when(
                  TimeLastShot < 12 ~ '<1',
                  TimeLastShot < 24 ~ '<2',
@@ -70,33 +62,30 @@ DataMapPlot <- DataMap |>
 
 ## panel a -----------------------------------------------------------------
 
-fill_color <- c("#DD5129FF", "#FAB255FF", "#0F7BA2FF", "#43B284FF")
+fill_color <- c("#DD5129FF", "#FAB255FF", "#43B284FF") |> rev()
 
-fig_1_m <- plot_map_col(DataAll$VaccineGeneral, fill_color) +
-     scale_fill_manual(values = fill_color[1:4],
-                       breaks = levels(DataMapPlot$VaccineGeneral),
-                       limits = levels(DataMapPlot$VaccineGeneral)) +
-     labs(title = 'Vccination schedule\n(doses)')
+fig_1_m <- plot_map_col(DataAll$TimeFirstShotG, fill_color) +
+     scale_fill_manual(values = fill_color) +
+     labs(title = 'Targeting children\n(months)')
 
-fig_1 <- ggplot(data = DataMapPlot) +
-     geom_sf(aes(fill = VaccineGeneral)) +
+fig_1 <- ggplot(data = DataMapPlot)+
+     geom_sf(aes(fill = TimeFirstShotG)) +
      # add x, y tick labels
      theme(axis.text.x = element_text(size = 8),
            axis.text.y = element_text(size = 8)) +
      scale_x_continuous(limits = c(-180, 180),
                         expand = c(0, 0)) + 
      scale_y_continuous(limits = c(-60, 75)) +
-     scale_fill_manual(values = fill_color[1:4],
+     scale_fill_manual(values = fill_color[1:5],
                        na.value = "white",
-                       breaks = levels(DataMapPlot$VaccineGeneral),
-                       limits = levels(DataMapPlot$VaccineGeneral))+
+                       breaks = levels(DataMapPlot$TimeFirstShotG),
+                       limits = levels(DataMapPlot$TimeFirstShotG))+
      theme_bw() +
      theme(panel.grid = element_blank(),
            panel.background = element_rect(fill = "#C1CDCD", color = NA),
            axis.text = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
            legend.position = 'none',
-           legend.box = 'horizontal',
            plot.title.position = 'plot') +
      labs(title = "A", x = NULL, y = NULL)+
      guides(fill = guide_legend(nrow = 1))
@@ -129,7 +118,6 @@ fig_2 <- ggplot(data = DataMapPlot) +
            axis.text = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
            legend.position = 'none',
-           legend.box = 'horizontal',
            plot.title.position = 'plot') +
      labs(title = "B", x = NULL, y = NULL)+
      guides(fill = guide_legend(nrow = 1))

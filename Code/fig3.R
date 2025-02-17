@@ -58,7 +58,6 @@ data <- DataAll |>
 
 write.csv(data, './Outcome/fig data/fig3.csv', row.names = F)
 
-
 # appendix ----------------------------------------------------------------
 
 # visualize the pertussis incidence and income.group

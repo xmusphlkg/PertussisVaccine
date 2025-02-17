@@ -15,15 +15,21 @@ convert_to_months <- function(value) {
 }
 
 # Updated function to process entire vectors
-process_date_column <- function(date_vector) {
+process_date_column <- function(date_vector, type) {
      unlist(lapply(date_vector, function(date_str) {
           if (str_detect(date_str, "-")) {
                # Handle a range of values
                parts <- str_split(date_str, "-", simplify = TRUE)
                weeks1 <- convert_to_months(parts[1])
                weeks2 <- convert_to_months(parts[2])
-               # Calculate the mean value of the range
-               mean(c(weeks1, weeks2))
+               # Calculate the value of the range
+               if (type == "min") {
+                    return(min(weeks1, weeks2))
+               } else if (type == "max") {
+                    return(max(weeks1, weeks2))
+               } else {
+                    return((weeks1 + weeks2) / 2)
+               }
           } else {
                # Handle a single value
                convert_to_months(date_str)
