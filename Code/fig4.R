@@ -16,11 +16,9 @@ library(cowplot)
 library(paletteer)
 library(Cairo)
 library(factoextra)
-library(ggdendroplot)
-library(caret)
-library(mice)
 library(randomForest)
 library(edarf)
+library(caret)
 library(GGally)
 library(scales)
 
@@ -28,27 +26,22 @@ source('./Code/function.R')
 
 # Data --------------------------------------------------------------------
 
-DataAll <- read.csv("./Outcome/S table2.csv") |> 
+DataAll <- read.csv("./Outcome/S table2.csv")[,1:26] |> 
      mutate(CoverageDTP1 = CoverageDTP1/100,
             CoverageDTP3 = CoverageDTP3/100,
-            VaccineGeneral = as.factor(VaccineGeneral),
-            GENERALY = as.factor(GENERALY),
-            GENERALM = as.factor(GENERALM),
             VaccineAP = as.factor(VaccineCode %in% c('aP', 'Both')),
             VaccineWP = as.factor(VaccineCode %in% c('wP', 'Both')),
             OutbreakSize2022 = factor(OutbreakSize2022, levels = c('Low', 'Normal', 'High', 'Resurgence')),
             OutbreakSize2023 = factor(OutbreakSize2023, levels = c('Low', 'Normal', 'High', 'Resurgence')))
 DataAll <- DataAll[,names(DataAll) != 'Cluster']
 
-ggsave("./Outcome/S fig2_1.png",
+ggsave("./Outcome/S fig4_1.png",
        DataAll |>
-            select(CoverageDTP1:VaccineGeneral, -TimeFirstShot) |>
+            select(CoverageDTP1:TimeFirstShot) |>
             ggpairs(columnLabels = c('DTP1 coverage', 'DTP3 coverage',
                                      'Vaccine for pregnant', 'Vaccine for adult', 'Vaccine for risk',
                                      'Time of\nlast general vaccine shot (months)',
-                                     'General vaccine recommendation\nfor toddlers, -3yr',
-                                     'General vaccine recommendation\nfor children, 3+yr',
-                                     'General vaccine recommendation'),
+                                     'Time of\nfirst general vaccine shot (months)'),
                     bins = 30,
                     title = 'Correlation plot'),
        width = 15,
@@ -61,15 +54,17 @@ DataMap <- st_read("./Data/world.zh.json") |>
      filter(iso_a3  != "ATA")
 DataAll[!DataAll$CODE %in% DataMap$iso_a3, 'NAME']
 
-DataInciRaw <- read.xlsx("./Data/Pertussis incidence.xlsx") |> 
-     select(1:3, `2023`:`2010`)
+DataCountry <- read.csv('./Data/GBD/iso_code.csv') |> 
+     select(-location_name)
+
+DataInciRaw <- read.csv("./Data/GBD/IHME-GBD_2021_DATA-47cdfc04-1.csv") |> 
+     select(location_id, year, val) |> 
+     left_join(DataCountry, by = c('location_id'))
 DataInciRaw <- DataInciRaw |> 
-     filter(!is.na(Disease)) |> 
-     select(-c(Denominator, Disease)) |> 
-     rename(NAME = `Country./.Region`) |> 
-     filter(NAME %in% DataAll$NAME) |>
-     # trance 2023:2010 to numeric
-     mutate(across('2023':'2010', ~as.numeric(.)))
+     rename(NAME = ISO3) |> 
+     select(NAME, year, val) |>
+     pivot_wider(names_from = year, values_from = val) |>
+     mutate(across('2019':'2010', ~as.numeric(.)))
 
 DataInciRaw |> 
      select(NAME, `2019`:`2010`) |> 
@@ -87,16 +82,16 @@ set.seed(20240521)
 fill_color_disease <- rev(c('#DD5129FF', '#FAB255FF', '#0F7BA2FF', '#43B284FF' ))
 
 DataInci <- DataInciRaw |>
-     select('2019':'2010') 
+     select('2019':'2010') |> 
+     as.data.frame()
 names(DataInci) <- paste0("X", names(DataInci))
 rownames(DataInci) <- DataInciRaw$NAME
 
 # random forest imputation
 DataMatInci <-DataInci|>
-     mice(method = 'rf', m = 1) |> 
-     complete() |>
+     log() |> 
      as.matrix()
-DataMatInci <- log(DataMatInci + 0.001)
+rownames(DataMatInci) <- DataInciRaw$NAME
 
 # hierarchical clustering
 hcdata <- scale(DataMatInci) |>  
@@ -104,72 +99,57 @@ hcdata <- scale(DataMatInci) |>
 DataCluster <- hcdata$cluster |>
      as.data.frame() |>
      mutate(Cluster = as.factor(hcdata$cluster),
-            Cluster = fct_recode(Cluster, 'Low' = '3', 'Moderate' = '1', 'High' = '2'),
-            Cluster = factor(Cluster, levels = c('Low', 'Moderate', 'High'))) |>  
-     select(Cluster) |> 
+            ClusterG = fct_recode(Cluster, 'Low' = '3', 'Moderate' = '2', 'High' = '1'),
+            ClusterG = factor(ClusterG, levels = c('Low', 'Moderate', 'High'))) |>  
+     select(Cluster, ClusterG) |> 
      rownames_to_column('NAME')
 DataAll <- DataAll |> 
-     left_join(DataCluster, by = 'NAME')
-DataCluster <- cbind(DataCluster, exp(DataMatInci)) |> 
-     pivot_longer(cols = -c(NAME, Cluster), names_to = 'Year', values_to = 'IncidenceImput') |> 
-     mutate(Year = as.numeric(gsub('X', '', Year)))
-
-table(hcdata$cluster)
-
-DataAll |> 
-     group_by(Cluster) |>
-     summarise(Incidence = mean(IncidencePre, na.rm = T))
-
-write.csv(DataAll, "./Outcome/S table2.csv", row.names = F)
+     left_join(DataCluster, by = c('CODE' = 'NAME'))
 
 # merge data
 DataInci$NAME <- rownames(DataInci)
-DataInci <- DataInci |> 
-     pivot_longer(cols = -c(NAME), names_to = 'Year', values_to = 'Incidence') |> 
+
+DataCluster <- DataCluster|> 
+     left_join(DataInci, by = c('NAME')) |>
+     pivot_longer(cols = -c(NAME, Cluster, ClusterG), names_to = 'Year', values_to = 'Incidence') |> 
      mutate(Year = as.numeric(gsub('X', '', Year)))
-DataCluster <- DataCluster |> 
-     left_join(DataInci, by = c('NAME', 'Year')) |> 
-     pivot_longer(cols = c(IncidenceImput, Incidence), names_to = 'Type', values_to = 'Incidence') |> 
-     mutate(Type = factor(Type, levels = c('Incidence', 'IncidenceImput'),
-                          labels = c('Observed', 'Imputation')))
+
+DataCluster |> 
+     group_by(Cluster, ClusterG) |>
+     summarise(Incidence = mean(Incidence, na.rm = T))
 
 # panel a -----------------------------------------------------------------
 
-fill_color <- c('#43B284FF', '#FAB255FF', '#DD5129FF')
+table(hcdata$cluster)
 
-fig_1 <- ggplot(DataAll, aes(x = Cluster, y = IncidencePre + 0.001, fill = Cluster)) +
-     geom_boxplot(show.legend = F) +
-     scale_fill_manual(values = fill_color,
-                       breaks = levels(DataAll$Cluster),
-                       limits = levels(DataAll$Cluster)) +
-     scale_x_discrete(limits = levels(DataAll$Cluster)) +
-     scale_y_continuous(expand = expansion(mult = c(0, 0.05)),
-                        limits = c(0.001, NA),
-                        breaks = c(0, 0.1, 1, 10, 100, 1000) + 0.001,
-                        labels = c(0, 0.1, 1, 10, 100, 1000),
-                        trans = 'log10') +
-     theme_bw() +
-     theme(panel.grid = element_blank(),
-           axis.text = element_text(color = 'black', face = 'plain'),
-           axis.title = element_text(color = 'black', face = 'plain'),
-           plot.title.position = 'plot') +
-     labs(title = "A", x = NULL, y = "Median incidence rate (2010-2019)")
+fig_1 <- fviz_cluster(hcdata,
+                      data = scale(DataMatInci),
+                      geom = 'point',
+                      palette = c("#DD5129FF", "#FAB255FF", "#43B284FF"),
+                      ggtheme = theme_bw(),
+                      main = 'A')+
+     theme(legend.position = 'none',
+           plot.title.position = 'plot')
+
+write.csv(DataAll, "./Outcome/S table2.csv", row.names = F)
 
 # panel b -----------------------------------------------------------------
 
 DataMapPlot <- DataMap |> 
-     left_join(DataAll[,c('CODE', 'Cluster')], by = c('iso_a3' = 'CODE'))
-table(DataAll$Cluster)
+     left_join(DataAll[,c('CODE', 'ClusterG')], by = c('iso_a3' = 'CODE'))
+table(DataAll$ClusterG)
 
-fig_2_m <- plot_map_col(DataAll$Cluster, fill_color) +
+fill_color <- rev(c('#DD5129FF', '#FAB255FF', '#43B284FF'))
+
+fig_2_m <- plot_map_col(DataAll$ClusterG, fill_color) +
      scale_fill_manual(values = fill_color,
-                       breaks = levels(DataAll$Cluster),
-                       limits = levels(DataAll$Cluster))+
-     scale_x_discrete(limits = levels(DataAll$Cluster))+
+                       breaks = levels(DataAll$ClusterG),
+                       limits = levels(DataAll$ClusterG))+
+     scale_x_discrete(limits = levels(DataAll$ClusterG))+
      labs(title = 'Disease burden')
 
 fig_2 <- ggplot(data = DataMapPlot) +
-     geom_sf(aes(fill = Cluster)) +
+     geom_sf(aes(fill = ClusterG)) +
      # add x, y tick labels
      theme(axis.text.x = element_text(size = 8),
            axis.text.y = element_text(size = 8)) +
@@ -177,8 +157,8 @@ fig_2 <- ggplot(data = DataMapPlot) +
                         expand = c(0, 0)) + 
      scale_y_continuous(limits = c(-60, 75)) +
      scale_fill_manual(values = fill_color,
-                       breaks = levels(DataAll$Cluster),
-                       limits = levels(DataAll$Cluster),
+                       breaks = levels(DataAll$ClusterG),
+                       limits = levels(DataAll$ClusterG),
                        na.translate = F)+
      theme_bw() +
      theme(panel.grid = element_blank(),
@@ -199,36 +179,28 @@ DataLabel <- data.frame(
                   "VaccinePregnant", "VaccineAdult", "VaccineRisk",
                   'VaccineAP, VaccineWP',
                   "TimeLastShot", "TimeFirstShot",
-                  "GENERALM", "GENERALY", "VaccineGeneral", "VaccineAP", "VaccineWP"),
+                  "VaccineAP", "VaccineWP"),
      text = c("DTP1 coverage", "DTP3 coverage", 
               "Maternal immunization", "Vaccine for adult", "Vaccine for risk",
               "aP vaccine, wP vaccine",
               "Time of last shot", "Time of first shot",
-              "Vaccine dose (<2 years) ", "Vaccine dose (2 years+)",
-              "General vaccine schedule",
               "aP vaccine", "wP vaccine")
 )
 
 plot_rf <- function(i){
      # Filter data for the specific cluster
-     cl <- levels(DataAll$Cluster)[i]
+     cl <- levels(DataAll$ClusterG)[i]
      print(paste0('########## Cluster ', cl, ' ##########'))
      Data <- DataAll |> 
-          filter(Cluster %in% cl)  |>
+          filter(ClusterG %in% cl)  |>
           select(CoverageDTP1:VaccineCode, VaccineAP, VaccineWP, OutbreakSize)  |>
           mutate(
-               VaccineGeneral = as.numeric(str_extract(as.character(VaccineGeneral), '\\d+')),
-               # TimeLastShot = log10(TimeLastShot),
-               GENERALM = as.numeric(str_extract(as.character(GENERALM), '\\d+')),
-               GENERALY = as.numeric(str_extract(as.character(GENERALY), '\\d+')),
-               GENERALY = case_when(is.na(GENERALY) ~ 0,
-                                    TRUE ~ GENERALY),
                VaccineAP = as.numeric(VaccineAP == 'TRUE'),
                VaccineWP = as.numeric(VaccineWP == 'TRUE')
           )  |>
           mutate_at(vars(VaccinePregnant, VaccineAdult, VaccineRisk, VaccineAP, VaccineWP), as.character) |>
           filter(!is.na(OutbreakSize) & !is.infinite(OutbreakSize))  |>
-          select(-c(VaccineCode, VaccineGeneral, TimeFirstShot)) |> 
+          select(-c(VaccineCode)) |> 
           na.omit()
      
      # Prepare the model matrix
@@ -236,7 +208,7 @@ plot_rf <- function(i){
      x <- Data |> select(-OutbreakSize)
      
      # Fit random forest model
-     set.seed(20240612)
+     set.seed(20250218)
      rf_model <- randomForest(x, y, importance = TRUE, ntree = 500)
      print(rf_model)
      
@@ -288,7 +260,7 @@ plot_rf <- function(i){
           labs(y = "Proportion",
                x = NULL)
      
-     ggsave(paste0('./Outcome/S fig2_', i[1]+1, '.png'),
+     ggsave(paste0('./Outcome/S fig4_', i[1]+1, '.png'),
             fig2,
             width = 8,
             height = 6,
@@ -329,4 +301,3 @@ data <- bind_rows(data, .id = 'Cluster')
 write.csv(data, "./Outcome/S table4.csv", row.names = F)
 # remove the temporary files
 file.remove(paste0('./Outcome/S table4_', 1:3, '.csv'))
-
