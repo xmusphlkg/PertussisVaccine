@@ -2,44 +2,38 @@
 
 
 
-|                                                      |  Low (N=66)  | Mild (N=54)  |  High (N=93)  | Total (N=213) | p value|
-|:-----------------------------------------------------|:------------:|:------------:|:-------------:|:-------------:|-------:|
-|**Avaliable vaccine type**                            |              |              |               |               | < 0.001|
-|&nbsp;&nbsp;&nbsp;wP                                  | 54 (81.82%)  | 37 (68.52%)  |  32 (34.41%)  | 123 (57.75%)  |        |
-|&nbsp;&nbsp;&nbsp;aP                                  | 10 (15.15%)  | 13 (24.07%)  |  53 (56.99%)  |  76 (35.68%)  |        |
-|&nbsp;&nbsp;&nbsp;Both                                |  2 (3.03%)   |  4 (7.41%)   |   8 (8.60%)   |  14 (6.57%)   |        |
-|**Coverage of DTP1 (%)**                              |              |              |               |               |   0.218|
-|&nbsp;&nbsp;&nbsp;N-Miss                              |      8       |      3       |       7       |      18       |        |
-|&nbsp;&nbsp;&nbsp;Median                              |    95.00     |    94.00     |     96.50     |     95.00     |        |
-|&nbsp;&nbsp;&nbsp;Q1, Q3                              | 86.25, 99.00 | 81.00, 98.00 | 89.00, 98.00  | 87.00, 98.00  |        |
-|**Coverage of DTP3 (%)**                              |              |              |               |               |   0.182|
-|&nbsp;&nbsp;&nbsp;N-Miss                              |      8       |      3       |       7       |      18       |        |
-|&nbsp;&nbsp;&nbsp;Median                              |    89.50     |    85.00     |     91.50     |     91.00     |        |
-|&nbsp;&nbsp;&nbsp;Q1, Q3                              | 78.25, 97.00 | 75.50, 97.00 | 84.25, 96.00  | 78.50, 97.00  |        |
-|**General vaccine recommendation**                    |              |              |               |               | < 0.001|
-|&nbsp;&nbsp;&nbsp;Median                              |     4.00     |     4.00     |     5.00      |     4.00      |        |
-|&nbsp;&nbsp;&nbsp;Q1, Q3                              |  3.00, 5.00  |  3.00, 5.00  |  4.00, 6.00   |  3.00, 5.00   |        |
-|**General vaccine recommendation for toddlers, <2yr** |              |              |               |               |   0.551|
-|&nbsp;&nbsp;&nbsp;Median                              |     4.00     |     4.00     |     4.00      |     4.00      |        |
-|&nbsp;&nbsp;&nbsp;Q1, Q3                              |  3.00, 4.00  |  3.00, 4.00  |  3.00, 4.00   |  3.00, 4.00   |        |
-|**General vaccine recommendation for children, 2+yr** |              |              |               |               | < 0.001|
-|&nbsp;&nbsp;&nbsp;Median                              |     0.00     |     0.00     |     1.00      |     1.00      |        |
-|&nbsp;&nbsp;&nbsp;Q1, Q3                              |  0.00, 1.00  |  0.00, 1.00  |  0.00, 2.00   |  0.00, 2.00   |        |
-|**Time of last shot (months)**                        |              |              |               |               | < 0.001|
-|&nbsp;&nbsp;&nbsp;Median                              |    18.00     |    18.00     |     72.00     |     48.00     |        |
-|&nbsp;&nbsp;&nbsp;Q1, Q3                              | 3.22, 54.00  | 3.22, 60.00  | 18.00, 150.00 | 12.00, 120.00 |        |
-|**Vaccine recommendation for pregnant**               |              |              |               |               | < 0.001|
-|&nbsp;&nbsp;&nbsp;Median                              |     0.00     |     0.00     |     0.00      |     0.00      |        |
-|&nbsp;&nbsp;&nbsp;Q1, Q3                              |  0.00, 0.00  |  0.00, 0.00  |  0.00, 1.00   |  0.00, 0.00   |        |
-|**Vaccine recommendation for adults**                 |              |              |               |               |   0.142|
-|&nbsp;&nbsp;&nbsp;Median                              |     0.00     |     0.00     |     0.00      |     0.00      |        |
-|&nbsp;&nbsp;&nbsp;Q1, Q3                              |  0.00, 0.00  |  0.00, 0.00  |  0.00, 0.00   |  0.00, 0.00   |        |
-|**Vaccine recommendation for risk groups**            |              |              |               |               |   0.001|
-|&nbsp;&nbsp;&nbsp;Median                              |     0.00     |     0.00     |     0.00      |     0.00      |        |
-|&nbsp;&nbsp;&nbsp;Q1, Q3                              |  0.00, 0.00  |  0.00, 0.00  |  0.00, 0.00   |  0.00, 0.00   |        |
-|**Pertussis status in 2022/2023**                     |              |              |               |               |   0.027|
-|&nbsp;&nbsp;&nbsp;N-Miss                              |      15      |      4       |      10       |      29       |        |
-|&nbsp;&nbsp;&nbsp;Low                                 | 37 (72.55%)  | 25 (50.00%)  |  55 (66.27%)  | 117 (63.59%)  |        |
-|&nbsp;&nbsp;&nbsp;Normal                              |  3 (5.88%)   | 11 (22.00%)  |  12 (14.46%)  |  26 (14.13%)  |        |
-|&nbsp;&nbsp;&nbsp;High                                |  0 (0.00%)   |  3 (6.00%)   |   7 (8.43%)   |  10 (5.43%)   |        |
-|&nbsp;&nbsp;&nbsp;Resurgence                          | 11 (21.57%)  | 11 (22.00%)  |  9 (10.84%)   |  31 (16.85%)  |        |
+|                                           |  Low (N=24)   | Moderate (N=93) | High (N=82)  | Total (N=199) | p value|
+|:------------------------------------------|:-------------:|:---------------:|:------------:|:-------------:|-------:|
+|**Avaliable vaccine type**                 |               |                 |              |               | < 0.001|
+|&nbsp;&nbsp;&nbsp;wP                       |  4 (16.67%)   |   38 (40.86%)   | 75 (91.46%)  | 117 (58.79%)  |        |
+|&nbsp;&nbsp;&nbsp;aP                       |  19 (79.17%)  |   44 (47.31%)   |  5 (6.10%)   |  68 (34.17%)  |        |
+|&nbsp;&nbsp;&nbsp;Both                     |   1 (4.17%)   |   11 (11.83%)   |  2 (2.44%)   |  14 (7.04%)   |        |
+|**Coverage of DTP1 (%)**                   |               |                 |              |               | < 0.001|
+|&nbsp;&nbsp;&nbsp;N-Miss                   |       1       |        3        |      0       |       4       |        |
+|&nbsp;&nbsp;&nbsp;Median                   |     98.00     |      98.00      |    87.50     |     95.00     |        |
+|&nbsp;&nbsp;&nbsp;Q1, Q3                   | 98.00, 99.00  |  93.00, 99.00   | 77.00, 93.00 | 87.00, 98.00  |        |
+|**Coverage of DTP3 (%)**                   |               |                 |              |               | < 0.001|
+|&nbsp;&nbsp;&nbsp;N-Miss                   |       1       |        3        |      0       |       4       |        |
+|&nbsp;&nbsp;&nbsp;Median                   |     97.00     |      94.50      |    79.50     |     91.00     |        |
+|&nbsp;&nbsp;&nbsp;Q1, Q3                   | 94.00, 99.00  |  88.25, 98.00   | 69.00, 88.00 | 78.50, 97.00  |        |
+|**Time of first shot (months)**            |               |                 |              |               | < 0.001|
+|&nbsp;&nbsp;&nbsp;Median                   |     2.00      |      2.00       |     1.38     |     2.00      |        |
+|&nbsp;&nbsp;&nbsp;Q1, Q3                   |  2.00, 2.00   |   2.00, 2.00    |  1.38, 2.00  |  1.38, 2.00   |        |
+|**Time of last shot (months)**             |               |                 |              |               | < 0.001|
+|&nbsp;&nbsp;&nbsp;Median                   |    150.00     |      60.00      |     3.45     |     48.00     |        |
+|&nbsp;&nbsp;&nbsp;Q1, Q3                   | 72.00, 183.00 |  18.00, 132.00  | 3.22, 21.75  | 4.00, 120.00  |        |
+|**Vaccine recommendation for pregnant**    |               |                 |              |               | < 0.001|
+|&nbsp;&nbsp;&nbsp;No                       |  13 (54.17%)  |   63 (67.74%)   | 73 (89.02%)  | 149 (74.87%)  |        |
+|&nbsp;&nbsp;&nbsp;Yes                      |  11 (45.83%)  |   30 (32.26%)   |  9 (10.98%)  |  50 (25.13%)  |        |
+|**Vaccine recommendation for adults**      |               |                 |              |               | < 0.001|
+|&nbsp;&nbsp;&nbsp;No                       |  16 (66.67%)  |   83 (89.25%)   | 81 (98.78%)  | 180 (90.45%)  |        |
+|&nbsp;&nbsp;&nbsp;Yes                      |  8 (33.33%)   |   10 (10.75%)   |  1 (1.22%)   |  19 (9.55%)   |        |
+|**Vaccine recommendation for risk groups** |               |                 |              |               |   0.023|
+|&nbsp;&nbsp;&nbsp;No                       |  20 (83.33%)  |   74 (79.57%)   | 77 (93.90%)  | 171 (85.93%)  |        |
+|&nbsp;&nbsp;&nbsp;Yes                      |  4 (16.67%)   |   19 (20.43%)   |  5 (6.10%)   |  28 (14.07%)  |        |
+|**Pertussis status in 2022/2023**          |               |                 |              |               |   0.077|
+|&nbsp;&nbsp;&nbsp;N-Miss                   |       2       |        8        |      16      |      26       |        |
+|&nbsp;&nbsp;&nbsp;Low                      |  18 (81.82%)  |   52 (61.18%)   | 29 (43.94%)  |  99 (57.23%)  |        |
+|&nbsp;&nbsp;&nbsp;Normal                   |   2 (9.09%)   |   9 (10.59%)    | 10 (15.15%)  |  21 (12.14%)  |        |
+|&nbsp;&nbsp;&nbsp;High                     |   1 (4.55%)   |    8 (9.41%)    |  8 (12.12%)  |  17 (9.83%)   |        |
+|&nbsp;&nbsp;&nbsp;Resurgence               |   1 (4.55%)   |   16 (18.82%)   | 19 (28.79%)  |  36 (20.81%)  |        |

@@ -175,20 +175,24 @@ DataInci <- read.xlsx("./Data/Pertussis reported cases and incidence 2025-12-02 
 DataInci <- DataInci |> 
      filter(!is.na(Disease)) |> 
      select(-c(Disease)) |> 
+     mutate(# replace &#39; with '
+          `Country./.Region` = str_replace_all(`Country./.Region`, '&#39;', "'"),
+          # replace American Samoa with Samoa
+          `Country./.Region` = str_replace(`Country./.Region`, 'American Samoa', 'Samoa')) |>
      rename(NAME = `Country./.Region`) |> 
      filter(NAME %in% DataVac$NAME) |>
      pivot_longer(cols = -c(NAME),
                   names_to = 'YEAR',
                   values_to = 'Incidence') |>
-     mutate(Period = case_when(
-          YEAR <= 2019 ~ 'Pre-epidemic',
-          YEAR <= 2021 ~ 'Epidemic',
-          YEAR == 2022 ~ '2022',
-          YEAR == 2023 ~ '2023'),
-          Period = factor(Period, levels = c('Pre-epidemic', 'Epidemic', '2023', '2022')),
-          Incidence = as.numeric(Incidence),
-          Incidence = if_else(is.na(Incidence), Incidence, Incidence + 0.001)
-     ) |> 
+     # filter year >= 2010
+     filter(as.numeric(YEAR) >= 2010) |>
+     mutate(Period = case_when(YEAR <= 2019 ~ 'Pre-epidemic',
+                               YEAR <= 2021 ~ 'Epidemic',
+                               YEAR == 2022 ~ '2022',
+                               YEAR == 2023 ~ '2023'),
+            Period = factor(Period, levels = c('Pre-epidemic', 'Epidemic', '2023', '2022')),
+            Incidence = as.numeric(str_replace(Incidence, ',', '')),
+            Incidence = if_else(is.na(Incidence), Incidence, Incidence + 0.001)) |> 
      group_by(NAME, Period) |>
      summarise(Incidence_50 = median(Incidence, na.rm = T),
                Incidence_25 = quantile(Incidence, 0.25, na.rm = T),

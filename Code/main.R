@@ -1,5 +1,4 @@
 
-
 # Load the data
 source('./Code/data.R')
 remove(list = ls())

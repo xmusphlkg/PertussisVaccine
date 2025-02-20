@@ -24,9 +24,9 @@ DataAll <- read.csv("./Outcome/S table2.csv")|>
           OutbreakSize2023 = factor(OutbreakSize2023, levels = c('Unavailable', 'Low', 'Normal', 'High', 'Resurgence'))
      )
 
-DataInci <- read.xlsx("./Data/Pertussis incidence.xlsx")[,1:17]|> 
+DataInci <- read.xlsx("./Data/Pertussis reported cases and incidence 2025-12-02 17-37 UTC.xlsx")[,1:17]|> 
      filter(!is.na(Disease)) |> 
-     select(-c(Denominator, Disease)) |> 
+     select(-c(Disease)) |> 
      rename(NAME = `Country./.Region`) |> 
      pivot_longer(cols = -c(NAME),
                   names_to = 'YEAR',
@@ -57,122 +57,6 @@ data <- DataAll |>
             Incidence2023, OutbreakSize2023)
 
 write.csv(data, './Outcome/fig data/fig3.csv', row.names = F)
-
-# appendix ----------------------------------------------------------------
-
-# visualize the pertussis incidence and income.group
-fig <- ggboxplot(DataAll,
-          x = "Income.group",
-          y = "IncidencePre", 
-          color = "Income.group",
-          add = "jitter", 
-          ylab = "Average incidence in pre-epidemic period",
-          xlab = "Income group",
-          ggtheme = theme_bw()) +
-     stat_compare_means(aes(group = Income.group),
-                        method = "anova") +
-     theme(plot.title = element_text(hjust = 0.5),
-           legend.position = "none")
-ggsave("./Outcome/S fig3_1.png",
-       fig,
-       width = 6,
-       dpi = 300,
-       height = 4)
-
-# panel a -----------------------------------------------------------------
-
-# fill_color <- rev(c("grey50", '#DD5129FF', '#FAB255FF', '#0F7BA2FF', '#43B284FF'))
-
-# DataExample <- DataInci |> 
-#      filter(NAME %in% c('China', 'Canada')) |> 
-#      as.data.frame() |> 
-#      mutate(YEAR = as.numeric(YEAR))
-# 
-# DataExampleThreshold <- DataAll |> 
-#      filter(NAME %in% c('China', 'Canada')) |>
-#      mutate(line1 = 0,
-#             line2 = IncidencePre25,
-#             line3 = IncidencePre75,
-#             line4 = IncidencePre75 + 1.5*IncidencePreIQR,
-#             line5 = Inf) |> 
-#      select(NAME, line1:line5)
-# 
-# fig_0_1 <- ggplot(data = DataExample,
-#                   mapping = aes(x = YEAR, y = Incidence, shape = NAME)) +
-#      geom_line(color = "#862633FF") +
-#      geom_point(color = "#862633FF")+
-#      geom_vline(xintercept = 2019.5) +
-#      scale_x_continuous(limits = c(2009, 2024),
-#                         expand = c(0, 0),
-#                         breaks = seq(2010, 2023, 3)) +
-#      theme_bw() +
-#      theme(panel.grid = element_blank(),
-#            axis.text = element_text(color = 'black', face = 'plain'),
-#            axis.title = element_text(color = 'black', face = 'plain'),
-#            legend.position = c(0.99, 0.99),
-#            legend.justification = c(1, 1),
-#            legend.box = 'horizontal',
-#            plot.title.position = 'plot') +
-#      labs(x = NULL, y = "Yearly incidence", shape = NULL, title = 'A')
-# 
-# fig_0_2 <- DataExample |> 
-#      filter(Period == 'Pre-epidemic') |>
-#      ggplot() +
-#      geom_rect(data = DataExampleThreshold,
-#                aes(xmin = -Inf, xmax = Inf, ymin = line1, ymax = line2, fill = 'Low'),
-#                show.legend = F,
-#                alpha = 1) +
-#      geom_rect(data = DataExampleThreshold,
-#                aes(xmin = -Inf, xmax = Inf, ymin = line2, ymax = line3, fill = 'Normal'),
-#                show.legend = F,
-#                alpha = 1) +
-#      geom_rect(data = DataExampleThreshold,
-#                aes(xmin = -Inf, xmax = Inf, ymin = line3, ymax = line4, fill = 'High'),
-#                show.legend = F,
-#                alpha = 1) +
-#      geom_rect(data = DataExampleThreshold,
-#                aes(xmin = -Inf, xmax = Inf, ymin = line4, ymax = line5, fill = 'Resurgence'),
-#                show.legend = F,
-#                alpha = 1) +
-#      geom_jitter(aes(x = NAME, y = Incidence),
-#                  fill = NA,
-#                  height = 0,
-#                  color = 'black',
-#                  show.legend = F) +
-#      geom_point(data = filter(DataExample, YEAR %in% 2022:2023),
-#                 mapping = aes(x = NAME, y = Incidence),
-#                 shape = 3,
-#                 color = 'white') +
-#      geom_text(data = filter(DataExample, YEAR %in% 2022:2023),
-#                mapping = aes(x = NAME, y = Incidence, label = YEAR),
-#                vjust = -0.5,
-#                hjust = -0.1,
-#                color = 'white',
-#                fontface = 'bold',
-#                size = 2.5) +
-#      scale_fill_manual(values = rev(fill_color)[-1],
-#                        breaks = rev(c('Low', 'Normal', 'High', 'Resurgence')),
-#                        na.translate = F) +
-#      scale_y_continuous(limits = c(0, NA),
-#                         expand = expansion(mult = c(0, 0.3))) +
-#      facet_wrap(~NAME, scales = 'free') +
-#      theme(axis.text = element_text(color = 'black', face = 'plain'),
-#            axis.title = element_text(color = 'black', face = 'plain'),
-#            axis.line.y = element_line(color = 'black'),
-#            legend.position = 'left',
-#            legend.title.align = 0,
-#            legend.direction = 'vertical',
-#            plot.title.position = 'plot',
-#            strip.text = element_blank(),
-#            legend.text = element_text(angle = 90),
-#            legend.title = element_text(angle = 90)) +
-#      labs(x = NULL, y = "Yearly incidence", fill = '', title = 'B') +
-#      guides(fill = guide_legend(title.position = 'left',
-#                                 label.position = 'bottom',
-#                                 label.vjust = 0.5,
-#                                 nrow = 4))
-# 
-# fig_0 <- fig_0_1 + fig_0_2
 
 ## panel b&c -----------------------------------------------------------------
 

@@ -26,19 +26,20 @@ DataAll <- DataAll |>
             VaccineAP = if_else(VaccineCode %in% c('aP', 'Both'), 1, 0),
             VaccineWP = if_else(VaccineCode %in% c('wP', 'Both'), 1, 0),
             TimeFirstShotG = case_when(
-                 TimeFirstShot < 2 ~ '1+',
-                 TimeFirstShot < 3 ~ '2+',
+                 TimeFirstShot < 2 ~ '[1,2)',
+                 TimeFirstShot < 3 ~ '[2,3)',
                  TimeFirstShot == 3 ~ '3+',
                  TRUE ~ NA),
-            TimeFirstShotG = factor(TimeFirstShotG, levels = c('1+', '2+', '3+')),
+            TimeFirstShotG = factor(TimeFirstShotG, levels = c('[1,2)', '[2,3)', '3+')),
             TimeLastShotG = case_when(
                  TimeLastShot < 12 ~ '<1',
-                 TimeLastShot < 24 ~ '<2',
-                 TimeLastShot < 12*6 ~ '<6',
-                 TimeLastShot < 12*12 ~ '<12',
+                 TimeLastShot < 24 ~ '[1,2)',
+                 TimeLastShot < 12*6 ~ '[2,6)',
+                 TimeLastShot < 12*12 ~ '[6,12)',
                  TimeLastShot >= 12*12 ~ '12+',
                  TRUE ~ NA),
-            TimeLastShotG = factor(TimeLastShotG, levels = c('<1', '<2', '<6', '<12', '12+')),
+            TimeLastShotG = factor(TimeLastShotG, levels = c('<1', '[1,2)', '[2,6)', '[6,12)', '12+')),
+            TimeShotG = paste(TimeFirstShotG, TimeLastShotG, sep = ' '),
             VaccineAdultRisk = case_when(
                  VaccineAdult == 0 & VaccineRisk == 0 ~ 'No',
                  VaccineAdult == 1 & VaccineRisk == 0 ~ 'Adult',
@@ -61,6 +62,8 @@ DataMapPlot <- DataMap |>
      left_join(DataAll, by = c('iso_a3' = 'CODE'))
 
 ## panel a -----------------------------------------------------------------
+
+table(DataAll$TimeShotG)
 
 fill_color <- c("#DD5129FF", "#FAB255FF", "#43B284FF") |> rev()
 

@@ -8,9 +8,6 @@ library(arsenal)
 ```{r echo=FALSE, message=FALSE, warning=FALSE, results="asis"}
 DataAll <- read.csv("../Outcome/S table2.csv")
 DataAll <- DataAll |> 
-     select(VaccineCode, CoverageDTP1, CoverageDTP3,
-            VaccineGeneral, GENERALM, GENERALY, TimeLastShot, VaccinePregnant, VaccineAdult, VaccineRisk,
-            Cluster, OutbreakSize) |> 
      # fill na in OutbreakSize with -1
      mutate(OutbreakSize = ifelse(is.na(OutbreakSize), -1, OutbreakSize),
             OutbreakSize = factor(OutbreakSize,
@@ -18,10 +15,22 @@ DataAll <- DataAll |>
                                   labels = c('Low', 'Normal', 'High', 'Resurgence')),
             CoverageDTP1 = CoverageDTP1*100,
             CoverageDTP3 = CoverageDTP3*100,
+            VaccinePregnant = factor(VaccinePregnant,
+                                     levels = 0:1,
+                                     labels = c('No', 'Yes')),
+            VaccineAdult = factor(VaccineAdult,
+                                  levels = 0:1,
+                                  labels = c('No', 'Yes')),
+            VaccineRisk = factor(VaccineRisk,
+                                 levels = 0:1,
+                                 labels = c('No', 'Yes')),
             VaccineCode = factor(VaccineCode,
                                  levels = c('wP', 'aP', 'Both')),
-            Cluster = factor(Cluster,
-                             levels = c('Low', 'Mild', 'High')))
+            Cluster = factor(ClusterG,
+                             levels = c('Low', 'Moderate', 'High'))) |> 
+     select(VaccineCode, CoverageDTP1, CoverageDTP3,
+            TimeFirstShot, TimeLastShot, VaccinePregnant, VaccineAdult, VaccineRisk,
+            Cluster, OutbreakSize)
 
 table_1 <- tableby(Cluster~.,
                    data = DataAll,
@@ -35,9 +44,7 @@ table_labels <- list(
   VaccineCode = 'Avaliable vaccine type',
   CoverageDTP1 = 'Coverage of DTP1 (%)',
   CoverageDTP3 = 'Coverage of DTP3 (%)',
-  VaccineGeneral = 'General vaccine recommendation',
-  GENERALM = 'General vaccine recommendation for toddlers, <2yr',
-  GENERALY = 'General vaccine recommendation for children, 2+yr',
+  TimeFirstShot = 'Time of first shot (months)',
   TimeLastShot = 'Time of last shot (months)',
   VaccinePregnant = 'Vaccine recommendation for pregnant',
   VaccineAdult = 'Vaccine recommendation for adults',

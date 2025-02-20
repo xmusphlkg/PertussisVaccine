@@ -26,7 +26,7 @@ source('./Code/function.R')
 
 # Data --------------------------------------------------------------------
 
-DataAll <- read.csv("./Outcome/S table2.csv")[,1:26] |> 
+DataAll <- read.csv("./Outcome/S table2.csv") |> 
      mutate(CoverageDTP1 = CoverageDTP1/100,
             CoverageDTP3 = CoverageDTP3/100,
             VaccineAP = as.factor(VaccineCode %in% c('aP', 'Both')),
@@ -115,8 +115,13 @@ DataCluster <- DataCluster|>
      mutate(Year = as.numeric(gsub('X', '', Year)))
 
 DataCluster |> 
+     group_by(Cluster, ClusterG, NAME) |>
+     summarise(Incidence = median(Incidence, na.rm = T)) |>
      group_by(Cluster, ClusterG) |>
-     summarise(Incidence = mean(Incidence, na.rm = T))
+     summarise(IncidenceMax = max(Incidence, na.rm = T),
+               IncidenceMin = min(Incidence, na.rm = T)) |> 
+     as.data.frame() |> 
+     print()
 
 # panel a -----------------------------------------------------------------
 
@@ -193,15 +198,19 @@ plot_rf <- function(i){
      print(paste0('########## Cluster ', cl, ' ##########'))
      Data <- DataAll |> 
           filter(ClusterG %in% cl)  |>
-          select(CoverageDTP1:VaccineCode, VaccineAP, VaccineWP, OutbreakSize)  |>
-          mutate(
-               VaccineAP = as.numeric(VaccineAP == 'TRUE'),
-               VaccineWP = as.numeric(VaccineWP == 'TRUE')
-          )  |>
+          mutate(VaccineAP = as.numeric(VaccineAP == 'TRUE'),
+                 VaccineWP = as.numeric(VaccineWP == 'TRUE'))  |>
           mutate_at(vars(VaccinePregnant, VaccineAdult, VaccineRisk, VaccineAP, VaccineWP), as.character) |>
           filter(!is.na(OutbreakSize) & !is.infinite(OutbreakSize))  |>
           select(-c(VaccineCode)) |> 
-          na.omit()
+          na.omit()  |>
+          select(CoverageDTP1, CoverageDTP3,
+                 TimeLastShot, TimeFirstShot,
+                 VaccinePregnant, VaccineAdult,
+                 VaccineRisk, VaccineAP, VaccineWP,
+                 OutbreakSize) |> 
+          # scale the data
+          mutate(across(CoverageDTP1:TimeFirstShot, scale))
      
      # Prepare the model matrix
      y <- Data$OutbreakSize
@@ -209,7 +218,7 @@ plot_rf <- function(i){
      
      # Fit random forest model
      set.seed(20250218)
-     rf_model <- randomForest(x, y, importance = TRUE, ntree = 500)
+     rf_model <- randomForest(x, y, importance = TRUE, ntree = 5000)
      print(rf_model)
      
      # Obtain and order variable importance
