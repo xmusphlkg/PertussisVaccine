@@ -1,5 +1,5 @@
 
-# This script generates Figure 4 in the manuscript.
+# This script generates Figure 2 in the manuscript.
 # To visual the distribution of DTP1 and DTP3 vaccine coverage, vaccination schedule,
 # targeting children, adult vaccination, and pregnant vaccination in the world.
 
@@ -52,7 +52,8 @@ DataAll <- DataAll |>
                                      levels = c(0:1),
                                      labels = c('No', 'Yes')))
 
-DataMap <- st_read("./Data/world.zh.json") |> 
+DataMap <- st_read("./Data/world.zh.json",
+                  quiet = TRUE) |> 
      filter(iso_a3  != "ATA")
 
 # find the country not in Map data
@@ -276,6 +277,6 @@ write.csv(DataAll,
 
 # content -----------------------------------------------------------------
 
-print('################## Figure 1 ##################')
+print('################## Figure 2 ##################')
 # print Coverages of DTP1 and DTP3 vaccines more than 90% in some countries.
 print(paste(length(which(!is.na(DataAll$CoverageDTP1))), 'countries have DTP1 vaccine coverage data.'))

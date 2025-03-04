@@ -1,0 +1,53 @@
+---
+title: "Code avaliablity"
+author: "Kangguo Li"
+output: html_document
+---
+
+# Load the data
+
+```{r warning=FALSE}
+source('./Code/data.R')
+remove(list = ls())
+```
+
+# figure 1: analysis the age distribution
+
+```{r warning=FALSE}
+source('./Code/fig1.R')
+remove(list = ls())
+```
+
+# figure 2: vaccination strategy
+
+```{r warning=FALSE}
+source('./Code/fig2.R')
+remove(list = ls())
+```
+
+# figure 3: GBD data
+
+```{r warning=FALSE}
+source('./Code/fig3.R')
+remove(list = ls())
+```
+
+# figure 4: resurgence distribution
+
+```{r warning=FALSE}
+source('./Code/fig4.R')
+remove(list = ls())
+```
+
+# figure 5: the relationship between vaccination strategy and resurgence
+
+```{r warning=FALSE}
+source('./Code/fig5.R')
+remove(list = ls())
+```
+
+# table 1
+```{r warning=FALSE}
+knitr::knit('./Code/table1.Rmd',
+            output = './Outcome/table1.md')
+```

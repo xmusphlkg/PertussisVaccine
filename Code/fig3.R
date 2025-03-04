@@ -1,147 +1,299 @@
 
-# This script generates Figure 3 in the manuscript.
-# To determine the pertussis status in 2022 and 2023, 
-# we used the median incidence in the pre-epidemic period as the threshold.
-
 # packages ----------------------------------------------------------------
 
 library(tidyverse)
 library(patchwork)
 library(openxlsx)
 library(sf)
-library(cowplot)
-library(paletteer)
 library(Cairo)
-library(ggpubr)
+library(randomForest)
+library(ggrepel)
+library(paletteer)
 
 source('./Code/function.R')
 
-# Data --------------------------------------------------------------------
+# data --------------------------------------------------------------------
 
-DataAll <- read.csv("./Outcome/S table2.csv")|> 
-     mutate(
-          OutbreakSize2022 = factor(OutbreakSize2022, levels = c('Unavailable', 'Low', 'Normal', 'High', 'Resurgence')),
-          OutbreakSize2023 = factor(OutbreakSize2023, levels = c('Unavailable', 'Low', 'Normal', 'High', 'Resurgence'))
-     )
+# Load the map data
+DataMap <- st_read("./Data/world.zh.json",
+                    quiet = TRUE) |> 
+     filter(iso_a3  != "ATA")
 
-DataInci <- read.xlsx("./Data/Pertussis reported cases and incidence 2025-12-02 17-37 UTC.xlsx")[,1:17]|> 
+# Load Country code
+DataCountry <- read.csv('./Data/GBD/iso_code.csv') |> 
+     select(-location_name)
+
+# Load GBD data
+DataInciGBD <- read.csv("./Data/GBD/IHME-GBD_2021_DATA-b3042f9b-1.csv") |> 
+     filter(measure_name %in% c('Incidence', 'DALYs (Disability-Adjusted Life Years)')) |>
+     select(location_id, measure_name, age_name, metric_name, year, val) |> 
+     left_join(DataCountry, by = c('location_id'))
+
+# Load Country code
+DataCountry1 <- read.xlsx("./Data/DTP vaccination coverage.xlsx") |> 
+     select(CODE, NAME) |>
+     unique()
+
+# Load reported data
+DataInciReport <- read.xlsx("./Data/Pertussis reported cases and incidence 2025-12-02 17-37 UTC.xlsx")[,1:17] |> 
      filter(!is.na(Disease)) |> 
      select(-c(Disease)) |> 
+     mutate(# replace &#39; with '
+          `Country./.Region` = str_replace_all(`Country./.Region`, '&#39;', "'")) |>
      rename(NAME = `Country./.Region`) |> 
      pivot_longer(cols = -c(NAME),
                   names_to = 'YEAR',
                   values_to = 'Incidence') |>
-     mutate(Period = case_when(
-          YEAR <= 2019 ~ 'Pre-epidemic',
-          YEAR <= 2021 ~ 'Epidemic',
-          YEAR == 2022 ~ '2022',
-          YEAR == 2023 ~ '2023'),
-          Period = factor(Period, levels = c('Pre-epidemic', 'Epidemic', '2023', '2022')),
-          Incidence = as.numeric(Incidence)
-     )
+     # filter year >= 2010
+     filter(as.numeric(YEAR) >= 2010) |>
+     mutate(Incidence = as.numeric(str_replace(Incidence, ',', ''))) |> 
+     left_join(DataCountry1, by = c('NAME'))
 
-DataMap <- st_read("./Data/world.zh.json") |> 
-     filter(iso_a3  != "ATA")
+rm(DataCountry1)
 
-# find the country not in Map data
-DataAll[!DataAll$CODE %in% DataMap$iso_a3, 'NAME']
+# Vaccine coverage and strategy
+DataVaccine <- read.csv("./Outcome/S table2.csv") |> 
+     mutate(CoverageDTP1 = CoverageDTP1/100,
+            CoverageDTP3 = CoverageDTP3/100,
+            VaccineAP = as.factor(VaccineCode %in% c('aP', 'Both')),
+            VaccineWP = as.factor(VaccineCode %in% c('wP', 'Both')),
+            OutbreakSize2022 = factor(OutbreakSize2022, levels = c('Low', 'Normal', 'High', 'Resurgence')),
+            OutbreakSize2023 = factor(OutbreakSize2023, levels = c('Low', 'Normal', 'High', 'Resurgence')))
 
-DataMapPlot <- DataMap |> 
-     left_join(DataAll, by = c('iso_a3' = 'CODE'))
+# appendix ---------------------------------------------------
 
-# write csv
-data <- DataAll |> 
-     select(WHO_REGION, NAME, CODE, 
-            IncidencePre, IncidencePre25, IncidencePre75, IncidencePreIQR,
-            Incidence2022, OutbreakSize2022, 
-            Incidence2023, OutbreakSize2023)
+# Compare GBD and reported data
+DataGBD <- DataInciGBD |> 
+     filter(age_name == 'All ages',
+            measure_name == 'Incidence',
+            metric_name == 'Number') |>
+     select(-c(age_name, measure_name, metric_name))
+            
+plot_point <- function(y){
+     data <- DataGBD |> 
+          filter(year == y) |>
+          left_join(filter(DataInciReport, YEAR == y), by = c('ISO3' = 'CODE')) |> 
+          select(InciGBD = val, InciReport = Incidence, NAME, ISO3) |> 
+          # find outlier countries and add label
+          mutate(labelGBD = case_when(InciGBD > median(InciGBD, na.rm = T) + 10 * IQR(InciGBD, na.rm = T) ~ NAME,
+                                     TRUE ~ ''),
+                 labelReport = case_when(InciReport > median(InciReport, na.rm = T) + 10 * IQR(InciReport, na.rm = T) ~ NAME,
+                                        TRUE ~ ''),
+                 label = case_when(labelGBD != '' & labelReport != '' ~ ISO3,
+                                   labelGBD != '' ~ ISO3,
+                                   labelReport != '' ~ ISO3,
+                                   TRUE ~ NA),
+                 highlight = case_when(labelGBD != '' & labelReport != '' ~ '',
+                                       labelGBD != '' ~ '',
+                                       labelReport != '' ~ '',
+                                       TRUE ~ NA))
+     
+     ggplot(data, aes(x = InciGBD, y = InciReport)) +
+          geom_point(aes(color = highlight)) +
+          geom_abline(intercept = 0, slope = 1, color = 'red') +
+          geom_text_repel(aes(label = label), nudge_x = 0.1, nudge_y = 0.1) +
+          scale_x_continuous(limits = c(0, NA),
+                             expand = expansion(mult = c(0, 0.1))) +
+          scale_y_continuous(limits = c(0, NA),
+                             expand = expansion(mult = c(0, 0.1))) +
+          labs(x = 'GBD estimated incidence',
+               y = 'Reported Incidence',
+               title = paste('Year:', y)) +
+          theme_classic()+
+          theme(legend.position = 'none')
+}
 
-write.csv(data, './Outcome/fig data/fig3.csv', row.names = F)
+fig <- lapply(unique(DataGBD$year), plot_point) |> 
+     wrap_plots(nrow = 3)
 
-## panel b&c -----------------------------------------------------------------
+ggsave("./Outcome/S fig3_1.png",
+       fig,
+       width = 15,
+       height = 12,
+       dpi = 300)
 
-fill_color <- c("grey50", '#43B284FF', '#0F7BA2FF', '#FAB255FF', '#DD5129FF')
+rm(DataGBD, plot_point, fig)
 
-fig_1_m <- plot_map_col(DataAll$OutbreakSize2022, fill_color) +
-     scale_fill_manual(values = fill_color,
-                       breaks = levels(DataAll$OutbreakSize2022),
-                       limits = levels(DataAll$OutbreakSize2022),
-                       na.translate = F)+
-     theme(axis.text.x = element_blank())
+# incidence -------------------------------------------------------
 
-fig_1 <- ggplot(data = DataMapPlot) +
-     geom_sf(aes(fill = factor(OutbreakSize2022)),
-             show.legend = F) +
+DataGBD2021 <- DataInciGBD |> 
+     filter(year == 2021,
+            measure_name == 'Incidence',
+            metric_name == 'Rate') |>
+     select(ISO3, age_name, val) |> 
+     pivot_wider(names_from = age_name,
+                 values_from = val)
+
+Data <- DataMap |> 
+     left_join(DataGBD2021, by = c('iso_a3' = 'ISO3')) |> 
+     rename(y = 'All ages') 
+
+fill_color <- paletteer_d("MetBrewer::Hiroshige", direction = -1)
+
+fig_1 <- ggplot(Data) +
+     geom_sf(aes(fill = y)) +
      # add x, y tick labels
      theme(axis.text.x = element_text(size = 8),
            axis.text.y = element_text(size = 8)) +
      scale_x_continuous(limits = c(-180, 180),
                         expand = c(0, 0)) + 
      scale_y_continuous(limits = c(-60, 75)) +
-     scale_fill_manual(values = fill_color,
-                       breaks = levels(DataAll$OutbreakSize2022),
-                       limits = levels(DataAll$OutbreakSize2022),
-                       na.translate = F)+
+     scale_fill_gradientn(colors = fill_color,
+                          limits = c(0, 1000),
+                          expand = c(0, 0),
+                          na.value = "white")+
      theme_bw() +
      theme(panel.grid = element_blank(),
            panel.background = element_rect(fill = "#C1CDCD", color = NA),
            axis.text = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
-           legend.position = 'bottom',
-           legend.box = 'horizontal',
+           legend.position = 'inside',
+           legend.position.inside = c(0.01, 0.01),
+           legend.justification.inside = c(0, 0),
            plot.title.position = 'plot') +
-     labs(title = "A", x = NULL, y = NULL, fill = 'Pertussis status in 2022')+
-     guides(fill = guide_legend(nrow = 1))
+     labs(title = "A", x = NULL, y = NULL, fill = 'Estimated\nincidence rate')
 
-fig_1 <- fig_1 + inset_element(fig_1_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.45)
+# RF model ----------------------------------------------------------------
 
-fig_2_m <- plot_map_col(DataAll$OutbreakSize2023, fill_color) +
-     scale_fill_manual(values = fill_color,
-                       breaks = levels(DataAll$OutbreakSize2022),
-                       limits = levels(DataAll$OutbreakSize2022),
-                       na.translate = F)+
-     theme(axis.text.x = element_blank())
+DataLabel <- data.frame(
+     Variable = c("CoverageDTP1", "CoverageDTP3",
+                  "VaccinePregnant", "VaccineAdult", "VaccineRisk",
+                  'VaccineAP, VaccineWP',
+                  "TimeLastShot", "TimeFirstShot",
+                  "VaccineAP", "VaccineWP"),
+     text = c("DTP1 coverage", "DTP3 coverage", 
+              "Maternal immunization", "Vaccine for adult", "Vaccine for risk",
+              "aP vaccine, wP vaccine",
+              "Time of last shot", "Time of first shot",
+              "aP vaccine", "wP vaccine")
+)
 
-fig_2 <- ggplot(data = DataMapPlot) +
-     geom_sf(aes(fill = factor(OutbreakSize2023))) +
+age_group <- c("All ages", "<5 years")
+
+
+Data <- DataVaccine |> 
+     mutate(VaccineAP = as.numeric(VaccineAP == 'TRUE'),
+            VaccineWP = as.numeric(VaccineWP == 'TRUE'))  |>
+     mutate_at(vars(VaccinePregnant, VaccineAdult, VaccineRisk, VaccineAP, VaccineWP), as.character) |>
+     filter(!is.na(OutbreakSize) & !is.infinite(OutbreakSize))  |>
+     select(-c(VaccineCode)) |> 
+     left_join(DataGBD2021, by = c('CODE' = 'ISO3')) |>
+     na.omit()  |>
+     select(CoverageDTP1, CoverageDTP3,
+            TimeLastShot, TimeFirstShot,
+            VaccinePregnant, VaccineAdult,
+            VaccineRisk, VaccineAP, VaccineWP,
+            names(DataGBD2021)[-1])
+
+rf_model <- function(i, start_i){
+     set.seed(20250303)
+     
+     y <- age_group[i]
+     
+     data <- Data |> 
+          select(CoverageDTP1:VaccineWP, all_of(y)) |> 
+          rename(y = y)
+     
+     # Random forest
+     rf_model <- randomForest(y ~ .,
+                        data = data,
+                        ntree = 100000,
+                        importance = T)
+     
+     importance_data <- importance(rf_model, scale = TRUE, type = 1)
+     importance_df <- data.frame(Variable = rownames(importance_data), Importance = importance_data[,1]) |> 
+          arrange(desc(Importance)) |> 
+          left_join(DataLabel, by = 'Variable') |> 
+          mutate(age = y)
+     print(paste(LETTERS[start_i + i], y, sep = ': '))
+     print(importance_df)
+     
+     ggplot(importance_df, aes(x = Importance, y = fct_reorder(Variable, Importance))) +
+          geom_linerange(aes(xmin = 0, xmax = Importance)) +
+          geom_point(mapping = aes(color = Importance),
+                     size = 3) +
+          scale_y_discrete(breaks = importance_df$Variable,
+                           labels = importance_df$text) +
+          scale_x_continuous(expand = expansion(mult = c(0, 0.1)),
+                             limits = c(0, NA)) +
+          scale_color_gradientn(colors = paletteer_d("MetBrewer::Hiroshige", direction = -1))+
+          theme_bw() +
+          theme(panel.grid = element_blank(),
+                legend.position = 'none',
+                axis.text = element_text(color = 'black', face = 'plain'),
+                axis.title = element_text(color = 'black', face = 'plain'),
+                plot.title.position = 'plot') +
+          labs(title = paste(LETTERS[start_i + i], y, sep = ': '),
+               y = NULL, x = "Mean decrease in accuracy")
+}
+
+fig_2 <- lapply(1:length(age_group), rf_model, start_i = 1) |>
+     wrap_plots(nrow = 1)
+
+# DALYs ------------------------------------------------------------------------
+
+DataGBD2021 <- DataInciGBD |> 
+     filter(year == 2021,
+            measure_name == 'DALYs (Disability-Adjusted Life Years)',
+            metric_name == 'Rate') |>
+     select(ISO3, age_name, val) |> 
+     pivot_wider(names_from = age_name,
+                 values_from = val)
+
+Data <- DataMap |>
+     left_join(DataGBD2021, by = c('iso_a3' = 'ISO3')) |>
+     rename(y = 'All ages')
+
+fig_3 <- ggplot(Data) +
+     geom_sf(aes(fill = y)) +
      # add x, y tick labels
      theme(axis.text.x = element_text(size = 8),
            axis.text.y = element_text(size = 8)) +
      scale_x_continuous(limits = c(-180, 180),
                         expand = c(0, 0)) + 
      scale_y_continuous(limits = c(-60, 75)) +
-     scale_fill_manual(values = fill_color,
-                       breaks = levels(DataAll$OutbreakSize2022),
-                       limits = levels(DataAll$OutbreakSize2022),
-                       na.translate = F)+
+     scale_fill_gradientn(colors = fill_color,
+                          limits = c(0, 1000),
+                          expand = c(0, 0),
+                          na.value = "white")+
      theme_bw() +
      theme(panel.grid = element_blank(),
            panel.background = element_rect(fill = "#C1CDCD", color = NA),
            axis.text = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
-           legend.position = 'bottom',
-           legend.box = 'horizontal',
+           legend.position = 'inside',
+           legend.position.inside = c(0.01, 0.01),
+           legend.justification.inside = c(0, 0),
            plot.title.position = 'plot') +
-     labs(title = "B", x = NULL, y = NULL, fill = 'Pertussis status')+
-     guides(fill = guide_legend(nrow = 1))
+     labs(title = "D", x = NULL, y = NULL, fill = 'DALYs rate')
 
-fig_2 <- fig_2 + inset_element(fig_2_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.45)
+# RF model ----------------------------------------------------------------
 
-# combine -----------------------------------------------------------------
+Data <- DataVaccine |> 
+     mutate(VaccineAP = as.numeric(VaccineAP == 'TRUE'),
+            VaccineWP = as.numeric(VaccineWP == 'TRUE'))  |>
+     mutate_at(vars(VaccinePregnant, VaccineAdult, VaccineRisk, VaccineAP, VaccineWP), as.character) |>
+     filter(!is.na(OutbreakSize) & !is.infinite(OutbreakSize))  |>
+     select(-c(VaccineCode)) |> 
+     left_join(DataGBD2021, by = c('CODE' = 'ISO3')) |>
+     na.omit()  |>
+     select(CoverageDTP1, CoverageDTP3,
+            TimeLastShot, TimeFirstShot,
+            VaccinePregnant, VaccineAdult,
+            VaccineRisk, VaccineAP, VaccineWP,
+            names(DataGBD2021)[-1])
 
-# design <- "
-# AB
-# CC
-# DD
-# "
-# 
-# fig_r <- fig_0_1 + fig_0_2 + fig_1 + fig_2 +
-#      plot_layout(design = design, widths = c(3, 1.1))
+fig_4 <- lapply(1:length(age_group), rf_model, start_i = 4) |>
+     wrap_plots(nrow = 1)
 
-fig <- cowplot::plot_grid(fig_1, fig_2, nrow = 2)
+# save --------------------------------------------------------------------
+
+fig <- cowplot::plot_grid(fig_1, fig_2, fig_3, fig_4, nrow = 2, byrow = T)
 
 ggsave("./Outcome/fig3.pdf",
        fig,
-       width = 6,
+       width = 15,
        height = 7,
        device = cairo_pdf)
+
+

@@ -171,14 +171,12 @@ DataVac <- DataVacCover |>
 ## https://immunizationdata.who.int/global/wiise-detail-page/pertussis-reported-cases-and-incidence
 ## Pertussis incidence after 2010
 
-DataInci <- read.xlsx("./Data/Pertussis reported cases and incidence 2025-12-02 17-37 UTC.xlsx")[,1:17]
-DataInci <- DataInci |> 
+DataInciRaw <- read.xlsx("./Data/Pertussis reported cases and incidence 2025-12-02 17-37 UTC.xlsx")[,1:17]
+DataInci <- DataInciRaw |> 
      filter(!is.na(Disease)) |> 
      select(-c(Disease)) |> 
      mutate(# replace &#39; with '
-          `Country./.Region` = str_replace_all(`Country./.Region`, '&#39;', "'"),
-          # replace American Samoa with Samoa
-          `Country./.Region` = str_replace(`Country./.Region`, 'American Samoa', 'Samoa')) |>
+          `Country./.Region` = str_replace_all(`Country./.Region`, '&#39;', "'")) |>
      rename(NAME = `Country./.Region`) |> 
      filter(NAME %in% DataVac$NAME) |>
      pivot_longer(cols = -c(NAME),
@@ -192,35 +190,41 @@ DataInci <- DataInci |>
                                YEAR == 2023 ~ '2023'),
             Period = factor(Period, levels = c('Pre-epidemic', 'Epidemic', '2023', '2022')),
             Incidence = as.numeric(str_replace(Incidence, ',', '')),
-            Incidence = if_else(is.na(Incidence), Incidence, Incidence + 0.001)) |> 
-     group_by(NAME, Period) |>
+            Incidence = if_else(is.na(Incidence), Incidence, Incidence + 0.001))
+
+## Estimated incidence median and IQR in Pre-epidemic
+DataInciStatusPre <- DataInci |>
+     filter(Period == 'Pre-epidemic') |>
+     group_by(NAME) |>
      summarise(Incidence_50 = median(Incidence, na.rm = T),
                Incidence_25 = quantile(Incidence, 0.25, na.rm = T),
                Incidence_75 = quantile(Incidence, 0.75, na.rm = T),
                IQR = Incidence_75 - Incidence_25,
-               .groups = 'drop') |> 
-     pivot_wider(names_from = Period,
-                 values_from = c(Incidence_50, Incidence_25, Incidence_75, IQR),
-                 names_glue = "{Period}_{.value}") |> 
-     select(NAME,
-            `Pre-epidemic_Incidence_50`, `Pre-epidemic_Incidence_25`, `Pre-epidemic_Incidence_75`, `Pre-epidemic_IQR`,
-            `2022_Incidence_50`, `2023_Incidence_50`) |>
-     rename(`2022` = `2022_Incidence_50`,
-            `2023` = `2023_Incidence_50`) |>
-     mutate(OutbreakSize2022 = case_when(`2022` <= `Pre-epidemic_Incidence_25` ~ 'Low',
-                                         `2022` > `Pre-epidemic_Incidence_25` & `2022` <= `Pre-epidemic_Incidence_75` ~ 'Normal',
-                                         `2022` > `Pre-epidemic_Incidence_75` & 
-                                              `2022` <= `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'High',
-                                         `2022` > `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'Resurgence',
+               Incidence_mean = mean(Incidence, na.rm = T),
+               Incidence_sd = sd(Incidence, na.rm = T),
+               .groups = 'drop')
+
+## Get the incidence in 2022 and 2023
+DataInciStatus <- DataInci |>
+     filter(Period %in% c('2022', '2023')) |>
+     select(-YEAR) |>
+     mutate(Incidence = Incidence - 0.001) |> 
+     pivot_wider(names_from = Period, values_from = Incidence) |>
+     left_join(DataInciStatusPre, by = c('NAME')) |>
+     mutate(OutbreakSize2022 = case_when(`2022` <= `Incidence_25` ~ 'Low',
+                                         `2022` > `Incidence_25` & `2022` <= `Incidence_75` ~ 'Normal',
+                                         `2022` > `Incidence_75` & 
+                                              `2022` <= `Incidence_75` + 1.5*`IQR` ~ 'High',
+                                         `2022` > `Incidence_75` + 1.5*`IQR` ~ 'Resurgence',
                                          TRUE ~ 'Unavailable'),
-            OutbreakSize2023 = case_when(`2023` <= `Pre-epidemic_Incidence_25` ~ 'Low',
-                                         `2023` > `Pre-epidemic_Incidence_25` & `2023` <= `Pre-epidemic_Incidence_75` ~ 'Normal',
-                                         `2023` > `Pre-epidemic_Incidence_75` & 
-                                              `2023` <= `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'High',
-                                         `2023` > `Pre-epidemic_Incidence_75` + 1.5*`Pre-epidemic_IQR` ~ 'Resurgence',
+            OutbreakSize2023 = case_when(`2023` <= `Incidence_25` ~ 'Low',
+                                         `2023` > `Incidence_25` & `2023` <= `Incidence_75` ~ 'Normal',
+                                         `2023` > `Incidence_75` & 
+                                              `2023` <= `Incidence_75` + 1.5*`IQR` ~ 'High',
+                                         `2023` > `Incidence_75` + 1.5*`IQR` ~ 'Resurgence',
                                          TRUE ~ 'Unavailable'),
-            `2023-change` = `2023`/`Pre-epidemic_Incidence_50`,
-            `2022-change` = `2022`/`Pre-epidemic_Incidence_50`,
+            `2023-change` = (`2023` - Incidence_mean)/Incidence_sd,
+            `2022-change` = (`2022` - Incidence_mean)/Incidence_sd,
             OutbreakSize2022 = factor(OutbreakSize2022, levels = c('Unavailable', 'Low', 'Normal', 'High', 'Resurgence')),
             OutbreakSize2023 = factor(OutbreakSize2023, levels = c('Unavailable', 'Low', 'Normal', 'High', 'Resurgence')),
             OutbreakSize = case_when(
@@ -231,12 +235,12 @@ DataInci <- DataInci |>
                  TRUE ~ NA_real_
             )) |> 
      select(NAME, OutbreakSize2022, OutbreakSize2023, OutbreakSize,
-            `Pre-epidemic_Incidence_50`, `Pre-epidemic_Incidence_25`, `Pre-epidemic_Incidence_75`, `Pre-epidemic_IQR`,
+            `Incidence_50`, `Incidence_25`, `Incidence_75`, `IQR`,
             `2022`, `2022-change`, `2023`, `2023-change`) |> 
-     rename(IncidencePre = `Pre-epidemic_Incidence_50`,
-            IncidencePre25 = `Pre-epidemic_Incidence_25`,
-            IncidencePre75 = `Pre-epidemic_Incidence_75`,
-            IncidencePreIQR = `Pre-epidemic_IQR`,
+     rename(IncidencePre = `Incidence_50`,
+            IncidencePre25 = `Incidence_25`,
+            IncidencePre75 = `Incidence_75`,
+            IncidencePreIQR = `IQR`,
             Incidence2022 = `2022`,
             Incidence2023 = `2023`,
             Change2022 = `2022-change`,
@@ -244,8 +248,6 @@ DataInci <- DataInci |>
      mutate(IncidencePre = IncidencePre - 0.001,
             IncidencePre25 = IncidencePre25 - 0.001,
             IncidencePre75 = IncidencePre75 - 0.001,
-            Incidence2022 = Incidence2022 - 0.001,
-            Incidence2023 = Incidence2023 - 0.001,
             Change2022 = round(Change2022, 2),
             Change2023 = round(Change2023, 2))
 
@@ -267,7 +269,7 @@ DataClass <- read.xlsx('./Data/CLASS.xlsx') |>
      ))
 
 Data <- DataVac |> 
-     merge(DataInci, by = c('NAME'), all = T) |> 
+     merge(DataInciStatus, by = c('NAME'), all = T) |> 
      left_join(DataInfo, by = c('CODE', 'NAME')) |> 
      select(WHO_REGION, CODE, NAME, everything()) |> 
      left_join(DataClass, by = c(CODE = 'Code')) |> 
