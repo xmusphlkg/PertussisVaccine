@@ -61,8 +61,9 @@ DataAll[!DataAll$CODE %in% DataMap$iso_a3, 'NAME']
 DataCountry <- read.csv('./Data/GBD/iso_code.csv') |> 
      select(-location_name)
 
-DataInciRaw <- read.csv("./Data/GBD/IHME-GBD_2021_DATA-b3042f9b-1.csv") |> 
+DataInciRaw <- read.csv("./Data/GBD/IHME-GBD_2021_DATA-a5bddb9a-1.csv") |> 
      filter(measure_name == 'Incidence',
+            location_name != 'Global',
             year %in% 2010:2019,
             metric_name == 'Rate',
             age_name == 'All ages') |>

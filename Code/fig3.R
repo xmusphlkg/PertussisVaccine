@@ -24,7 +24,7 @@ DataCountry <- read.csv('./Data/GBD/iso_code.csv') |>
      select(-location_name)
 
 # Load GBD data
-DataInciGBD <- read.csv("./Data/GBD/IHME-GBD_2021_DATA-b3042f9b-1.csv") |> 
+DataInciGBD <- read.csv("./Data/GBD/IHME-GBD_2021_DATA-a5bddb9a-1.csv") |> 
      filter(measure_name %in% c('Incidence', 'DALYs (Disability-Adjusted Life Years)')) |>
      select(location_id, measure_name, age_name, metric_name, year, val) |> 
      left_join(DataCountry, by = c('location_id'))
@@ -121,6 +121,9 @@ DataGBD2021 <- DataInciGBD |>
             measure_name == 'Incidence',
             metric_name == 'Rate') |>
      select(ISO3, age_name, val) |> 
+     group_by(ISO3, age_name) |>
+     summarise(val = median(val, na.rm = T),
+               .groups = 'drop') |>
      pivot_wider(names_from = age_name,
                  values_from = val)
 
@@ -168,8 +171,7 @@ DataLabel <- data.frame(
               "aP vaccine", "wP vaccine")
 )
 
-age_group <- c("All ages", "<5 years")
-
+age_group <- c("All ages", "<1 year")
 
 Data <- DataVaccine |> 
      mutate(VaccineAP = as.numeric(VaccineAP == 'TRUE'),
@@ -265,7 +267,7 @@ fig_3 <- ggplot(Data) +
            legend.position.inside = c(0.01, 0.01),
            legend.justification.inside = c(0, 0),
            plot.title.position = 'plot') +
-     labs(title = "D", x = NULL, y = NULL, fill = 'DALYs rate')
+     labs(title = "D", x = NULL, y = NULL, fill = 'Estimated\nDALYs rate')
 
 # RF model ----------------------------------------------------------------
 
@@ -295,5 +297,3 @@ ggsave("./Outcome/fig3.pdf",
        width = 15,
        height = 7,
        device = cairo_pdf)
-
-

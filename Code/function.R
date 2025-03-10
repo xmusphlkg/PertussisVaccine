@@ -3,7 +3,8 @@
 
 # Function to convert values in Y/M/W format to months
 convert_to_months <- function(value) {
-     num <- as.numeric(str_extract(value, "\\d+"))  # Extract the numeric part
+     # Extract the numeric part (including decimals) and point to the unit
+     num <- as.numeric(str_extract(value, "\\d+(\\.\\d+)?"))
      unit <- str_extract(value, "[YMWМ]")  # Extract the unit (Y, M, W, Cyrillic M)
      
      # Convert based on the unit to weeks
