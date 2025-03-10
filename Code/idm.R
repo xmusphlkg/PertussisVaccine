@@ -719,7 +719,7 @@ library(parallel)
 library(doParallel)
 
 run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philippines", "Myanmar", "Thailand"),
-                                    param_samples = 1000, T_end = 365*10, dt = 1, N = 5e4) {
+                                    param_samples = 1000, T_end = 365*10, dt = 1, N = 1e6) {
 
      # setting parallel computing
      n_cores <- detectCores()/2
@@ -761,11 +761,7 @@ run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philipp
      })
      
      # Export necessary functions to the cluster
-     clusterExport(cl, c("set_initial_population", "assign_preexisting_immunity", 
-                         "initialize_infections", "add_births", "update_age", 
-                         "update_vaccination", "update_immunity", "update_infection", 
-                         "update_progression", "get_seasonal_beta", "mortality_rate_vec",
-                         "run_simulation"))
+     clusterExport(cl, ls())
      
      # Load required packages on each cluster node
      clusterEvalQ(cl, {
@@ -870,7 +866,7 @@ run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philipp
 }
 
 # Example usage:
-# results <- run_parallel_simulation(param_samples = 1000)
+results <- run_parallel_simulation(param_samples = 1000)
      
 
 
