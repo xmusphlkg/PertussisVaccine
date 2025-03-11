@@ -627,56 +627,31 @@ run_simulation <- function(strategy, params, T_end, dt, N, location) {
      return(list(population = pop, summary = summary_df))
 }
 
-# run simulation ------------------------------------------------------------
+# run all countries -------------------------------------------------------
 
-# Set simulation parameters
-main_simulation <- function(country, T_end = 5*365, dt = 1, N = 5e4) {
-     # loading the strategy
-     source("./Code/strategy.R")
+library(parallel)
+library(doParallel)
 
-     # Get the strategy list based on the country
-     strategy_list <- switch(tolower(country),
-                             "china" = strategy_china,
-                             "indonesia" = strategy_indonesia,
-                             "philippines" = strategy_philippines,
-                             "myanmar" = strategy_myanmar,
-                             "thailand" = strategy_thailand,
-                             stop("Unknown country"))
+# Prepare task function for parLapply
+task_function <- function(task_row) {
+     param_id <- task_row[1]  # First column is param_id
+     strategy_type <- as.character(task_row[2])  # Second column is strategy
+     params <- param_list[[param_id]]
      
-     # Run the simulation for each strategy
-     cat(paste("Starting simulation for", country, "...\n"))
-     
-     # Using MCMC to simulate the model when some parameters are uncertain
-     # k: vaccine decay rate: 4 - 12 years
-     k <- 1/(rlnorm(1, log(8), 0.2)*365)
-     # k_n: natural immunity decay rate: 4 - 20 years
-     k_n <- 1/(rlnorm(1, log(12), 0.2)*365)
-     # infectious_period: 2 - 6 weeks
-     infectious_period <- rgamma(1, shape = 10, scale = 4*7/10)
-     # latent_period: 4 - 21 days
-     latent_period <- rgamma(1, shape = 8, scale = 12/10)
-     # reproductive_number: 5.5 - 17
-     reproductive_number <- max(rnorm(1, 10, 3), 5.5)
-     
-     # Estimate Beta
-     gamma <- 1/infectious_period
-     sigma <- 1/latent_period
-     beta <- reproductive_number * gamma / (sigma / (sigma + gamma))
-     
-     # setting the parameters
-     params <- list(
-          # Transmission rate (per year)
-          beta = beta,
+     # Complete parameter set for this simulation
+     full_params <- list(
+          # Transmission rate
+          beta = params$beta,
           # Latent period
-          latent_period = latent_period,
+          latent_period = params$latent_period,
           # Infectious period
-          infectious_period = infectious_period,
+          infectious_period = params$infectious_period,
           # Initial efficacy for primary vaccine dose
           VE0_primary = 0.8,
           # Initial efficacy for booster dose
           VE0_booster = 0.9,
           # Vaccine immunity decay rate
-          k = k,
+          k = params$k,
           # Maternal immunity decay rate
           delta_m = 1/(3*30),
           # Birth rate (per year per 1000 individuals)
@@ -686,37 +661,27 @@ main_simulation <- function(country, T_end = 5*365, dt = 1, N = 5e4) {
           # Immunity level after recovery
           natural_immunity = 0.8,
           # Natural immunity decay rate
-          k_n = k_n
+          k_n = params$k_n
      )
      
-     result_A <- run_simulation(strategy_list$strategy_A, params, T_end, dt, N, location = country)
-     result_B <- run_simulation(strategy_list$strategy_B, params, T_end, dt, N, location = country)
-     result_C <- run_simulation(strategy_list$strategy_C, params, T_end, dt, N, location = country)
+     # Select appropriate strategy
+     current_strategy <- switch(strategy_type,
+                                "A" = strategy_list$strategy_A,
+                                "B" = strategy_list$strategy_B,
+                                "C" = strategy_list$strategy_C)
      
-     # Combine results and add strategy labels
-     result_A$summary$strategy <- strategy_list$strategy_A$label
-     result_B$summary$strategy <- strategy_list$strategy_B$label
-     result_C$summary$strategy <- strategy_list$strategy_C$label
+     # Run single simulation
+     result <- run_simulation(current_strategy, full_params, T_end, dt, N, location = country)
      
-     combined_results <- rbind(result_A$summary, result_B$summary, result_C$summary)
+     # Add metadata to results
+     result$summary$param_id <- param_id
+     result$summary$strategy <- current_strategy$label
+     result$summary$country <- country
+     result$summary$sim_id <- params$sim_id
      
-     # Return
-     return(combined_results)
+     # Return summary data
+     return(result$summary)
 }
-
-result <- main_simulation("China", T_end = 365*5, dt = 1, N = 5e4)
-ggplot(result, aes(x = time, y = New, color = strategy)) +
-     geom_line(size = 1) +
-     theme_minimal() +
-     labs(title = "Comparison of Strategies in China",
-          x = "Time (years)", y = "New Infections",
-          color = "Strategy") +
-     theme(legend.position = "bottom")
-
-# run all countries -------------------------------------------------------
-
-library(parallel)
-library(doParallel)
 
 run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philippines", "Myanmar", "Thailand"),
                                     param_samples = 1000, T_end = 365*10, dt = 1, N = 1e6) {
@@ -758,10 +723,7 @@ run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philipp
                k_n = k_n,
                sim_id = i
           )
-     })
-     
-     # Export necessary functions to the cluster
-     clusterExport(cl, ls())
+     })  
      
      # Load required packages on each cluster node
      clusterEvalQ(cl, {
@@ -770,6 +732,9 @@ run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philipp
           source("./Code/strategy.R")  # Load strategy definitions
      })
      
+     # Export necessary functions to the cluster
+     clusterExport(cl, ls()[ls() != "cl"], envir = environment())
+
      # Initialize results storage
      all_results <- list()
      
@@ -786,62 +751,21 @@ run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philipp
                                  "thailand" = strategy_thailand,
                                  stop("Unknown country"))
           
-          # Create task grid: each combination of parameter set and strategy
+          # Create task list for each parameter set and strategy combination
           tasks <- expand.grid(
                param_id = 1:param_samples,
                strategy = c("A", "B", "C")
           )
           
-          # Run parallel simulations
-          results <- foreach(i = 1:nrow(tasks), .combine = rbind, .packages = c("dplyr")) %dopar% {
-               param_id <- tasks$param_id[i]
-               strategy_type <- tasks$strategy[i]
-               params <- param_list[[param_id]]
-               
-               # Complete parameter set for this simulation
-               full_params <- list(
-                    # Transmission rate
-                    beta = params$beta,
-                    # Latent period
-                    latent_period = params$latent_period,
-                    # Infectious period
-                    infectious_period = params$infectious_period,
-                    # Initial efficacy for primary vaccine dose
-                    VE0_primary = 0.8,
-                    # Initial efficacy for booster dose
-                    VE0_booster = 0.9,
-                    # Vaccine immunity decay rate
-                    k = params$k,
-                    # Maternal immunity decay rate
-                    delta_m = 1/(3*30),
-                    # Birth rate (per year per 1000 individuals)
-                    birth_rate = strategy_list$birth_rate,
-                    # Initial maternal immunity level
-                    M0 = 1,
-                    # Immunity level after recovery
-                    natural_immunity = 0.8,
-                    # Natural immunity decay rate
-                    k_n = params$k_n
-               )
-               
-               # Select appropriate strategy
-               current_strategy <- switch(strategy_type,
-                                         "A" = strategy_list$strategy_A,
-                                         "B" = strategy_list$strategy_B,
-                                         "C" = strategy_list$strategy_C)
-               
-               # Run single simulation
-               result <- run_simulation(current_strategy, full_params, T_end, dt, N, location = country)
-               
-               # Add metadata to results
-               result$summary$param_id <- param_id
-               result$summary$strategy <- current_strategy$label
-               result$summary$country <- country
-               result$summary$sim_id <- params$sim_id
-               
-               # Return summary data
-               return(result$summary)
-          }
+          # Export necessary variables to the cluster
+          clusterExport(cl, c("param_list", "strategy_list", "country", "T_end", "dt", "N"), 
+                        envir = environment())
+          
+          # Run parallel simulations using parLapply
+          results_list <- parLapply(cl, split(tasks, 1:nrow(tasks)), task_function)
+          
+          # Combine results from list into a data frame
+          results <- do.call(rbind, results_list)
           
           # Store country results
           all_results[[country]] <- results
@@ -851,26 +775,8 @@ run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philipp
           cat(sprintf("Completed simulations for %s and saved results.\n", country))
      }
      
-     # Stop cluster
-     stopCluster(cl)
-     
-     # Combine all results
-     combined_results <- do.call(rbind, all_results)
-     
-     # Save complete results
-     saveRDS(combined_results, file = "./Outcome/all_countries_simulation_results.rds")
-     cat("All simulations completed. Results saved to ./Outcome/all_countries_simulation_results.rds\n")
-     
      # Return combined results
      return(combined_results)
 }
 
-# Example usage:
 results <- run_parallel_simulation(param_samples = 1000)
-     
-
-
-
-
-
-
