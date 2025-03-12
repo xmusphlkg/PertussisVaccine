@@ -538,6 +538,12 @@ run_simulation <- function(strategy, params, T_end, dt, N, location) {
           
           prev_population <- current_population
           prev_deaths <- current_deaths
+          
+          # check for early termination
+          if (sum(pop$state == "E") == 0 && sum(pop$state == "I") == 0) {
+               cat(sprintf("Discrete Event Simulation terminated at t = %.1f days.\n", t))
+               break
+          }
      }
      
      return(list(population = pop, summary = summary_df))

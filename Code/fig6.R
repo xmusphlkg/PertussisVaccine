@@ -156,7 +156,7 @@ task_function <- function(task_row, country, tasks) {
 }
 
 run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philippines", "Myanmar", "Thailand"),
-                                    param_samples = 1000, T_end = 365*10, dt = 1, N = 1e6) {
+                                    param_samples = 1000, T_end = 365*5, dt = 1, N = 1e6) {
      
      # Create task list for each parameter set and strategy combination
      tasks <- expand.grid(
@@ -243,4 +243,5 @@ run_parallel_simulation <- function(countries = c("China", "Indonesia", "Philipp
      return(combined_results)
 }
 
-results <- run_parallel_simulation(param_samples = 1000)
+results <- run_parallel_simulation(countries = c("China", "Indonesia", "Philippines", "Myanmar", "Thailand"),
+                                   param_samples = 1000)
