@@ -52,7 +52,7 @@ fill_color <- c("#DD5129FF", "#FAB255FF", "#30B4CCFF", "#43B284FF") |> rev()
 
 fig_1_m <- plot_map_col(DataAll$VaccineAdultRisk, fill_color) +
      scale_fill_manual(values = fill_color) +
-     labs(title = 'Vaccine ofr\nadults & risk groups')
+     labs(title = 'Vaccine for\nadults & risk groups')
 
 fig_1 <- ggplot(data = DataMapPlot)+
      geom_sf(aes(fill = VaccineAdultRisk)) +
