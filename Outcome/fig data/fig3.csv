@@ -1,0 +1,214 @@
+"CODE","NAME","VaccineAdultRisk","VaccinePregnant","VaccinePregnantTime"
+"AFG","Afghanistan","No","No",NA
+"ALB","Albania","No","No",NA
+"DZA","Algeria","No","No",NA
+"AND","Andorra","No","Yes",NA
+"AGO","Angola","No","No",NA
+"AIA","Anguilla","Risk","No",NA
+"ATG","Antigua and Barbuda","No","No",NA
+"ARG","Argentina","Risk","Yes","20-40w"
+"ARM","Armenia","No","No",NA
+"ABW","Aruba","Risk","No",NA
+"AUS","Australia","No","Yes","20-32w"
+"AUT","Austria","No","Yes","27-36w"
+"AZE","Azerbaijan","No","No",NA
+"BHS","Bahamas","No","Yes",NA
+"BHR","Bahrain","Both","No",NA
+"BGD","Bangladesh","No","No",NA
+"BRB","Barbados","Risk","No",NA
+"BLR","Belarus","Risk","No",NA
+"BEL","Belgium","Adult","Yes","24-32w"
+"BLZ","Belize","No","No",NA
+"BEN","Benin","No","No",NA
+"BMU","Bermuda","No","Yes",NA
+"BTN","Bhutan","No","No",NA
+"BOL","Bolivia (Plurinational State of)","No","No",NA
+"BIH","Bosnia and Herzegovina","No","No",NA
+"BWA","Botswana","No","No",NA
+"BRA","Brazil","Both","Yes","20-32w"
+"VGB","British Virgin Islands","No","Yes",NA
+"BRN","Brunei Darussalam","No","No",NA
+"BGR","Bulgaria","No","No",NA
+"BFA","Burkina Faso","No","No",NA
+"BDI","Burundi","No","No",NA
+"CPV","Cabo Verde","No","No",NA
+"KHM","Cambodia","No","No",NA
+"CMR","Cameroon","No","No",NA
+"CAN","Canada","Adult","Yes","27-32w"
+"CYM","Cayman Islands","No","Yes",NA
+"CAF","Central African Republic","No","No",NA
+"TCD","Chad","No","No",NA
+"CHL","Chile","No","Yes",NA
+"CHN","China","No","No",NA
+"HKG","China, Hong Kong SAR","No","Yes",NA
+"MAC","China, Macao SAR","Risk","Yes",NA
+"COL","Colombia","Risk","Yes",NA
+"COM","Comoros","No","No",NA
+"COG","Congo","No","No",NA
+"COK","Cook Islands","No","No",NA
+"CRI","Costa Rica","Risk","Yes",NA
+"CIV","Côte d'Ivoire","No","No",NA
+"HRV","Croatia","No","No",NA
+"CUB","Cuba","Risk","No",NA
+"CUW","Curaçao","No","No",NA
+"CYP","Cyprus","Adult","Yes",NA
+"CZE","Czechia","No","No",NA
+"PRK","Democratic People's Republic of Korea","No","No",NA
+"COD","Democratic Republic of the Congo","No","No",NA
+"DNK","Denmark","No","No",NA
+"DJI","Djibouti","No","No",NA
+"DMA","Dominica","No","No",NA
+"DOM","Dominican Republic","Risk","Yes",NA
+"ECU","Ecuador","No","No",NA
+"EGY","Egypt","No","No",NA
+"SLV","El Salvador","Risk","Yes",NA
+"GNQ","Equatorial Guinea","No","No",NA
+"ERI","Eritrea","No","No",NA
+"EST","Estonia","Adult","No",NA
+"SWZ","Eswatini","No","No",NA
+"ETH","Ethiopia","No","No",NA
+"FJI","Fiji","No","No",NA
+"FIN","Finland","Adult","No",NA
+"FRA","France","Adult","Yes","20-36w"
+"PYF","French Polynesia","No","No",NA
+"GAB","Gabon","No","No",NA
+"GMB","Gambia","No","No",NA
+"GEO","Georgia","No","No",NA
+"DEU","Germany","Both","Yes","28-40w"
+"GHA","Ghana","No","No",NA
+"GRC","Greece","Adult","No",NA
+"GRD","Grenada","No","No",NA
+"GUM","Guam","Adult","Yes",NA
+"GTM","Guatemala","Risk","Yes",NA
+"GIN","Guinea","No","No",NA
+"GNB","Guinea-Bissau","No","No",NA
+"GUY","Guyana","No","No",NA
+"HTI","Haiti","No","No",NA
+"HND","Honduras","Risk","Yes",NA
+"HUN","Hungary","No","Yes","16-32w"
+"ISL","Iceland","No","Yes",NA
+"IND","India","No","Yes","27-36w"
+"IDN","Indonesia","No","No",NA
+"IRN","Iran (Islamic Republic of)","No","No",NA
+"IRQ","Iraq","No","No",NA
+"IRL","Ireland","Risk","Yes","16-36w"
+"ISR","Israel","Risk","Yes","27-36w"
+"ITA","Italy","Adult","Yes","28-40w"
+"JAM","Jamaica","No","No",NA
+"JPN","Japan","No","No",NA
+"JOR","Jordan","No","No",NA
+"KAZ","Kazakhstan","No","No",NA
+"KEN","Kenya","No","No",NA
+"KIR","Kiribati","No","No",NA
+"XKX","Kosovo (in accordance with UN Security Council resolution 1244 (1999))","No","No",NA
+"KWT","Kuwait","No","No",NA
+"KGZ","Kyrgyzstan","No","No",NA
+"LAO","Lao People's Democratic Republic","No","No",NA
+"LVA","Latvia","Risk","Yes",NA
+"LBN","Lebanon","No","No",NA
+"LSO","Lesotho","No","No",NA
+"LBR","Liberia","No","No",NA
+"LBY","Libya","No","No",NA
+"LTU","Lithuania","No","Yes",NA
+"LUX","Luxembourg","No","Yes","13-26w"
+"MDG","Madagascar","No","No",NA
+"MWI","Malawi","No","No",NA
+"MYS","Malaysia","No","No",NA
+"MDV","Maldives","No","No",NA
+"MLI","Mali","No","No",NA
+"MLT","Malta","No","No",NA
+"MHL","Marshall Islands","No","No",NA
+"MRT","Mauritania","No","No",NA
+"MUS","Mauritius","No","Yes",NA
+"MEX","Mexico","No","Yes","27-36w"
+"FSM","Micronesia (Federated States of)","No","No",NA
+"MCO","Monaco","Adult","No",NA
+"MNG","Mongolia","No","No",NA
+"MNE","Montenegro","No","No",NA
+"MSR","Montserrat","No","No",NA
+"MAR","Morocco","No","No",NA
+"MOZ","Mozambique","No","No",NA
+"MMR","Myanmar","No","No",NA
+"NAM","Namibia","No","No",NA
+"NRU","Nauru","No","No",NA
+"NPL","Nepal","No","No",NA
+"NLD","Netherlands (Kingdom of the)","Risk","Yes","22-40w"
+"NCL","New Caledonia","Adult","No",NA
+"NZL","New Zealand","Both","Yes","16-26w"
+"NIC","Nicaragua","No","No",NA
+"NER","Niger","No","No",NA
+"NGA","Nigeria","No","No",NA
+"NIU","Niue","No","Yes",NA
+"MKD","North Macedonia","No","No",NA
+"MNP","Northern Mariana Islands","No","No",NA
+"NOR","Norway","Risk","Yes","24-40w"
+"PSE","occupied Palestinian territory, including east Jerusalem","No","No",NA
+"OMN","Oman","Risk","Yes",NA
+"PAK","Pakistan","No","Yes",NA
+"PLW","Palau","No","No",NA
+"PAN","Panama","Both","Yes",NA
+"PNG","Papua New Guinea","No","No",NA
+"PRY","Paraguay","Risk","Yes",NA
+"PER","Peru","No","Yes",NA
+"PHL","Philippines","No","Yes",NA
+"POL","Poland","Risk","Yes","27-36w"
+"PRT","Portugal","No","Yes","20-36w"
+"QAT","Qatar","No","Yes",NA
+"KOR","Republic of Korea","No","No",NA
+"MDA","Republic of Moldova","No","No",NA
+"ROU","Romania","No","Yes",NA
+"RUS","Russian Federation","Both","No",NA
+"RWA","Rwanda","No","No",NA
+"KNA","Saint Kitts and Nevis","No","No",NA
+"LCA","Saint Lucia","No","No",NA
+"VCT","Saint Vincent and the Grenadines","No","No",NA
+"WSM","Samoa","No","No",NA
+"SMR","San Marino","Adult","No",NA
+"STP","Sao Tome and Principe","No","No",NA
+"SAU","Saudi Arabia","No","Yes",NA
+"SEN","Senegal","No","No",NA
+"SRB","Serbia","No","No",NA
+"SYC","Seychelles","No","No",NA
+"SLE","Sierra Leone","No","No",NA
+"SGP","Singapore","No","Yes","27-36w"
+"SXM","Sint Maarten (Dutch part)","No","No",NA
+"SVK","Slovakia","No","No",NA
+"SVN","Slovenia","No","Yes","24-40w"
+"SLB","Solomon Islands","No","No",NA
+"SOM","Somalia","No","No",NA
+"ZAF","South Africa","No","Yes","26-34w"
+"SSD","South Sudan","No","No",NA
+"ESP","Spain","Risk","Yes","27-40w"
+"LKA","Sri Lanka","No","No",NA
+"SDN","Sudan","No","No",NA
+"SUR","Suriname","Risk","No",NA
+"SWE","Sweden","No","Yes","16-40w"
+"CHE","Switzerland","No","Yes","13-26w"
+"SYR","Syrian Arab Republic","No","No",NA
+"TJK","Tajikistan","No","No",NA
+"THA","Thailand","No","Yes",NA
+"TLS","Timor-Leste","No","No",NA
+"TGO","Togo","No","No",NA
+"TKL","Tokelau","No","No",NA
+"TON","Tonga","No","No",NA
+"TTO","Trinidad and Tobago","No","No",NA
+"TUN","Tunisia","No","No",NA
+"TUR","Türkiye","No","No",NA
+"TKM","Turkmenistan","No","No",NA
+"TCA","Turks and Caicos Islands","No","No",NA
+"TUV","Tuvalu","No","No",NA
+"UGA","Uganda","No","No",NA
+"UKR","Ukraine","No","No",NA
+"ARE","United Arab Emirates","Both","No",NA
+"GBR","United Kingdom of Great Britain and Northern Ireland","No","Yes","16-32w"
+"TZA","United Republic of Tanzania","No","No",NA
+"USA","United States of America","Adult","Yes","27-36w"
+"URY","Uruguay","Risk","Yes",NA
+"UZB","Uzbekistan","No","No",NA
+"VUT","Vanuatu","No","No",NA
+"VEN","Venezuela (Bolivarian Republic of)","No","No",NA
+"VNM","Viet Nam","No","No",NA
+"WLF","Wallis and Futuna","No","No",NA
+"YEM","Yemen","No","No",NA
+"ZMB","Zambia","No","No",NA
+"ZWE","Zimbabwe","No","No",NA

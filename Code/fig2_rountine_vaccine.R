@@ -40,17 +40,12 @@ DataAll <- DataAll |>
                  TRUE ~ NA),
             TimeLastShotG = factor(TimeLastShotG, levels = c('<1', '[1,2)', '[2,6)', '[6,12)', '12+')),
             TimeShotG = paste(TimeFirstShotG, TimeLastShotG, sep = ' '),
-            VaccineAdultRisk = case_when(
-                 VaccineAdult == 0 & VaccineRisk == 0 ~ 'No',
-                 VaccineAdult == 1 & VaccineRisk == 0 ~ 'Adult',
-                 VaccineAdult == 0 & VaccineRisk == 1 ~ 'Risk',
-                 VaccineAdult == 1 & VaccineRisk == 1 ~ 'Both',
-                 TRUE ~ NA_character_),
-            VaccineAdultRisk = factor(VaccineAdultRisk,
-                                      levels = c('No', 'Risk', 'Adult', 'Both')),
-            VaccinePregnant = factor(VaccinePregnant,
-                                     levels = c(0:1),
-                                     labels = c('No', 'Yes')))
+            VaccineDoseG = as.character(VaccineDose),
+            VaccineDoseG = factor(VaccineDoseG, levels = c('3', '4', '5', '6')),
+            VaccineCodeG = factor(VaccineCode, levels = c('aP', 'wP', 'Both'))) |> 
+     select(CODE, NAME, VaccineCodeG, VaccineDoseG,
+            TimeFirstShot, TimeLastShot, TimeFirstShotG, TimeLastShotG, TimeShotG,
+            CoverageDTP1, CoverageDTP3)
 
 DataMap <- st_read("./Data/world.zh.json",
                   quiet = TRUE) |> 
@@ -130,17 +125,18 @@ fig_2 <- fig_2 + inset_element(fig_2_m, left = 0.01, bottom = 0.01, right = 0.25
 
 ## panel c -----------------------------------------------------------------
 
+table(DataAll$VaccineDoseG)
+
 fill_color <- c("#DD5129FF", "#FAB255FF", "#0F7BA2FF", "#43B284FF")
 
-fig_3_m <- plot_map_col(DataAll$VaccineAdultRisk, fill_color) +
+fig_3_m <- plot_map_col(DataAll$VaccineDoseG, fill_color) +
      scale_fill_manual(values = fill_color,
-                       breaks = c('No', 'Risk', 'Adult', 'Both'),
-                       limits = c('No', 'Risk', 'Adult', 'Both'),
-                       na.translate = F)+
-     labs(title = 'Providing vaccine\nfor adults & risk groups')
+                       breaks = c('3', '4', '5', '6'),
+                       limits = c('3', '4', '5', '6')) +
+     labs(title = 'Vaccine dose')
 
 fig_3 <- ggplot(data = DataMapPlot) +
-     geom_sf(aes(fill = VaccineAdultRisk)) +
+     geom_sf(aes(fill = VaccineDoseG)) +
      theme(axis.text.x = element_text(size = 8),
            axis.text.y = element_text(size = 8)) +
      scale_x_continuous(limits = c(-180, 180),
@@ -148,8 +144,8 @@ fig_3 <- ggplot(data = DataMapPlot) +
      scale_y_continuous(limits = c(-60, 75)) +
      scale_fill_manual(values = fill_color,
                        na.value = "white",
-                       breaks = levels(DataMapPlot$VaccineAdultRisk),
-                       limits = levels(DataMapPlot$VaccineAdultRisk))+
+                       breaks = levels(DataMapPlot$VaccineDoseG),
+                       limits = levels(DataMapPlot$VaccineDoseG))+
      theme_bw() +
      theme(panel.grid = element_blank(),
            panel.background = element_rect(fill = "#C1CDCD", color = NA),
@@ -163,47 +159,14 @@ fig_3 <- ggplot(data = DataMapPlot) +
 
 fig_3 <- fig_3 + inset_element(fig_3_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.55)
 
-## panel d -------------------------------------------------------------
-
-fill_color <- fill_color[c(1, 4)]
-
-fig_4_m <- plot_map_col(DataAll$VaccinePregnant, fill_color) +
-     scale_fill_manual(values = fill_color,
-                       na.translate = F)+
-     labs(title = 'Provided vaccine\nfor pregnant woman')
-
-fig_4 <- ggplot(data = DataMapPlot) +
-     geom_sf(aes(fill = VaccinePregnant)) +
-     theme(axis.text.x = element_text(size = 8),
-           axis.text.y = element_text(size = 8)) +
-     scale_x_continuous(limits = c(-180, 180),
-                        expand = c(0, 0)) +
-     scale_y_continuous(limits = c(-60, 75)) +
-     scale_fill_manual(values = fill_color,
-                       na.value = "white",
-                       breaks = levels(DataMapPlot$VaccinePregnant),
-                       limits = levels(DataMapPlot$VaccinePregnant))+
-     theme_bw() +
-     theme(panel.grid = element_blank(),
-           panel.background = element_rect(fill = "#C1CDCD", color = NA),
-           axis.text = element_text(color = 'black', face = 'plain'),
-           axis.title = element_text(color = 'black', face = 'plain'),
-           legend.position = 'none',
-           legend.box = 'horizontal',
-           plot.title.position = 'plot') +
-     labs(title = "D", x = NULL, y = NULL)+
-     guides(fill = guide_legend(nrow = 1))
-
-fig_4 <- fig_4 + inset_element(fig_4_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.55)
-
-## panel e ----------------------------------------------------------------
+## panel d ----------------------------------------------------------------
 
 fill_color <- paletteer_d("MetBrewer::Hiroshige")
 
-fig_5_m <- plot_map_density(DataMapPlot$CoverageDTP1, fill_color)+
-     labs(title = 'DTP-containing\nvaccine, 1st dose')
+fig_4_m <- plot_map_density(DataMapPlot$CoverageDTP1, fill_color)+
+     labs(title = 'Vaccine coverage,\n1st dose')
 
-fig_5 <- ggplot(data = DataMapPlot) +
+fig_4 <- ggplot(data = DataMapPlot) +
      geom_sf(aes(fill = CoverageDTP1)) +
      # add x, y tick labels
      theme(axis.text.x = element_text(size = 8),
@@ -224,16 +187,16 @@ fig_5 <- ggplot(data = DataMapPlot) +
            legend.position = 'none',
            plot.title.position = 'plot') +
      guides(fill = guide_colorbar(barwidth = 30)) +
-     labs(title = "E", x = NULL, y = NULL)
+     labs(title = "D", x = NULL, y = NULL)
 
-fig_5 <- fig_5 + inset_element(fig_5_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.55)
+fig_4 <- fig_4 + inset_element(fig_4_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.55)
 
-## panel f -----------------------------------------------------------------
+## panel e -----------------------------------------------------------------
 
-fig_6_m <- plot_map_density(DataMapPlot$CoverageDTP3, fill_color)+
-     labs(title = 'DTP-containing\nvaccine, 3rd dose')
+fig_5_m <- plot_map_density(DataMapPlot$CoverageDTP3, fill_color)+
+     labs(title = 'Vaccine coverage,\n3rd dose')
 
-fig_6 <- ggplot(data = DataMapPlot) +
+fig_5 <- ggplot(data = DataMapPlot) +
      geom_sf(aes(fill = CoverageDTP3)) +
      # add x, y tick labels
      theme(axis.text.x = element_text(size = 8),
@@ -254,7 +217,41 @@ fig_6 <- ggplot(data = DataMapPlot) +
            legend.position = 'none',
            plot.title.position = 'plot') +
      guides(fill = guide_colorbar(barwidth = 30)) +
-     labs(title = "F", x = NULL, y = NULL, fill = 'DTP vaccine\nCoverage(%)')
+     labs(title = "E", x = NULL, y = NULL, fill = 'DTP vaccine\nCoverage(%)')
+
+fig_5 <- fig_5 + inset_element(fig_5_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.55)
+
+## panel f -------------------------------------------------------------
+
+fill_color <- c("#DD5129FF", "#FAB255FF", "#43B284FF")
+
+fig_6_m <- plot_map_col(DataAll$VaccineCodeG, fill_color) +
+     scale_fill_manual(values = fill_color,
+                       na.translate = F)+
+     labs(title = 'Vaccine type')
+
+fig_6 <- ggplot(data = DataMapPlot) +
+     geom_sf(aes(fill = VaccineCodeG)) +
+     theme(axis.text.x = element_text(size = 8),
+           axis.text.y = element_text(size = 8)) +
+     scale_x_continuous(limits = c(-180, 180),
+                        expand = c(0, 0)) +
+     scale_y_continuous(limits = c(-60, 75)) +
+     scale_fill_manual(values = fill_color,
+                       na.value = "white",
+                       breaks = levels(DataMapPlot$VaccineCodeG),
+                       limits = levels(DataMapPlot$VaccineCodeG))+
+     theme_bw() +
+     theme(panel.grid = element_blank(),
+           panel.background = element_rect(fill = "#C1CDCD", color = NA),
+           axis.text = element_text(color = 'black', face = 'plain'),
+           axis.title = element_text(color = 'black', face = 'plain'),
+           legend.position = 'none',
+           legend.box = 'horizontal',
+           plot.title.position = 'plot') +
+     labs(title = "D", x = NULL, y = NULL)+
+     guides(fill = guide_legend(nrow = 1))
+
 
 fig_6 <- fig_6 + inset_element(fig_6_m, left = 0.01, bottom = 0.01, right = 0.25, top = 0.55)
 
@@ -270,6 +267,11 @@ ggsave("./Outcome/fig2.pdf",
        width = 15,
        height = 11,
        device = cairo_pdf)
+
+ggsave("./Outcome/fig2.png",
+       fig,
+       width = 15,
+       height = 11)
 
 write.csv(DataAll,
           "./Outcome/fig data/fig2.csv",

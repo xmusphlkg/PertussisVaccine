@@ -356,8 +356,7 @@ fig_1 <- DataAll |>
            strip.background = element_blank(),
            strip.text = element_text(size = 14, hjust = 0, face = 'plain'),
            strip.placement = 'outside',
-           axis.text.y = element_text(color = 'black', face = 'plain'),
-           axis.text.x = element_text(color = 'black', face = 'plain'),
+           axis.text = element_text(color = 'black', face = 'plain'),
            axis.title = element_text(color = 'black', face = 'plain'),
            legend.direction = 'horizontal',
            plot.title.position = 'plot',
@@ -388,3 +387,8 @@ ggsave("./Outcome/fig1.pdf",
        width = 15,
        height = 8,
        device = cairo_pdf)
+
+ggsave("./Outcome/fig1.png",
+       fig,
+       width = 15,
+       height = 8)

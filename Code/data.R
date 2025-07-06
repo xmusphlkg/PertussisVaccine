@@ -10,7 +10,7 @@ library(jsonlite)
 
 source('./Code/function.R')
 
-# Data --------------------------------------------------------------------
+# vaccine -----------------------------------------------------------------
 
 ## Data from the World Health Organization (WHO)
 ## https://immunizationdata.who.int/global/wiise-detail-page/diphtheria-tetanus-toxoid-and-pertussis-(dtp)-vaccination-coverage?ANTIGEN=&YEAR=&CODE=
@@ -86,23 +86,8 @@ DataVacScheduleRisk <- DataVacSchedule |>
                .groups = 'drop')
 
 # Pregnant women
-DataAddition <- read.xlsx("./Data/Maternal pertussis immunization 2021.xlsx") |> 
-     filter(!is.na(DISEASE)) |> 
-     select(COUNTRYNAME) |>
-     rename(NAME = COUNTRYNAME) |> 
-     ## add CODE for the countries
-     left_join(DataInfo, by = c('NAME')) |>
-     select(CODE, NAME)
-
-DataVacSchedulePreg <- DataVacSchedule |> 
-     filter(TARGETPOP_DESCRIPTION == 'Pregnant women') |> 
-     select(CODE, NAME) |> 
-     # rbind with the data from the additional file
-     rbind(DataAddition) |> 
-     unique() |> 
-     group_by(CODE, NAME) |>
-     summarise(PREGNANT = 1,
-               .groups = 'drop')
+DataVacSchedulePreg <- read.xlsx('./Data/VaccineSchedule.xlsx') |> 
+     select(CODE, NAME, VaccinePregnantTime, VaccinePregnant)
      
 # General/routine
 DataVacScheduleGenM <- DataVacSchedule |> 
@@ -141,11 +126,18 @@ DataVacScheduleGen <- DataVacSchedule |>
      #        GENERAL = GENERALM + GENERALY) |> 
      arrange(CODE)
 
+# Vaccine dose
+DataVacDose <- read.xlsx('./Data/VaccineSchedule.xlsx') |> 
+     select(CODE, NAME, VaccineDose)
+
 DataVacSchedule <- DataVacSchedule |> 
      select(CODE, NAME) |> 
      unique() |>
+     full_join(DataVacDose, by = c('CODE', 'NAME')) |>
+     mutate(VaccineDose = replace_na(VaccineDose, NA)) |>
      full_join(DataVacSchedulePreg, by = c('CODE', 'NAME')) |>
-     mutate(PREGNANT = replace_na(PREGNANT, 0)) |>
+     mutate(VaccinePregnant = replace_na(VaccinePregnant, 0),
+            VaccinePregnantTime = replace_na(VaccinePregnantTime, NA)) |>
      full_join(DataVacScheduleAdult, by = c('CODE', 'NAME')) |>
      mutate(ADULT = replace_na(ADULT, 0)) |>
      full_join(DataVacScheduleRisk, by = c('CODE', 'NAME')) |>
@@ -153,12 +145,12 @@ DataVacSchedule <- DataVacSchedule |>
      full_join(DataVacScheduleGen, by = c('CODE', 'NAME')) |>
      rename(TimeFirstShot = GENERALFIRSTSHOT,
             TimeLastShot = GENERALLASTSHOT,
-            VaccinePregnant = PREGNANT,
             # VaccineGeneral = GENERAL,
             VaccineAdult = ADULT,
             VaccineRisk = RISK)
 
 remove(DataVacSchedulePreg, DataVacScheduleAdult, DataVacScheduleRisk,
+       DataVacDose,
        DataVacScheduleGen, DataVacScheduleGenM, DataVacScheduleGenY)
 
 ## Data from the World Health Organization (WHO)
@@ -166,6 +158,8 @@ remove(DataVacSchedulePreg, DataVacScheduleAdult, DataVacScheduleRisk,
 DataVac <- DataVacCover |> 
      merge(DataVacSchedule, by = c('CODE', 'NAME'), all = T) |>
      merge(DataVacWP, by = c('CODE', 'NAME'), all = T)
+
+# incidence ---------------------------------------------------------------
 
 ## Data from the World Health Organization (WHO)
 ## https://immunizationdata.who.int/global/wiise-detail-page/pertussis-reported-cases-and-incidence
