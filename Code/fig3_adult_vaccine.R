@@ -157,7 +157,7 @@ fig_3 <- ggplot(DataTime) +
                        name = NULL,
                        labels = levels(DataPeriods$Periods)) +
      theme_bw()+
-     theme(legend.position = 'right',
+     theme(legend.position = 'bottom',
            axis.text = element_text(color = 'black', face = 'plain'),
            plot.title.position = 'plot')+
      labs(title = 'C',
@@ -166,21 +166,20 @@ fig_3 <- ggplot(DataTime) +
 
 # combine all figures -----------------------------------------------------
 
-fig <- cowplot::plot_grid(fig_1 + fig_2,
+fig <- cowplot::plot_grid(fig_1 / fig_2,
                           fig_3,
-                          rel_heights = c(1, 1.5),
-                          ncol = 1)
+                          ncol = 2)
 
 ggsave("./Outcome/fig3.pdf",
        fig,
        width = 15,
-       height = 10,
+       height = 7,
        device = cairo_pdf)
 
 ggsave("./Outcome/fig3.png",
        fig,
        width = 15,
-       height = 10)
+       height = 7)
 
 write.csv(DataAll,
           "./Outcome/fig data/fig3.csv",
